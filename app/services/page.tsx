@@ -17,7 +17,7 @@ import { formatDuration, formatPrice } from "@/lib/utils";
 export const metadata: Metadata = buildMetadata({
   title: "Pet Care Services",
   description:
-    "Dog walking, pet sitting, drop-ins, overnight care, puppy and cat care, in-home grooming, pet transportation, and adventure outings — with durations, pricing, and what's included."
+    "Dog walking, pet sitting, drop-ins, overnight care, puppy and cat care, in-home grooming, pet transportation, and adventure outings — with durations, pricing, and what's included.",
   path: "/services",
 });
 
