@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# next
+.next/
+out/
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# debug / tooling
+npm-debug.log*
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# local captures, not product
+screenshots/
+
+# brand processing source (keep public/brand)
+.brand-src/

@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Semantic tokens. Components reference these rather than raw ramp steps wherever
+ * a surface/ink relationship is what matters, so a future theme change is a
+ * one-file edit. Raw hexes here mirror tailwind.config.ts, which is generated
+ * from the two colors sampled out of the logo (navy #011C35, mint #36CEC1).
+ */
+:root {
+  --brand-navy: #011c35;
+  --brand-mint: #36cec1;
+
+  --surface: #ffffff;
+  --surface-muted: #f7f8f9;
+  --surface-cream: #fcfbf9;
+  --surface-inverse: #011c35;
+
+  --ink: #011c35;
+  --ink-muted: #4a5f68;
+  --ink-subtle: #617984;
+  --ink-inverse: #f4f7fa;
+
+  --border-subtle: rgba(1, 28, 53, 0.08);
+  --border-strong: rgba(1, 28, 53, 0.16);
+  --border-inverse: rgba(244, 247, 250, 0.14);
+
+  --accent: #36cec1;
+  --accent-ink: #21877f;
+
+  --nav-height: 4.5rem;
+  --focus-ring: #2aaca1;
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* Anchor links clear the sticky navbar. */
+  scroll-padding-top: calc(var(--nav-height) + 1.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--ink);
+  font-feature-settings: "cv11", "ss01";
+  font-variation-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible, on-brand focus states everywhere keyboard users land. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background-color: rgba(54, 206, 193, 0.28);
+  color: var(--ink);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Remove the number-input spinners in the booking flow. */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /**
+   * Eyebrow label mirroring the logo's "— PET SERVICES —" tagline treatment:
+   * mint, uppercase, generous tracking, optional flanking hairlines.
+   */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700;
+  }
+
+  .eyebrow-rule::before,
+  .eyebrow-rule::after {
+    content: "";
+    @apply h-px w-6 bg-mint-500;
+  }
+
+  .eyebrow-on-dark {
+    @apply text-mint-400;
+  }
+
+  /* Mint hairline divider echoing the heart-line motif. */
+  .hairline-mint {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(54, 206, 193, 0.5) 18%,
+      rgba(54, 206, 193, 0.5) 82%,
+      transparent
+    );
+    height: 1px;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-1;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-brand;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    @apply scale-x-100;
+  }
+
+  /* Subtle grain + light bloom used on large navy sections. */
+  .surface-inverse {
+    background-color: var(--surface-inverse);
+    background-image:
+      radial-gradient(60% 50% at 12% 0%, rgba(54, 206, 193, 0.14), transparent 70%),
+      radial-gradient(50% 45% at 92% 8%, rgba(54, 206, 193, 0.08), transparent 72%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Horizontal scrollers (testimonials, mobile chip rows). */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
