@@ -46,6 +46,11 @@ export function AuthForm({
         });
         if (signError) throw signError;
         if (data.session) {
+          await fetch("/api/account/welcome", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, name }),
+          }).catch(() => undefined);
           window.location.assign(postAuthPath(email, next));
           return;
         }

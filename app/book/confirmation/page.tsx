@@ -55,16 +55,17 @@ export default async function ConfirmationPage({
     <div className="bg-canvas pb-24 pt-14 sm:pt-20">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <span
-            className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-mint-500 text-white shadow-mint"
-            aria-hidden="true"
-          >
-            <Check className="h-7 w-7" strokeWidth={2.5} />
-          </span>
-
-          <Eyebrow withRules className="mt-7 justify-center">
-            {pending ? "Request saved" : "Request received"}
-          </Eyebrow>
+          <div className="flex flex-col items-center">
+            <span
+              className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-mint-500 text-white shadow-mint"
+              aria-hidden="true"
+            >
+              <Check className="h-7 w-7" strokeWidth={2.5} />
+            </span>
+            <Eyebrow className="mt-5">
+              {pending ? "Request saved" : "Request received"}
+            </Eyebrow>
+          </div>
 
           <h1 className="mt-5 text-display-sm font-semibold text-navy-900 sm:text-display-md">
             You&apos;re all set.

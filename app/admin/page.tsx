@@ -50,7 +50,7 @@ export default async function AdminHomePage() {
               <div>
                 <Link
                   href={`/admin/bookings/${row.booking_number}`}
-                  className="font-medium text-navy-900"
+                  className="font-medium text-navy-900 underline-offset-2 hover:underline"
                 >
                   {row.booking_number}
                 </Link>
@@ -58,10 +58,18 @@ export default async function AdminHomePage() {
                   {row.contact_name || row.contact_email} · {row.service_name || row.service_slug}
                 </p>
               </div>
-              <p className="text-[0.8125rem] text-sand-700">
-                {row.visit_date ? formatDate(row.visit_date, { month: "short", day: "numeric" }) : "Date TBD"}{" "}
-                · {row.status} · {formatPrice(row.total)}
-              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="text-[0.8125rem] text-sand-700">
+                  {row.visit_date ? formatDate(row.visit_date, { month: "short", day: "numeric" }) : "Date TBD"}{" "}
+                  · {row.status} · {formatPrice(row.total)}
+                </p>
+                <Link
+                  href={`/admin/bookings/${row.booking_number}`}
+                  className="rounded-button bg-white px-3 py-1.5 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 hover:bg-navy-50"
+                >
+                  View details
+                </Link>
+              </div>
             </li>
           ))}
           {bookings.length === 0 && !error ? (

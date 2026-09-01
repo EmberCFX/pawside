@@ -103,6 +103,7 @@ export function bookingToVisit(row: BookingRow): Visit {
 
   return {
     id: row.id,
+    bookingNumber: row.booking_number,
     petNames: pets,
     serviceSlug: row.service_slug as Visit["serviceSlug"],
     serviceName: row.service_name || row.service_slug,

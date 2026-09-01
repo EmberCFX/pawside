@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CalendarDays, Clock, Repeat, User } from "lucide-react";
+import { VisitActions } from "@/components/dashboard/VisitActions";
 import { Badge, Card } from "@/components/ui/Card";
 import { cn, formatDate, formatDuration, formatPrice, listToSentence } from "@/lib/utils";
 import type { Visit } from "@/types";
@@ -68,7 +69,7 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
         </div>
       </dl>
 
-      <div className="mt-5 flex flex-wrap gap-2.5 border-t border-sand-800/8 pt-4">
+      <div className="mt-5 flex flex-wrap items-center gap-2.5 border-t border-sand-800/8 pt-4">
         {visit.status === "completed" && visit.reportId ? (
           <Link
             href={`/account/visits#${visit.reportId}`}
@@ -76,22 +77,10 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
           >
             View report
           </Link>
-        ) : (
-          <>
-            <button
-              type="button"
-              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
-            >
-              Reschedule
-            </button>
-            <button
-              type="button"
-              className="rounded-button px-3.5 py-2 text-[0.8125rem] font-medium text-sand-600 transition-colors hover:bg-sand-100 hover:text-navy-900"
-            >
-              Cancel visit
-            </button>
-          </>
-        )}
+        ) : null}
+        {visit.status === "scheduled" || visit.status === "confirmed" || visit.status === "in-progress" ? (
+          <VisitActions bookingId={visit.id} bookingNumber={visit.bookingNumber} />
+        ) : null}
         <Link
           href="/account/messages"
           className="rounded-button px-3.5 py-2 text-[0.8125rem] font-medium text-sand-600 transition-colors hover:bg-sand-100 hover:text-navy-900"

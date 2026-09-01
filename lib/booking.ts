@@ -191,14 +191,15 @@ export function stepIssues(step: BookingStepId, draft: BookingDraft): string[] {
 }
 
 /** Human-readable summary of a recurring schedule. */
-export function describeSchedule(draft: BookingDraft): string {
+export function describeFrequency(frequency?: string | null, weekdays: number[] | null = []): string {
   const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const days = draft.weekdays
+  const days = (weekdays ?? [])
     .slice()
     .sort((a, b) => a - b)
-    .map((index) => weekdayNames[index].slice(0, 3));
+    .map((index) => weekdayNames[index]?.slice(0, 3))
+    .filter(Boolean);
 
-  switch (draft.frequency) {
+  switch (frequency) {
     case "weekly":
       return "Every week, same day and time";
     case "multi-weekly":
@@ -208,6 +209,10 @@ export function describeSchedule(draft: BookingDraft): string {
     default:
       return "One-time visit";
   }
+}
+
+export function describeSchedule(draft: BookingDraft): string {
+  return describeFrequency(draft.frequency, draft.weekdays);
 }
 
 /** Booking reference for the confirmation screen. Real numbers come from the backend. */

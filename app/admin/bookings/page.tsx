@@ -22,13 +22,19 @@ export default async function AdminBookingsPage() {
               <th className="px-6 py-3 font-semibold">When</th>
               <th className="px-6 py-3 font-semibold">Status</th>
               <th className="px-6 py-3 font-semibold">Total</th>
+              <th className="px-6 py-3 font-semibold">
+                <span className="sr-only">Actions</span>
+              </th>
             </tr>
           </thead>
           <tbody>
             {bookings.map((row) => (
               <tr key={row.id} className="border-t border-sand-800/8">
                 <td className="px-6 py-3">
-                  <Link href={`/admin/bookings/${row.booking_number}`} className="font-medium text-navy-900">
+                  <Link
+                    href={`/admin/bookings/${row.booking_number}`}
+                    className="font-medium text-navy-900 underline-offset-2 hover:underline"
+                  >
                     {row.booking_number}
                   </Link>
                 </td>
@@ -50,6 +56,14 @@ export default async function AdminBookingsPage() {
                   {row.status} / {row.payment_status}
                 </td>
                 <td className="px-6 py-3 tabular text-navy-900">{formatPrice(row.total)}</td>
+                <td className="px-6 py-3 text-right">
+                  <Link
+                    href={`/admin/bookings/${row.booking_number}`}
+                    className="inline-flex rounded-button bg-white px-3 py-1.5 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 hover:bg-navy-50"
+                  >
+                    View details
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>

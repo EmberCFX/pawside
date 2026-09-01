@@ -232,6 +232,7 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
                 {step.id === "payment" ? (
                   <CheckoutForm
                     quote={quote}
+                    email={draft.contact.email}
                     choice={paymentChoice}
                     onChoiceChange={setPaymentChoice}
                   />

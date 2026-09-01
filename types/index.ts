@@ -364,6 +364,7 @@ export type VisitStatus = "scheduled" | "confirmed" | "in-progress" | "completed
 
 export interface Visit {
   id: string;
+  bookingNumber?: string;
   petNames: string[];
   serviceSlug: ServiceSlug;
   serviceName: string;

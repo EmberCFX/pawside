@@ -10,10 +10,12 @@ export type PaymentChoice = "hold" | "card";
 
 export function CheckoutForm({
   quote,
+  email,
   choice,
   onChoiceChange,
 }: {
   quote: Quote;
+  email?: string;
   choice: PaymentChoice;
   onChoiceChange: (choice: PaymentChoice) => void;
 }) {
@@ -55,7 +57,9 @@ export function CheckoutForm({
                 <Badge tone="mint">Recommended</Badge>
               </span>
               <span className="mt-1.5 block text-[0.875rem] leading-relaxed text-sand-700">
-                We’ll email hello@pawside.co and confirm by text or email. Nothing is charged now.
+                {email?.trim()
+                  ? `We’ll email ${email.trim()} and confirm by text. Nothing is charged now.`
+                  : "We’ll email you and confirm by text. Nothing is charged now."}
               </span>
             </span>
           </label>
