@@ -28,6 +28,8 @@ export async function getAccountDetails() {
     lastName,
     email: profile.email,
     phone: profile.phone || booking?.contact_phone || "",
+    emergencyContactName: profile.emergency_contact_name || "",
+    emergencyContactPhone: profile.emergency_contact_phone || "",
     address: booking ? formatBookingAddress(booking) : "",
     entryInstructions: booking?.entry_instructions || "",
     hasBooking: Boolean(booking),

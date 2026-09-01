@@ -34,6 +34,8 @@ export default async function AccountProfilePage() {
           phone={details.phone}
           address={details.address}
           entryInstructions={details.entryInstructions}
+          emergencyContactName={details.emergencyContactName}
+          emergencyContactPhone={details.emergencyContactPhone}
         />
       ) : (
         <Card className="p-6 text-[0.9375rem] text-sand-700">

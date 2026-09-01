@@ -1,9 +1,10 @@
 import { getService } from "@/data/services";
 import { generateBookingNumber } from "@/lib/booking";
 import { buildQuote } from "@/lib/pricing";
+import { resolvePromoCode } from "@/lib/promos";
 import { createServiceSupabase } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/utils";
-import type { BookingDraft } from "@/types";
+import type { BookingDraft, PromoCode } from "@/types";
 
 export type BookingRow = {
   id: string;
@@ -39,7 +40,7 @@ export type BookingRow = {
   created_at: string;
 };
 
-export function quoteForDraft(draft: BookingDraft) {
+export function quoteForDraft(draft: BookingDraft, resolvedPromo?: PromoCode) {
   return buildQuote({
     serviceSlug: draft.serviceSlug,
     durationMinutes: draft.durationMinutes,
@@ -50,6 +51,7 @@ export function quoteForDraft(draft: BookingDraft) {
     membership: draft.membership ?? "none",
     date: draft.date,
     promoCode: draft.promoCode,
+    resolvedPromo: resolvedPromo ?? draft.promoSnapshot ?? undefined,
   });
 }
 
@@ -90,7 +92,7 @@ export async function insertBooking(draft: BookingDraft, customerId?: string | n
     throw new Error("Service, email, and phone are required.");
   }
 
-  const quote = quoteForDraft(draft);
+  const quote = quoteForDraft(draft, await resolvePromoCode(draft.promoCode));
   const service = getService(draft.serviceSlug);
   const bookingNumber = generateBookingNumber();
 

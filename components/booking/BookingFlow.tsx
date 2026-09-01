@@ -65,6 +65,7 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
         membership: draft.membership,
         date: draft.date,
         promoCode: draft.promoCode,
+        resolvedPromo: draft.promoSnapshot ?? undefined,
       }),
     [draft],
   );
@@ -301,7 +302,9 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
             <OrderSummary
               draft={draft}
               quote={quote}
-              onPromoChange={(promoCode) => patch({ promoCode })}
+              onPromoChange={(promoCode, promo) =>
+                patch({ promoCode, promoSnapshot: promo ?? null })
+              }
             />
           </div>
         </div>

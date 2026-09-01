@@ -68,7 +68,7 @@ export async function getAdminBooking(bookingNumber: string) {
   noStore();
   const { db, error: setupError } = serviceClientOrError();
   if (!db) {
-    return { row: null as BookingRow | null, error: setupError };
+    return { row: null as BookingRow | null, error: setupError, emergency: null };
   }
 
   const { data, error } = await db
@@ -78,10 +78,29 @@ export async function getAdminBooking(bookingNumber: string) {
     .maybeSingle();
 
   if (error) {
-    return { row: null as BookingRow | null, error: error.message };
+    return { row: null as BookingRow | null, error: error.message, emergency: null };
   }
 
-  return { row: (data as BookingRow | null) ?? null, error: null };
+  const booking = (data as BookingRow | null) ?? null;
+  let emergency: { name: string; phone: string } | null = null;
+  if (booking) {
+    let profileQuery = db.from("profiles").select("*");
+    profileQuery = booking.customer_id
+      ? profileQuery.eq("id", booking.customer_id)
+      : profileQuery.eq("email", booking.contact_email);
+    const { data: profile } = await profileQuery.maybeSingle();
+    let name = (profile?.emergency_contact_name as string | undefined)?.trim() || "";
+    let phone = (profile?.emergency_contact_phone as string | undefined)?.trim() || "";
+    if ((!name && !phone) && booking.customer_id) {
+      const { data: authUser } = await db.auth.admin.getUserById(booking.customer_id);
+      const meta = authUser.user?.user_metadata ?? {};
+      name = typeof meta.emergency_contact_name === "string" ? meta.emergency_contact_name.trim() : "";
+      phone = typeof meta.emergency_contact_phone === "string" ? meta.emergency_contact_phone.trim() : "";
+    }
+    if (name || phone) emergency = { name, phone };
+  }
+
+  return { row: booking, error: null, emergency };
 }
 
 export async function getAdminMessages() {

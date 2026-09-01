@@ -7,9 +7,14 @@ create table if not exists public.profiles (
   email text unique not null,
   full_name text,
   phone text,
+  emergency_contact_name text,
+  emergency_contact_phone text,
   role text not null default 'customer' check (role in ('customer', 'admin')),
   created_at timestamptz not null default now()
 );
+
+alter table public.profiles add column if not exists emergency_contact_name text;
+alter table public.profiles add column if not exists emergency_contact_phone text;
 
 create table if not exists public.pets (
   id uuid primary key default gen_random_uuid(),

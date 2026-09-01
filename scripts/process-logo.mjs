@@ -7,7 +7,7 @@
  *   public/brand/pawside-logo.png        full lockup, transparent
  *   public/brand/pawside-logo-light.png  full lockup recolored for light surfaces
  *   public/brand/pawside-mark.png        heart + dog/cat mark only, transparent
- *   app/icon.png                         512px favicon / app icon
+ *   app/icon.png                         512px favicon — white + mint on transparent
  *   app/apple-icon.png                   180px apple touch icon on navy
  *
  * Run: node scripts/process-logo.mjs <source.png>
@@ -255,8 +255,8 @@ write(path.join(brandDir, "pawside-mark.png"), mark);
 const markOnDark = trim(crop(keyedOnDark, 0, 0, width, MARK_CUT), 6);
 write(path.join(brandDir, "pawside-mark-on-dark.png"), markOnDark);
 
-// Favicon: mark on transparent, plus an opaque navy apple icon.
-write(path.join(root, "app", "icon.png"), square(mark, 512, 0.06));
+// Favicon: white + mint on transparent so it stays visible on dark browser tabs.
+write(path.join(root, "app", "icon.png"), square(markOnDark, 512, 0.06));
 write(
   path.join(root, "app", "apple-icon.png"),
   flatten(square(markOnDark, 180, 0.12), [14, 42, 71]),

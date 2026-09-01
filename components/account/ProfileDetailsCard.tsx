@@ -18,6 +18,8 @@ export function ProfileDetailsCard({
   phone,
   address,
   entryInstructions,
+  emergencyContactName,
+  emergencyContactPhone,
 }: {
   firstName: string;
   lastName: string;
@@ -25,16 +27,20 @@ export function ProfileDetailsCard({
   phone: string;
   address: string;
   entryInstructions: string;
+  emergencyContactName: string;
+  emergencyContactPhone: string;
 }) {
   const [editing, setEditing] = useState(false);
 
   const details = [
-    { label: "First name", value: firstName },
-    { label: "Last name", value: lastName },
-    { label: "Email", value: email },
-    { label: "Phone", value: phone },
-    { label: "Service address", value: address },
-    { label: "Entry instructions", value: entryInstructions },
+    { label: "First name", value: firstName, empty: "Not added yet" },
+    { label: "Last name", value: lastName, empty: "Not added yet" },
+    { label: "Email", value: email, empty: "—" },
+    { label: "Phone", value: phone, empty: "Not added yet" },
+    { label: "Service address", value: address, empty: "Fills in from your next booking" },
+    { label: "Entry instructions", value: entryInstructions, empty: "Fills in from your next booking" },
+    { label: "Emergency contact", value: emergencyContactName, empty: "Not added yet" },
+    { label: "Emergency phone", value: emergencyContactPhone, empty: "Not added yet" },
   ];
 
   return (
@@ -60,6 +66,8 @@ export function ProfileDetailsCard({
             firstName={firstName}
             lastName={lastName}
             phone={phone}
+            emergencyContactName={emergencyContactName}
+            emergencyContactPhone={emergencyContactPhone}
             onCancel={() => setEditing(false)}
           />
         ) : (
@@ -69,16 +77,7 @@ export function ProfileDetailsCard({
                 <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                   {detail.label}
                 </dt>
-                <Value
-                  value={detail.value}
-                  empty={
-                    detail.label === "Email"
-                      ? "—"
-                      : detail.label === "Service address" || detail.label === "Entry instructions"
-                        ? "Fills in from your next booking"
-                        : "Not added yet"
-                  }
-                />
+                <Value value={detail.value} empty={detail.empty} />
               </div>
             ))}
           </dl>

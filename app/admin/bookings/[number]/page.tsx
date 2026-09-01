@@ -16,7 +16,7 @@ export default async function AdminBookingDetailPage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  const { row: booking, error } = await getAdminBooking(number);
+  const { row: booking, error, emergency } = await getAdminBooking(number);
   if (error) {
     return (
       <Card className="p-6">
@@ -41,6 +41,8 @@ export default async function AdminBookingDetailPage({
     ["Customer", booking.contact_name || "—"],
     ["Email", booking.contact_email],
     ["Phone", booking.contact_phone || "—"],
+    ["Emergency contact", emergency?.name || "—"],
+    ["Emergency phone", emergency?.phone || "—"],
     [
       "When",
       [
@@ -98,8 +100,9 @@ export default async function AdminBookingDetailPage({
                     <a href={`mailto:${booking.contact_email}`} className="hover:underline">
                       {value}
                     </a>
-                  ) : label === "Phone" && booking.contact_phone ? (
-                    <a href={`tel:${booking.contact_phone.replace(/\D/g, "")}`} className="hover:underline">
+                  ) : (label === "Phone" && booking.contact_phone) ||
+                    (label === "Emergency phone" && emergency?.phone) ? (
+                    <a href={`tel:${value.replace(/\D/g, "")}`} className="hover:underline">
                       {value}
                     </a>
                   ) : (

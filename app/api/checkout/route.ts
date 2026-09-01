@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { quoteForDraft } from "@/lib/bookings";
 import { siteUrl } from "@/lib/env";
+import { checkoutPromoAdjustment, resolvePromoCode } from "@/lib/promos";
 import { getStripe } from "@/lib/stripe";
 import type { BookingDraft } from "@/types";
 
@@ -18,7 +19,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "A service is required." }, { status: 422 });
   }
 
-  const quote = quoteForDraft(draft);
+  const resolvedPromo = await resolvePromoCode(draft.promoCode);
+  const quote = quoteForDraft(draft, resolvedPromo);
   const stripe = getStripe();
 
   if (!stripe) {
@@ -30,18 +32,23 @@ export async function POST(request: Request) {
     });
   }
 
+  const checkout = checkoutPromoAdjustment(quote, resolvedPromo);
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     customer_email: draft.contact?.email,
     success_url: `${siteUrl()}/book/confirmation?booking=${payload.bookingNumber ?? "PS"}&paid=1`,
     cancel_url: `${siteUrl()}/book?cancelled=1`,
-    metadata: { bookingNumber: payload.bookingNumber ?? "" },
+    metadata: {
+      bookingNumber: payload.bookingNumber ?? "",
+      promoCode: resolvedPromo?.code ?? "",
+    },
+    discounts: checkout.discounts,
     line_items: [
       {
         quantity: 1,
         price_data: {
           currency: "usd",
-          unit_amount: quote.total,
+          unit_amount: checkout.unitAmount,
           product_data: { name: `Pawside — ${draft.serviceSlug}` },
         },
       },

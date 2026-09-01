@@ -7,6 +7,7 @@ import type {
   AddOnSlug,
   DurationMinutes,
   MembershipSlug,
+  PromoCode,
   Quote,
   QuoteLine,
   RecurringFrequency,
@@ -40,6 +41,8 @@ export interface QuoteInput {
   /** Hours of notice before the visit; drives the short-notice fee. */
   noticeHours?: number;
   promoCode?: string;
+  /** Server-validated promo (Stripe or built-in). Wins over a code lookup. */
+  resolvedPromo?: PromoCode;
   /** First-time customers unlock `firstTimeOnly` promos. */
   isFirstBooking?: boolean;
 }
@@ -102,6 +105,7 @@ export function buildQuote(input: QuoteInput): Quote {
     date = null,
     noticeHours,
     promoCode,
+    resolvedPromo,
     isFirstBooking = true,
   } = input;
 
@@ -237,9 +241,12 @@ export function buildQuote(input: QuoteInput): Quote {
   }
 
   /* Promo code -------------------------------------------------------- */
-  const promo = promoCode ? findPromoCode(promoCode) : undefined;
-  if (promo) {
+  const today = new Date().toISOString().slice(0, 10);
+  const promo = resolvedPromo ?? (promoCode ? findPromoCode(promoCode) : undefined);
+  if (promo && promo.active !== false) {
+    const expired = Boolean(promo.expiresAt && promo.expiresAt < today);
     const eligible =
+      !expired &&
       (!promo.minSubtotal || careSubtotal >= promo.minSubtotal) &&
       (!promo.appliesTo || promo.appliesTo.includes(serviceSlug)) &&
       (!promo.firstTimeOnly || isFirstBooking);

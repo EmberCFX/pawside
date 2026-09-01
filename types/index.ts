@@ -212,6 +212,8 @@ export interface BookingDraft {
     phone: string;
   };
   promoCode: string;
+  /** Server-validated promo, including Stripe-backed codes. */
+  promoSnapshot?: PromoCode | null;
   /** Marketing/attribution passthrough for the future backend. */
   referralSource?: string;
 }
@@ -259,6 +261,10 @@ export interface PromoCode {
   expiresAt?: string;
   firstTimeOnly?: boolean;
   active: boolean;
+  stripePromotionCodeId?: string;
+  stripeCouponId?: string;
+  maxRedemptions?: number;
+  timesRedeemed?: number;
 }
 
 /* ------------------------------------------------------------------ *

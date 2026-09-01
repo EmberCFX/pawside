@@ -3,6 +3,7 @@ import { bookingEmailPayload, insertBooking, quoteForDraft } from "@/lib/booking
 import { sendBookingEmails } from "@/lib/email";
 import { siteUrl } from "@/lib/env";
 import { getSessionUser } from "@/lib/auth";
+import { checkoutPromoAdjustment, resolvePromoCode } from "@/lib/promos";
 import { getStripe } from "@/lib/stripe";
 import type { BookingDraft } from "@/types";
 
@@ -35,7 +36,8 @@ export async function POST(request: Request) {
 
     if (payload.payNow) {
       const stripe = getStripe();
-      const quote = quoteForDraft(draft);
+      const resolvedPromo = await resolvePromoCode(draft.promoCode);
+      const quote = quoteForDraft(draft, resolvedPromo);
       if (!stripe) {
         return NextResponse.json({
           ok: true,
@@ -46,18 +48,22 @@ export async function POST(request: Request) {
         });
       }
 
-      const session = await stripe.checkout.sessions.create({
-        mode: "payment",
+      const checkout = checkoutPromoAdjustment(quote, resolvedPromo);
+      const sessionParams = {
+        mode: "payment" as const,
         customer_email: row.contact_email,
         success_url: `${siteUrl()}/book/confirmation?booking=${row.booking_number}&paid=1`,
         cancel_url: `${siteUrl()}/book/confirmation?booking=${row.booking_number}&cancelled=1`,
-        metadata: { bookingNumber: row.booking_number },
+        metadata: {
+          bookingNumber: row.booking_number,
+          promoCode: resolvedPromo?.code ?? "",
+        },
         line_items: [
           {
             quantity: 1,
             price_data: {
               currency: "usd",
-              unit_amount: quote.total,
+              unit_amount: checkout.unitAmount,
               product_data: {
                 name: `Pawside — ${row.service_name}`,
                 description: [row.visit_date, row.visit_time].filter(Boolean).join(" · ") || undefined,
@@ -65,7 +71,23 @@ export async function POST(request: Request) {
             },
           },
         ],
-      });
+      };
+      const session = await stripe.checkout.sessions
+        .create({ ...sessionParams, discounts: checkout.discounts })
+        .catch(() =>
+          stripe.checkout.sessions.create({
+            ...sessionParams,
+            line_items: [
+              {
+                ...sessionParams.line_items[0],
+                price_data: {
+                  ...sessionParams.line_items[0].price_data,
+                  unit_amount: quote.total,
+                },
+              },
+            ],
+          }),
+        );
 
       const db = (await import("@/lib/supabase/server")).createServiceSupabase();
       await db

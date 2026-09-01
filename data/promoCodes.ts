@@ -3,10 +3,8 @@ import type { PromoCode } from "@/types";
 /**
  * Promotion catalog.
  *
- * DEMO CODES ONLY — these exist so the booking flow can demonstrate the promo
- * architecture end to end. Before launch, either replace them with real
- * campaigns or move validation server-side (see app/api/promo/route.ts) so codes
- * can't be enumerated from the client bundle.
+ * Built-in fallback codes. New campaigns are created in Admin → Promos and
+ * live in Stripe. Booking validation prefers Stripe, then these.
  */
 export const promoCodes: PromoCode[] = [
   {

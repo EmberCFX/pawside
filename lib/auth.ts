@@ -20,12 +20,23 @@ export async function getProfile() {
   if (!user) return null;
 
   const service = createServiceSupabase();
+  const metaName =
+    typeof user.user_metadata?.emergency_contact_name === "string"
+      ? user.user_metadata.emergency_contact_name
+      : "";
+  const metaPhone =
+    typeof user.user_metadata?.emergency_contact_phone === "string"
+      ? user.user_metadata.emergency_contact_phone
+      : "";
+
   if (!service) {
     return {
       id: user.id,
       email: user.email ?? "",
       full_name: (user.user_metadata?.full_name as string) ?? "",
       phone: "",
+      emergency_contact_name: metaName,
+      emergency_contact_phone: metaPhone,
       role: isAdminEmail(user.email) ? "admin" : "customer",
     };
   }
@@ -37,6 +48,8 @@ export async function getProfile() {
     email: data?.email ?? user.email ?? "",
     full_name: data?.full_name ?? (user.user_metadata?.full_name as string) ?? "",
     phone: data?.phone ?? "",
+    emergency_contact_name: data?.emergency_contact_name ?? metaName,
+    emergency_contact_phone: data?.emergency_contact_phone ?? metaPhone,
     role,
   };
 }

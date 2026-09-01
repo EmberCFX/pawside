@@ -6,10 +6,9 @@ import { CalendarDays, Clock, PawPrint, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/Card";
 import { getMembership } from "@/data/memberships";
 import { getService } from "@/data/services";
-import { findPromoCode } from "@/data/promoCodes";
 import { describeSchedule } from "@/lib/booking";
 import { cn, formatDate, formatDuration, formatPrice, listToSentence, pluralize } from "@/lib/utils";
-import type { BookingDraft, Quote } from "@/types";
+import type { BookingDraft, PromoCode, Quote } from "@/types";
 
 /**
  * Live order summary.
@@ -26,13 +25,13 @@ export function OrderSummary({
 }: {
   draft: BookingDraft;
   quote: Quote;
-  onPromoChange?: (code: string) => void;
+  onPromoChange?: (code: string, promo?: PromoCode | null) => void;
   className?: string;
   collapsibleOnMobile?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [promoInput, setPromoInput] = useState(draft.promoCode);
-  const [promoStatus, setPromoStatus] = useState<"idle" | "applied" | "invalid">("idle");
+  const [promoStatus, setPromoStatus] = useState<"idle" | "applied" | "invalid" | "checking">("idle");
   const reduceMotion = useReducedMotion();
 
   const service = draft.serviceSlug ? getService(draft.serviceSlug) : undefined;
@@ -40,15 +39,28 @@ export function OrderSummary({
   const petNames = draft.pets.map((pet) => pet.name.trim()).filter(Boolean);
   const isRecurring = draft.frequency !== "one-time";
 
-  const applyPromo = () => {
+  const applyPromo = async () => {
     if (!onPromoChange) return;
-    const promo = findPromoCode(promoInput);
-    if (promo) {
-      setPromoStatus("applied");
-      onPromoChange(promo.code);
-    } else {
+    const code = promoInput.trim();
+    if (!code) {
+      setPromoStatus("idle");
+      onPromoChange("", null);
+      return;
+    }
+    setPromoStatus("checking");
+    try {
+      const response = await fetch(`/api/promo?code=${encodeURIComponent(code)}`);
+      const payload = (await response.json()) as { ok?: boolean; promo?: PromoCode };
+      if (response.ok && payload.promo) {
+        setPromoStatus("applied");
+        onPromoChange(payload.promo.code, payload.promo);
+      } else {
+        setPromoStatus("invalid");
+        onPromoChange("", null);
+      }
+    } catch {
       setPromoStatus("invalid");
-      onPromoChange("");
+      onPromoChange("", null);
     }
   };
 
@@ -166,10 +178,11 @@ export function OrderSummary({
             />
             <button
               type="button"
-              onClick={applyPromo}
-              className="shrink-0 rounded-button bg-navy-50 px-3.5 py-2 text-[0.875rem] font-medium text-navy-900 transition-colors hover:bg-navy-100"
+              onClick={() => void applyPromo()}
+              disabled={promoStatus === "checking"}
+              className="shrink-0 rounded-button bg-navy-50 px-3.5 py-2 text-[0.875rem] font-medium text-navy-900 transition-colors hover:bg-navy-100 disabled:opacity-45"
             >
-              Apply
+              {promoStatus === "checking" ? "Checking…" : "Apply"}
             </button>
           </div>
           {promoStatus === "applied" ? (

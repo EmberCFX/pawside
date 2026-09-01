@@ -15,6 +15,7 @@ export const metadata: Metadata = buildMetadata({
 const nav = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/bookings", label: "Bookings" },
+  { href: "/admin/promos", label: "Promos" },
   { href: "/admin/messages", label: "Messages" },
 ];
 

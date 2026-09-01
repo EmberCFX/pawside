@@ -10,17 +10,23 @@ export function ProfileDetailsForm({
   firstName,
   lastName,
   phone,
+  emergencyContactName,
+  emergencyContactPhone,
   onCancel,
 }: {
   firstName: string;
   lastName: string;
   phone: string;
+  emergencyContactName: string;
+  emergencyContactPhone: string;
   onCancel: () => void;
 }) {
   const router = useRouter();
   const [first, setFirst] = useState(firstName);
   const [last, setLast] = useState(lastName);
   const [phoneValue, setPhoneValue] = useState(phone);
+  const [emergencyName, setEmergencyName] = useState(emergencyContactName);
+  const [emergencyPhone, setEmergencyPhone] = useState(emergencyContactPhone);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -32,7 +38,13 @@ export function ProfileDetailsForm({
       const response = await fetch("/api/account/profile", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName: first, lastName: last, phone: phoneValue }),
+        body: JSON.stringify({
+          firstName: first,
+          lastName: last,
+          phone: phoneValue,
+          emergencyContactName: emergencyName,
+          emergencyContactPhone: emergencyPhone,
+        }),
       });
       const payload = (await response.json()) as { ok?: boolean; message?: string };
       if (!response.ok || !payload.ok) {
@@ -72,6 +84,30 @@ export function ProfileDetailsForm({
         className="sm:col-span-2"
         value={phoneValue}
         onChange={(event) => setPhoneValue(event.target.value)}
+      />
+
+      <p className="sm:col-span-2 mt-1 font-display text-[1.0625rem] font-semibold text-navy-900">
+        Emergency contact
+      </p>
+      <p className="-mt-2 sm:col-span-2 text-[0.8125rem] text-sand-600">
+        Someone we can call if we can&apos;t reach you during a visit.
+      </p>
+      <TextField
+        label="Name"
+        name="emergencyContactName"
+        autoComplete="off"
+        optional
+        value={emergencyName}
+        onChange={(event) => setEmergencyName(event.target.value)}
+      />
+      <TextField
+        label="Phone"
+        name="emergencyContactPhone"
+        type="tel"
+        autoComplete="off"
+        optional
+        value={emergencyPhone}
+        onChange={(event) => setEmergencyPhone(event.target.value)}
       />
       {error ? (
         <p className="sm:col-span-2 text-[0.875rem] text-red-700" role="alert">
