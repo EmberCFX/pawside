@@ -175,14 +175,12 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
 
                 {step.id === "schedule" ? (
                   <div className="flex flex-col gap-8">
-                    <div className="grid gap-6 lg:grid-cols-2">
-                      <DatePicker value={draft.date} onChange={(date) => patch({ date })} />
-                      <TimePicker
-                        value={draft.time}
-                        onChange={(time) => patch({ time })}
-                        overnight={isOvernight}
-                      />
-                    </div>
+                    <DatePicker value={draft.date} onChange={(date) => patch({ date })} />
+                    <TimePicker
+                      value={draft.time}
+                      onChange={(time) => patch({ time })}
+                      overnight={isOvernight}
+                    />
                     <div className="border-t border-sand-800/8 pt-8">
                       <RecurringSelector
                         frequency={draft.frequency}

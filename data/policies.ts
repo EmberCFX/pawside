@@ -103,9 +103,9 @@ export const policies: Policy[] = [
         ],
       },
       {
-        heading: "Insurance and screening",
+        heading: "Caregiver screening",
         body: [
-          "Pawside is insured and bonded. Every caregiver clears a background check, completes pet first-aid training, and shadows visits before ever working alone.",
+          "Every caregiver clears a background check, completes pet first-aid and CPR training, and shadows visits before ever working alone. You'll know who is coming before they arrive.",
         ],
       },
     ],
@@ -190,9 +190,9 @@ export const policies: Policy[] = [
         ],
       },
       {
-        heading: "Liability",
+        heading: "If something happens",
         body: [
-          "Pawside carries insurance for injury and property damage caused by our negligence during a visit. We are not liable for pre-existing medical conditions, harm caused by other animals or people, or damage from a pet's normal behavior in your home.",
+          "If a visit requires emergency veterinary care, we follow the clinic and contacts on your pet's profile and you are responsible for those costs. Pawside is not responsible for pre-existing medical conditions, harm caused by other animals or people, or damage from a pet's normal behavior in your home.",
         ],
       },
       {

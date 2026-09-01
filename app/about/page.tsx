@@ -185,7 +185,7 @@ export default function AboutPage() {
         <SectionHeading
           eyebrow="Safety"
           title="The unglamorous part, taken seriously."
-          description="Nobody books a pet sitter because of their insurance policy. It still matters on the day something goes wrong."
+          description="Nobody books a pet sitter for a laminated card. First aid, a vet on file, and a plan still matter on the day something goes wrong."
         />
 
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

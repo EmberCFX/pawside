@@ -29,14 +29,14 @@ export function TimePicker({
           : "We'll text when we're on the way, and the report tells you exactly when we arrived."}
       </p>
 
-      <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+      <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {slots.map((slot) => {
           const isSelected = value === slot.label;
           return (
             <label
               key={slot.id}
               className={cn(
-                "group relative flex cursor-pointer items-center justify-between gap-3 rounded-button px-4 py-3 transition-all duration-200 ring-1 ring-inset",
+                "group relative flex min-w-0 cursor-pointer flex-col justify-center rounded-button px-4 py-3 transition-all duration-200 ring-1 ring-inset",
                 isSelected
                   ? "bg-navy-900 text-white ring-navy-900"
                   : "bg-white text-navy-800 ring-sand-800/12 hover:ring-sand-800/28",
@@ -53,7 +53,7 @@ export function TimePicker({
               <span className="text-[0.9375rem] font-medium tabular">{slot.label}</span>
               <span
                 className={cn(
-                  "shrink-0 text-[0.75rem]",
+                  "mt-1 text-[0.75rem] leading-snug",
                   isSelected ? "text-mint-300" : "text-sand-600",
                 )}
               >

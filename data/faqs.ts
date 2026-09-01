@@ -87,10 +87,10 @@ export const faqs: Faq[] = [
     category: "policies",
   },
   {
-    id: "insurance",
-    question: "Are you insured?",
+    id: "emergencies",
+    question: "What happens if my pet has an emergency?",
     answer:
-      "Yes — Pawside carries pet-care liability insurance and is bonded. We'll share proof of coverage at the meet & greet, and we're happy to send it sooner if you'd like it before booking.",
+      "You get a call, not a text. If we can't reach you, we contact your emergency contact and take your pet to the clinic on their profile. Caregivers are pet first-aid and CPR certified, and your vet details are on file before the first visit.",
     category: "policies",
   },
   {

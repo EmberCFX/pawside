@@ -11,7 +11,7 @@ import { breadcrumbSchema, buildMetadata, faqSchema } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers about booking, pet care routines, medication, keys and entry, weather policies, cancellations, and insurance.",
+    "Answers about booking, pet care routines, medication, keys and entry, weather policies, cancellations, and emergencies.",
   path: "/faq",
 });
 
