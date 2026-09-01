@@ -1,15 +1,13 @@
-import { Check, Gift } from "lucide-react";
+import Link from "next/link";
+import { Check } from "lucide-react";
 import { Badge, Card } from "@/components/ui/Card";
-import { currentCustomer, pastVisits } from "@/data/account";
-import { getMembership, memberships, referralProgram } from "@/data/memberships";
+import { getMembership, memberships } from "@/data/memberships";
+import { getAccountVisits } from "@/lib/account";
 import { cn, formatPrice } from "@/lib/utils";
 
-export default function AccountMembershipPage() {
-  const current = getMembership(currentCustomer.membershipSlug);
-  const savedThisYear = pastVisits.reduce(
-    (sum, visit) => sum + Math.round(visit.total * current.visitDiscount),
-    0,
-  );
+export default async function AccountMembershipPage() {
+  const { membership: membershipSlug } = await getAccountVisits();
+  const current = getMembership(membershipSlug);
 
   return (
     <div className="flex flex-col gap-6">
@@ -32,45 +30,12 @@ export default function AccountMembershipPage() {
           </div>
         </div>
 
-        <dl className="mt-7 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3">
-          <div>
-            <dt className="text-[0.75rem] uppercase text-navy-100/50">
-              Saved so far
-            </dt>
-            <dd className="mt-1.5 font-display text-xl font-semibold text-mint-300 tabular">
-              {formatPrice(savedThisYear)}
-            </dd>
-          </div>
-          <div>
-            <dt className="text-[0.75rem] uppercase text-navy-100/50">
-              Next renewal
-            </dt>
-            <dd className="mt-1.5 font-display text-xl font-semibold text-white">Sep 1, 2026</dd>
-          </div>
-          <div>
-            <dt className="text-[0.75rem] uppercase text-navy-100/50">
-              Care credit
-            </dt>
-            <dd className="mt-1.5 font-display text-xl font-semibold text-white tabular">
-              {formatPrice(currentCustomer.credit)}
-            </dd>
-          </div>
-        </dl>
-
-        <div className="mt-7 flex flex-wrap gap-3 border-t border-white/10 pt-6">
-          <button
-            type="button"
-            className="rounded-button bg-white px-4 py-2.5 text-[0.875rem] font-medium text-navy-900 transition-colors hover:bg-mint-300"
-          >
-            Change plan
-          </button>
-          <button
-            type="button"
-            className="rounded-button px-4 py-2.5 text-[0.875rem] font-medium text-navy-100/70 transition-colors hover:bg-white/10 hover:text-white"
-          >
-            Pause membership
-          </button>
-        </div>
+        <Link
+          href="/pricing#membership"
+          className="mt-7 inline-flex rounded-button bg-white px-4 py-2.5 text-[0.875rem] font-medium text-navy-900 transition-colors hover:bg-mint-300"
+        >
+          Compare plans
+        </Link>
       </Card>
 
       <section aria-labelledby="plans-heading">
@@ -107,41 +72,18 @@ export default function AccountMembershipPage() {
                   ))}
                 </ul>
                 {!isCurrent ? (
-                  <button
-                    type="button"
-                    className="mt-5 w-full rounded-button bg-navy-900 px-4 py-2.5 text-[0.875rem] font-medium text-white transition-colors hover:bg-navy-800"
+                  <Link
+                    href="/book"
+                    className="mt-5 block w-full rounded-button bg-navy-900 px-4 py-2.5 text-center text-[0.875rem] font-medium text-white transition-colors hover:bg-navy-800"
                   >
-                    Switch to {tier.name}
-                  </button>
+                    Book with {tier.name}
+                  </Link>
                 ) : null}
               </Card>
             );
           })}
         </div>
       </section>
-
-      <Card tone="mint" className="flex flex-wrap items-center justify-between gap-4 p-6">
-        <div className="flex items-start gap-4">
-          <span
-            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/70 text-navy-900"
-            aria-hidden="true"
-          >
-            <Gift className="h-5 w-5" strokeWidth={1.75} />
-          </span>
-          <div>
-            <h2 className="font-display text-[1.0625rem] font-semibold text-navy-900">
-              Give {formatPrice(referralProgram.friendCredit)}, get{" "}
-              {formatPrice(referralProgram.referrerCredit)}
-            </h2>
-            <p className="mt-1 text-[0.875rem] text-navy-800/75">
-              Share your code — they save on their first visit, you get credit on your next one.
-            </p>
-          </div>
-        </div>
-        <code className="rounded-button bg-white px-4 py-2.5 font-mono text-[0.875rem] font-semibold tracking-wide text-navy-900">
-          {referralProgram.code}
-        </code>
-      </Card>
     </div>
   );
 }

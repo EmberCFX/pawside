@@ -8,13 +8,7 @@ import { Container } from "@/components/ui/Layout";
 import { accountNav } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 
-/**
- * Dashboard shell.
- *
- * Auth integration point: this renders a mock signed-in customer from
- * data/account.ts. With real auth, read the session here (middleware or a server
- * component wrapper) and redirect unauthenticated visitors to sign in.
- */
+/** Signed-in account chrome — greeting and subnav come from the session. */
 export function AccountShell({
   children,
   firstName,
@@ -83,8 +77,7 @@ export function AccountShell({
             </ul>
 
             <p className="mt-6 hidden rounded-card border border-sand-800/8 bg-white p-4 text-xs leading-relaxed text-sand-600 lg:block">
-              This dashboard renders mock data. Wiring it to a real backend is documented in{" "}
-              <span className="font-medium text-navy-800">lib/api.ts</span>.
+              Bookings, pets, and your profile come from your Pawside account.
             </p>
           </nav>
 

@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileCta } from "@/components/layout/MobileCta";
 import { Navbar } from "@/components/layout/Navbar";
 import { site } from "@/data/site";
+import { getProfile } from "@/lib/auth";
 import { localBusinessSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
@@ -77,6 +78,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
@@ -86,11 +89,20 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const profile = await getProfile();
+  const firstName = profile?.full_name?.trim().split(/\s+/)[0] || "";
+
   return (
     <html lang="en" className={`${poppins.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
-        <Navbar />
+        <Navbar
+          signedIn={
+            profile
+              ? { firstName, href: profile.role === "admin" ? "/admin" : "/account" }
+              : null
+          }
+        />
         <main id="main" className="pt-[var(--nav-height)]">
           {children}
         </main>

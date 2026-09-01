@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/Field";
@@ -15,7 +14,6 @@ export function AuthForm({
   mode: "login" | "signup";
   next?: string;
 }) {
-  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,16 +45,14 @@ export function AuthForm({
         });
         if (signError) throw signError;
         if (data.session) {
-          router.push(next);
-          router.refresh();
+          window.location.assign(next);
           return;
         }
         setInfo("Check your email to confirm your account, then come back and sign in.");
       } else {
         const { error: signError } = await supabase.auth.signInWithPassword({ email, password });
         if (signError) throw signError;
-        router.push(next);
-        router.refresh();
+        window.location.assign(next);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "That didn’t work. Try again.");

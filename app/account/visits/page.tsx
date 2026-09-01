@@ -1,10 +1,11 @@
-import { ReportCard } from "@/components/dashboard/ReportCard";
 import { VisitCard } from "@/components/dashboard/VisitCard";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { pastVisits, upcomingVisits, visitReports } from "@/data/account";
+import { getAccountVisits } from "@/lib/account";
 
-export default function AccountVisitsPage() {
+export default async function AccountVisitsPage() {
+  const { upcoming, past } = await getAccountVisits();
+
   return (
     <div className="flex flex-col gap-10">
       <section aria-labelledby="upcoming-heading">
@@ -18,8 +19,8 @@ export default function AccountVisitsPage() {
         </div>
 
         <div className="mt-4 flex flex-col gap-4">
-          {upcomingVisits.length ? (
-            upcomingVisits.map((visit) => <VisitCard key={visit.id} visit={visit} />)
+          {upcoming.length ? (
+            upcoming.map((visit) => <VisitCard key={visit.id} visit={visit} />)
           ) : (
             <Card className="p-8 text-center text-[0.9375rem] text-sand-700">
               Nothing scheduled yet.
@@ -33,25 +34,13 @@ export default function AccountVisitsPage() {
           Past visits
         </h2>
         <div className="mt-4 flex flex-col gap-4">
-          {pastVisits.map((visit) => (
-            <VisitCard key={visit.id} visit={visit} />
-          ))}
-        </div>
-      </section>
-
-      <section aria-labelledby="reports-heading">
-        <h2 id="reports-heading" className="font-display text-xl font-semibold text-navy-900">
-          Visit reports
-        </h2>
-        <p className="mt-1.5 text-[0.9375rem] text-sand-700">
-          Every completed visit, with photos and the caregiver&apos;s notes.
-        </p>
-        <div className="mt-5 flex flex-col gap-6">
-          {visitReports.map((report) => (
-            <div key={report.id} id={report.id} className="scroll-mt-32">
-              <ReportCard report={report} />
-            </div>
-          ))}
+          {past.length ? (
+            past.map((visit) => <VisitCard key={visit.id} visit={visit} />)
+          ) : (
+            <Card className="p-8 text-center text-[0.9375rem] text-sand-700">
+              No completed visits yet.
+            </Card>
+          )}
         </div>
       </section>
     </div>

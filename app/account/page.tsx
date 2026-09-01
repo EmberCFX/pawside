@@ -1,28 +1,21 @@
 import Link from "next/link";
 import { ArrowRight, CalendarPlus, MessageSquare, PawPrint, Sparkles } from "lucide-react";
-import { ReportCard } from "@/components/dashboard/ReportCard";
 import { VisitCard } from "@/components/dashboard/VisitCard";
 import { Badge, Card, IconTile } from "@/components/ui/Card";
 import { PetAvatar } from "@/components/ui/Photo";
-import {
-  currentCustomer,
-  messages,
-  petProfiles,
-  upcomingVisits,
-  visitReports,
-} from "@/data/account";
 import { getMembership } from "@/data/memberships";
+import { getAccountPets, getAccountVisits } from "@/lib/account";
 import { formatPrice, pluralize } from "@/lib/utils";
 
-export default function AccountDashboardPage() {
-  const nextVisit = upcomingVisits[0];
-  const latestReport = visitReports[0];
-  const membership = getMembership(currentCustomer.membershipSlug);
-  const unread = messages.filter((message) => message.unread).length;
+export default async function AccountDashboardPage() {
+  const pets = await getAccountPets();
+  const { upcoming, membership: membershipSlug } = await getAccountVisits();
+  const nextVisit = upcoming[0];
+  const membership = getMembership(membershipSlug);
+  const hasPlan = membershipSlug !== "none";
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Quick actions -------------------------------------------------- */}
       <div className="grid gap-4 sm:grid-cols-3">
         {[
           { label: "Book a visit", href: "/book", icon: CalendarPlus, detail: "One-time or recurring" },
@@ -30,13 +23,15 @@ export default function AccountDashboardPage() {
             label: "Messages",
             href: "/account/messages",
             icon: MessageSquare,
-            detail: unread ? `${unread} unread` : "All caught up",
+            detail: "Talk with Pawside",
           },
           {
             label: "Pet profiles",
             href: "/account/pets",
             icon: PawPrint,
-            detail: `${petProfiles.length} ${pluralize(petProfiles.length, "pet")}`,
+            detail: pets.length
+              ? `${pets.length} ${pluralize(pets.length, "pet")}`
+              : "Add your pets",
           },
         ].map((action) => (
           <Card key={action.href} interactive className="group p-5">
@@ -61,7 +56,6 @@ export default function AccountDashboardPage() {
         ))}
       </div>
 
-      {/* Next visit ------------------------------------------------------ */}
       <section aria-labelledby="next-visit-heading">
         <div className="flex items-center justify-between gap-4">
           <h2 id="next-visit-heading" className="font-display text-xl font-semibold text-navy-900">
@@ -92,7 +86,6 @@ export default function AccountDashboardPage() {
         </div>
       </section>
 
-      {/* Pets ------------------------------------------------------------ */}
       <section aria-labelledby="pets-heading">
         <div className="flex items-center justify-between gap-4">
           <h2 id="pets-heading" className="font-display text-xl font-semibold text-navy-900">
@@ -107,31 +100,41 @@ export default function AccountDashboardPage() {
         </div>
 
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {petProfiles.map((pet) => (
-            <Card key={pet.id} interactive className="group flex items-center gap-4 p-5">
-              <Link href="/account/pets" className="flex flex-1 items-center gap-4">
-                <span className="absolute inset-0" aria-hidden="true" />
-                <PetAvatar slot={pet.mediaKey} name={pet.name} size={48} />
-                <span className="min-w-0 flex-1">
-                  <span className="block font-display text-[1.0625rem] font-semibold text-navy-900">
-                    {pet.name}
+          {pets.length ? (
+            pets.map((pet) => (
+              <Card key={pet.id} interactive className="group flex items-center gap-4 p-5">
+                <Link href="/account/pets" className="flex flex-1 items-center gap-4">
+                  <span className="absolute inset-0" aria-hidden="true" />
+                  <PetAvatar name={pet.name} size={48} />
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-display text-[1.0625rem] font-semibold text-navy-900">
+                      {pet.name}
+                    </span>
+                    <span className="block truncate text-[0.8125rem] text-sand-600">
+                      {[pet.breed, pet.age].filter(Boolean).join(" · ") || pet.type || "Pet"}
+                    </span>
                   </span>
-                  <span className="block truncate text-[0.8125rem] text-sand-600">
-                    {pet.breed} · {pet.age}
-                  </span>
-                </span>
-                <ArrowRight
-                  className="h-4 w-4 shrink-0 text-sand-400 transition-transform duration-300 group-hover:translate-x-1"
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
+                  <ArrowRight
+                    className="h-4 w-4 shrink-0 text-sand-400 transition-transform duration-300 group-hover:translate-x-1"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
+                </Link>
+              </Card>
+            ))
+          ) : (
+            <Card className="p-8 text-center sm:col-span-2">
+              <p className="text-[0.9375rem] text-sand-700">
+                No pets on file yet. They’ll show up here after you book.
+              </p>
+              <Link href="/book" className="link-underline mt-2 inline-flex font-medium text-navy-900">
+                Book a visit
               </Link>
             </Card>
-          ))}
+          )}
         </div>
       </section>
 
-      {/* Membership ------------------------------------------------------ */}
       <Card tone="inverse" className="p-6 sm:p-7">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -139,15 +142,14 @@ export default function AccountDashboardPage() {
               <Sparkles className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
               Membership
             </p>
-            <h2 className="mt-3 font-display text-xl font-semibold text-white">
-              {membership.name}
-            </h2>
+            <h2 className="mt-3 font-display text-xl font-semibold text-white">{membership.name}</h2>
             <p className="mt-1.5 text-[0.9375rem] text-navy-100/70">
-              {formatPrice(membership.monthlyPrice ?? 0)}/month ·{" "}
-              {Math.round(membership.visitDiscount * 100)}% off every visit
+              {hasPlan
+                ? `${formatPrice(membership.monthlyPrice ?? 0)}/month · ${Math.round(membership.visitDiscount * 100)}% off every visit`
+                : membership.tagline}
             </p>
           </div>
-          <Badge tone="inverse">Active</Badge>
+          {hasPlan ? <Badge tone="inverse">Active</Badge> : null}
         </div>
 
         <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-5">
@@ -162,30 +164,9 @@ export default function AccountDashboardPage() {
           href="/account/membership"
           className="link-underline mt-5 inline-flex text-[0.875rem] font-medium text-mint-300"
         >
-          Manage membership
+          {hasPlan ? "Manage membership" : "See memberships"}
         </Link>
       </Card>
-
-      {/* Latest report --------------------------------------------------- */}
-      <section aria-labelledby="latest-report-heading">
-        <div className="flex items-center justify-between gap-4">
-          <h2
-            id="latest-report-heading"
-            className="font-display text-xl font-semibold text-navy-900"
-          >
-            Latest visit report
-          </h2>
-          <Link
-            href="/account/visits"
-            className="link-underline text-[0.875rem] font-medium text-navy-900"
-          >
-            All reports
-          </Link>
-        </div>
-        <div className="mt-4">
-          <ReportCard report={latestReport} />
-        </div>
-      </section>
     </div>
   );
 }

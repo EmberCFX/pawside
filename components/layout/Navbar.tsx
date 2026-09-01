@@ -9,18 +9,58 @@ import { Logo } from "@/components/brand/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { primaryNav } from "@/data/navigation";
 import { site } from "@/data/site";
+import { createBrowserSupabase } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
+
+type SignedIn = { firstName: string; href: string };
 
 /**
  * Sticky navigation that condenses into a floating, blurred bar once the page
  * scrolls — the premium-SaaS pattern, done subtly: the shell narrows, gains a
  * hairline and a soft shadow, and the height drops by a few pixels.
  */
-export function Navbar() {
+export function Navbar({
+  signedIn = null,
+}: {
+  signedIn?: SignedIn | null;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [session, setSession] = useState<SignedIn | null>(signedIn);
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (signedIn) setSession(signedIn);
+  }, [signedIn]);
+
+  useEffect(() => {
+    const supabase = createBrowserSupabase();
+    if (!supabase) return;
+
+    const applyUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      const user = data.user;
+      if (!user) {
+        setSession(null);
+        return;
+      }
+      const firstName =
+        (typeof user.user_metadata?.full_name === "string"
+          ? user.user_metadata.full_name
+          : ""
+        )
+          .trim()
+          .split(/\s+/)[0] || "Account";
+      setSession({ firstName, href: "/account" });
+    };
+
+    void applyUser();
+    const { data } = supabase.auth.onAuthStateChange(() => {
+      void applyUser();
+    });
+    return () => data.subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -119,10 +159,10 @@ export function Navbar() {
               {site.contact.phone}
             </Link>
             <Link
-              href="/login"
+              href={session ? session.href : "/login"}
               className="hidden rounded-lg px-3 py-2 text-[0.9375rem] text-sand-700 transition-colors hover:text-navy-900 lg:inline-flex"
             >
-              Sign In
+              {session ? session.firstName || "Account" : "Sign In"}
             </Link>
             <ButtonLink href="/book" size={scrolled ? "sm" : "md"} className="hidden sm:inline-flex">
               Book Pet Care
@@ -191,10 +231,10 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/login"
+                  href={session ? session.href : "/login"}
                   className="flex items-center justify-between border-b border-sand-800/8 py-4 font-display text-xl font-medium text-navy-900"
                 >
-                  Sign In
+                  {session ? session.firstName || "Account" : "Sign In"}
                   <span className="text-mint-500" aria-hidden="true">
                     →
                   </span>

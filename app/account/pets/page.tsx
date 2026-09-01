@@ -1,75 +1,52 @@
-import { Plus } from "lucide-react";
+import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { PetAvatar } from "@/components/ui/Photo";
-import { petProfiles } from "@/data/account";
+import { getAccountPets } from "@/lib/account";
 
-const fields = [
-  { label: "Feeding routine", key: "feedingRoutine" },
-  { label: "Walk routine", key: "walkRoutine" },
-  { label: "Medication", key: "medication" },
-  { label: "Allergies", key: "allergies" },
-  { label: "Behavior notes", key: "behaviorNotes" },
-  { label: "Favorite toys", key: "favoriteToys" },
-  { label: "Favorite treats", key: "favoriteTreats" },
-  { label: "Veterinarian", key: "veterinarian" },
-  { label: "Emergency contact", key: "emergencyContact" },
-  { label: "Special instructions", key: "specialInstructions" },
-  { label: "Entry instructions", key: "entryInstructions" },
-] as const;
+export default async function AccountPetsPage() {
+  const pets = await getAccountPets();
 
-export default function AccountPetsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="font-display text-xl font-semibold text-navy-900">Pet profiles</h2>
           <p className="mt-1.5 text-[0.9375rem] text-sand-700">
-            Keep these current and every visit follows the same instructions.
+            Pets from your bookings show up here. Add more details the next time you book.
           </p>
         </div>
-        <button
-          type="button"
+        <Link
+          href="/book"
           className="inline-flex items-center gap-2 rounded-button bg-navy-900 px-4 py-2.5 text-[0.875rem] font-medium text-white transition-colors hover:bg-navy-800"
         >
-          <Plus className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
-          Add a pet
-        </button>
+          Book a visit
+        </Link>
       </div>
 
-      {petProfiles.map((pet) => (
-        <Card key={pet.id} className="p-6 sm:p-7">
-          <div className="flex flex-wrap items-start justify-between gap-4">
+      {pets.length ? (
+        pets.map((pet) => (
+          <Card key={pet.id} className="p-6 sm:p-7">
             <div className="flex items-center gap-4">
-              <PetAvatar slot={pet.mediaKey} name={pet.name} size={56} />
+              <PetAvatar name={pet.name} size={56} />
               <div>
                 <h3 className="font-display text-xl font-semibold text-navy-900">{pet.name}</h3>
                 <p className="mt-0.5 text-[0.8125rem] text-sand-600">
-                  {pet.breed} · {pet.age} · {pet.weight}
+                  {[pet.type, pet.breed, pet.age].filter(Boolean).join(" · ") || "Pet"}
                 </p>
               </div>
             </div>
-            <button
-              type="button"
-              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
-            >
-              Edit profile
-            </button>
-          </div>
-
-          <dl className="mt-6 grid gap-x-8 gap-y-5 border-t border-sand-800/8 pt-6 sm:grid-cols-2">
-            {fields.map((field) => (
-              <div key={field.key}>
-                <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
-                  {field.label}
-                </dt>
-                <dd className="mt-1.5 text-[0.875rem] leading-relaxed text-navy-800">
-                  {pet[field.key] || "—"}
-                </dd>
-              </div>
-            ))}
-          </dl>
+            {pet.notes ? (
+              <p className="mt-5 border-t border-sand-800/8 pt-5 text-[0.875rem] leading-relaxed text-navy-800">
+                {pet.notes}
+              </p>
+            ) : null}
+          </Card>
+        ))
+      ) : (
+        <Card className="p-8 text-center text-[0.9375rem] text-sand-700">
+          No pets on file yet. Book a visit and we’ll save their names here.
         </Card>
-      ))}
+      )}
     </div>
   );
 }

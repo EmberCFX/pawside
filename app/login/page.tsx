@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { AuthForm } from "@/components/auth/AuthForm";
 import { Container } from "@/components/ui/Layout";
+import { getSessionUser } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -17,6 +19,7 @@ export default async function LoginPage({
 }) {
   const params = await searchParams;
   const next = (Array.isArray(params.next) ? params.next[0] : params.next) || "/account";
+  if (await getSessionUser()) redirect(next.startsWith("/") ? next : "/account");
 
   return (
     <div className="bg-canvas py-16 sm:py-24">

@@ -130,6 +130,21 @@ export async function insertBooking(draft: BookingDraft, customerId?: string | n
     throw new Error(error?.message ?? "Could not save that booking.");
   }
 
+  if (customerId) {
+    const contactName = `${draft.contact.firstName} ${draft.contact.lastName}`.trim();
+    const { data: existing } = await db
+      .from("profiles")
+      .select("full_name, phone")
+      .eq("id", customerId)
+      .maybeSingle();
+    const patch: { full_name?: string; phone?: string } = {};
+    if (!existing?.full_name && contactName) patch.full_name = contactName;
+    if (!existing?.phone && draft.contact.phone.trim()) patch.phone = draft.contact.phone.trim();
+    if (Object.keys(patch).length) {
+      await db.from("profiles").update(patch).eq("id", customerId);
+    }
+  }
+
   return { row: data as BookingRow, quote };
 }
 
@@ -142,4 +157,44 @@ export async function getBookingByNumber(bookingNumber: string) {
     .eq("booking_number", bookingNumber)
     .maybeSingle();
   return (data as BookingRow | null) ?? null;
+}
+
+async function bookingsForCustomer(customerId: string, email: string) {
+  const db = createServiceSupabase();
+  if (!db) return [];
+
+  const normalized = email.trim().toLowerCase();
+  const [{ data: byId }, { data: byEmail }] = await Promise.all([
+    db.from("bookings").select("*").eq("customer_id", customerId).order("created_at", { ascending: false }),
+    db.from("bookings").select("*").eq("contact_email", normalized).order("created_at", { ascending: false }),
+  ]);
+
+  const seen = new Set<string>();
+  const rows: BookingRow[] = [];
+  for (const row of [...(byId ?? []), ...(byEmail ?? [])] as BookingRow[]) {
+    if (seen.has(row.id)) continue;
+    seen.add(row.id);
+    rows.push(row);
+  }
+  rows.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+  return rows;
+}
+
+/** Latest booking for this account — by user id, or by the email they booked with. */
+export async function getLatestBookingForCustomer(customerId: string, email: string) {
+  const rows = await bookingsForCustomer(customerId, email);
+  return rows[0] ?? null;
+}
+
+export async function getBookingsForCustomer(customerId: string, email: string) {
+  return bookingsForCustomer(customerId, email);
+}
+
+export function formatBookingAddress(row: Pick<
+  BookingRow,
+  "address_line1" | "address_line2" | "city" | "state" | "postal_code"
+>) {
+  return [row.address_line1, row.address_line2, row.city, row.state, row.postal_code]
+    .filter(Boolean)
+    .join(", ");
 }
