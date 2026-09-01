@@ -21,3 +21,4 @@ screenshots/
 
 # brand processing source (keep public/brand)
 .brand-src/
+.vercel

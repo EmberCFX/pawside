@@ -119,7 +119,7 @@ export function Navbar() {
               {site.contact.phone}
             </Link>
             <Link
-              href="/account"
+              href="/login"
               className="hidden rounded-lg px-3 py-2 text-[0.9375rem] text-sand-700 transition-colors hover:text-navy-900 lg:inline-flex"
             >
               Sign In
@@ -191,7 +191,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 <Link
-                  href="/account"
+                  href="/login"
                   className="flex items-center justify-between border-b border-navy-900/8 py-4 font-display text-xl font-medium text-navy-900"
                 >
                   Sign In

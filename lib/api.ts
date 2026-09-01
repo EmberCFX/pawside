@@ -27,20 +27,24 @@ export interface BookingResponse {
   ok: boolean;
   bookingNumber: string;
   message?: string;
+  checkoutUrl?: string | null;
 }
 
-export async function submitBooking(payload: BookingSubmission): Promise<BookingResponse> {
+export async function submitBooking(
+  payload: BookingSubmission & { payNow?: boolean },
+): Promise<BookingResponse> {
   const response = await fetch("/api/booking", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
 
-  if (!response.ok) {
-    throw new Error("We couldn't submit that booking. Please try again or call us.");
+  const data = (await response.json()) as BookingResponse & { message?: string };
+  if (!response.ok || !data.ok) {
+    throw new Error(data.message || "We couldn't submit that booking. Please try again or call us.");
   }
 
-  return response.json();
+  return data;
 }
 
 export interface ContactSubmission {

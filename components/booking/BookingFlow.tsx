@@ -20,13 +20,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Layout";
 import { getService } from "@/data/services";
 import { submitBooking } from "@/lib/api";
-import {
-  BOOKING_STEPS,
-  createBookingDraft,
-  generateBookingNumber,
-  stepIssues,
-  type BookingStepId,
-} from "@/lib/booking";
+import { BOOKING_STEPS, stepIssues, type BookingStepId } from "@/lib/booking";
 import { buildQuote } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 import type { BookingDraft, DurationMinutes } from "@/types";
@@ -102,18 +96,23 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
     setSubmitError(null);
 
     try {
-      const response = await submitBooking({ draft, quote });
+      const response = await submitBooking({
+        draft,
+        quote,
+        payNow: paymentChoice === "card",
+      });
+      if (response.checkoutUrl) {
+        window.location.href = response.checkoutUrl;
+        return;
+      }
       const params = new URLSearchParams({ booking: response.bookingNumber });
       router.push(`/book/confirmation?${params.toString()}`);
     } catch (error) {
-      // Falls back to a local reference so a demo submit never dead-ends.
-      const fallback = generateBookingNumber();
       setSubmitError(
         error instanceof Error
           ? error.message
           : "Something went wrong submitting that booking.",
       );
-      router.push(`/book/confirmation?booking=${fallback}&pending=1`);
     } finally {
       setSubmitting(false);
     }
@@ -288,7 +287,7 @@ export function BookingFlow({ initialDraft }: { initialDraft: BookingDraft }) {
                       Sending
                     </>
                   ) : (
-                    "Confirm Booking Request"
+                    paymentChoice === "card" ? "Pay with Stripe" : "Confirm booking request"
                   )}
                 </Button>
               ) : (
@@ -352,7 +351,7 @@ function stepDescription(step: BookingStepId): string {
     case "review":
       return "One last look before anything is submitted.";
     case "payment":
-      return "No card needed to request a visit.";
+      return "Request the visit, or pay now through Stripe.";
     default:
       return "";
   }

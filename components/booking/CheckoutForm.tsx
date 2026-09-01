@@ -6,21 +6,6 @@ import { site } from "@/data/site";
 import { cn, formatPrice } from "@/lib/utils";
 import type { Quote } from "@/types";
 
-/**
- * Payment step — Stripe integration point.
- *
- * The card fields are deliberately inert. Wiring this up means:
- *   1. npm i @stripe/stripe-js @stripe/react-stripe-js stripe
- *   2. Set STRIPE_SECRET_KEY (server) and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.
- *   3. app/api/checkout/route.ts creates a PaymentIntent, re-pricing the booking
- *      server-side with buildQuote() — never trusting the client's total — and
- *      returns only the client secret.
- *   4. Replace the block below with <Elements><PaymentElement /></Elements> and
- *      confirm the intent with that client secret.
- *
- * Until then, "hold my spot" is the honest path: no card, no charge, and a
- * payment link once the visit is confirmed. See lib/api.ts.
- */
 export type PaymentChoice = "hold" | "card";
 
 export function CheckoutForm({
@@ -70,11 +55,9 @@ export function CheckoutForm({
                 <Badge tone="mint">Recommended</Badge>
               </span>
               <span className="mt-1.5 block text-[0.875rem] leading-relaxed text-sand-700">
-                We check availability, confirm by text or email, then send a secure payment link.
-                Nothing is charged now.
+                We’ll email hello@pawside.co and confirm by text or email. Nothing is charged now.
               </span>
             </span>
-            <span className="pointer-events-none absolute inset-0 rounded-card ring-2 ring-mint-600 opacity-0 peer-focus-visible:opacity-100" />
           </label>
 
           <label
@@ -103,44 +86,16 @@ export function CheckoutForm({
             </span>
             <span className="min-w-0 flex-1">
               <span className="flex flex-wrap items-center gap-2">
-                <span className="text-[0.9375rem] font-medium text-navy-900">
-                  Save a card for later
-                </span>
-                <Badge tone="neutral">Coming soon</Badge>
+                <CreditCard className="h-4 w-4 text-navy-700" strokeWidth={1.75} aria-hidden="true" />
+                <span className="text-[0.9375rem] font-medium text-navy-900">Pay now with Stripe</span>
               </span>
               <span className="mt-1.5 block text-[0.875rem] leading-relaxed text-sand-700">
-                Card payments arrive with the Pawside client portal. Until then we invoice after
-                each visit or bill monthly.
+                Secure checkout on Stripe. You’ll come back here with a paid confirmation.
               </span>
             </span>
-            <span className="pointer-events-none absolute inset-0 rounded-card ring-2 ring-mint-600 opacity-0 peer-focus-visible:opacity-100" />
           </label>
         </div>
       </fieldset>
-
-      {choice === "card" ? (
-        <div
-          className="mt-5 rounded-card border border-dashed border-navy-900/18 bg-canvas p-5"
-          aria-live="polite"
-        >
-          <p className="flex items-center gap-2 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-sand-500">
-            <CreditCard className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
-            Stripe Payment Element mounts here
-          </p>
-          <div className="mt-4 flex flex-col gap-2.5" aria-hidden="true">
-            <div className="h-11 rounded-button bg-white ring-1 ring-inset ring-navy-900/8" />
-            <div className="flex gap-2.5">
-              <div className="h-11 flex-1 rounded-button bg-white ring-1 ring-inset ring-navy-900/8" />
-              <div className="h-11 w-28 rounded-button bg-white ring-1 ring-inset ring-navy-900/8" />
-            </div>
-          </div>
-          <p className="mt-4 text-xs leading-relaxed text-sand-600">
-            Integration point documented in <code className="text-navy-800">lib/api.ts</code> and{" "}
-            <code className="text-navy-800">app/api/checkout/route.ts</code>. Keys are read from
-            environment variables — the secret key never reaches the browser.
-          </p>
-        </div>
-      ) : null}
 
       <div className="mt-7 flex flex-col gap-4 rounded-card bg-canvas p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -154,7 +109,7 @@ export function CheckoutForm({
         <ul className="flex flex-col gap-1.5 text-[0.8125rem] text-sand-700">
           <li className="inline-flex items-center gap-2">
             <Lock className="h-3.5 w-3.5 text-mint-600" strokeWidth={2} aria-hidden="true" />
-            No card required to request a visit
+            Card details never touch our servers
           </li>
           <li className="inline-flex items-center gap-2">
             <ShieldCheck className="h-3.5 w-3.5 text-mint-600" strokeWidth={2} aria-hidden="true" />

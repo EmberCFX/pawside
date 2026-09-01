@@ -1,30 +1,11 @@
 import { NextResponse } from "next/server";
-import { buildQuote } from "@/lib/pricing";
+import { quoteForDraft } from "@/lib/bookings";
+import { siteUrl } from "@/lib/env";
+import { getStripe } from "@/lib/stripe";
 import type { BookingDraft } from "@/types";
 
-/**
- * POST /api/checkout — Stripe PaymentIntent (placeholder).
- *
- * Returns `mode: "placeholder"` until Stripe keys exist. The shape matches the
- * live response so the client never changes.
- *
- * Live implementation:
- *
- *   import Stripe from "stripe";
- *   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
- *   const intent = await stripe.paymentIntents.create({
- *     amount: quote.total,              // server-computed, never client-supplied
- *     currency: "usd",
- *     automatic_payment_methods: { enabled: true },
- *     metadata: { bookingNumber, service: draft.serviceSlug },
- *   });
- *   return NextResponse.json({ clientSecret: intent.client_secret, amount: quote.total, mode: "live" });
- *
- * STRIPE_SECRET_KEY stays server-side. The browser only ever sees
- * NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY and the intent's client secret.
- */
 export async function POST(request: Request) {
-  let payload: { draft?: BookingDraft };
+  let payload: { draft?: BookingDraft; bookingNumber?: string };
 
   try {
     payload = await request.json();
@@ -33,36 +14,44 @@ export async function POST(request: Request) {
   }
 
   const draft = payload.draft;
-
   if (!draft?.serviceSlug) {
     return NextResponse.json({ message: "A service is required." }, { status: 422 });
   }
 
-  // Always re-price on the server. A client-supplied total is untrusted input.
-  const quote = buildQuote({
-    serviceSlug: draft.serviceSlug,
-    durationMinutes: draft.durationMinutes,
-    petCount: draft.pets?.length ?? 1,
-    addOnSlugs: draft.addOnSlugs ?? [],
-    frequency: draft.frequency ?? "one-time",
-    weekdays: draft.weekdays ?? [],
-    membership: draft.membership ?? "none",
-    date: draft.date,
-    promoCode: draft.promoCode,
-  });
+  const quote = quoteForDraft(draft);
+  const stripe = getStripe();
 
-  if (!process.env.STRIPE_SECRET_KEY) {
+  if (!stripe) {
     return NextResponse.json({
       clientSecret: null,
+      url: null,
       amount: quote.total,
       mode: "placeholder",
     });
   }
 
-  /* INTEGRATION POINT — create the PaymentIntent here. */
+  const session = await stripe.checkout.sessions.create({
+    mode: "payment",
+    customer_email: draft.contact?.email,
+    success_url: `${siteUrl()}/book/confirmation?booking=${payload.bookingNumber ?? "PS"}&paid=1`,
+    cancel_url: `${siteUrl()}/book?cancelled=1`,
+    metadata: { bookingNumber: payload.bookingNumber ?? "" },
+    line_items: [
+      {
+        quantity: 1,
+        price_data: {
+          currency: "usd",
+          unit_amount: quote.total,
+          product_data: { name: `Pawside — ${draft.serviceSlug}` },
+        },
+      },
+    ],
+  });
+
   return NextResponse.json({
     clientSecret: null,
+    url: session.url,
     amount: quote.total,
-    mode: "placeholder",
+    mode: "live",
   });
 }

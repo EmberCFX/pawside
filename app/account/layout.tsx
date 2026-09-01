@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AccountShell } from "@/components/dashboard/AccountShell";
+import { getProfile, requireUser } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -9,6 +10,14 @@ export const metadata: Metadata = buildMetadata({
   noIndex: true,
 });
 
-export default function AccountLayout({ children }: { children: React.ReactNode }) {
-  return <AccountShell>{children}</AccountShell>;
+export default async function AccountLayout({ children }: { children: React.ReactNode }) {
+  await requireUser("/account");
+  const profile = await getProfile();
+  const firstName = profile?.full_name?.split(" ")[0] || "there";
+
+  return (
+    <AccountShell firstName={firstName} email={profile?.email ?? ""}>
+      {children}
+    </AccountShell>
+  );
 }

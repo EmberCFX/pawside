@@ -29,6 +29,7 @@ export default async function ConfirmationPage({
   const params = await searchParams;
   const reference = (Array.isArray(params.booking) ? params.booking[0] : params.booking) ?? "PS-PENDING";
   const pending = Boolean(params.pending);
+  const paid = Boolean(params.paid);
 
   const nextSteps = [
     {
@@ -90,7 +91,7 @@ export default async function ConfirmationPage({
           <Card className="p-7 sm:p-9">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="font-display text-xl font-semibold text-navy-900">What happens next</h2>
-              <Badge tone="mint">No charge yet</Badge>
+              <Badge tone="mint">{paid ? "Paid" : "Request received"}</Badge>
             </div>
 
             <ol className="mt-7 flex flex-col gap-6">

@@ -17,11 +17,15 @@ Node 18.18+ is required (Next.js 15).
 
 ### Environment
 
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Production | Canonical URLs, sitemap, structured data. Defaults to `https://pawside.co`. |
+Copy `.env.example` and see **SETUP.md** to go live.
 
-Payment, email, and persistence keys are documented inline where they'll be needed — see `lib/api.ts` and `app/api/*/route.ts`.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URLs. Defaults to `https://pawside.co`. |
+| `NEXT_PUBLIC_SUPABASE_URL` / `ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` | Auth + bookings database |
+| `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | Payments |
+| `RESEND_API_KEY` | Emails to `hello@pawside.co` and customers |
+| `ADMIN_EMAILS` | Who can open `/admin` (default `hello@pawside.co`) |
 
 ## Brand
 

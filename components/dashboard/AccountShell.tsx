@@ -6,8 +6,6 @@ import { LogOut } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Layout";
 import { accountNav } from "@/data/navigation";
-import { currentCustomer } from "@/data/account";
-import { getMembership } from "@/data/memberships";
 import { cn } from "@/lib/utils";
 
 /**
@@ -17,9 +15,16 @@ import { cn } from "@/lib/utils";
  * data/account.ts. With real auth, read the session here (middleware or a server
  * component wrapper) and redirect unauthenticated visitors to sign in.
  */
-export function AccountShell({ children }: { children: React.ReactNode }) {
+export function AccountShell({
+  children,
+  firstName,
+  email,
+}: {
+  children: React.ReactNode;
+  firstName: string;
+  email: string;
+}) {
   const pathname = usePathname();
-  const membership = getMembership(currentCustomer.membershipSlug);
 
   return (
     <div className="min-h-[70vh] bg-canvas pb-20 pt-10 sm:pt-14">
@@ -28,28 +33,24 @@ export function AccountShell({ children }: { children: React.ReactNode }) {
           <div>
             <p className="eyebrow">Your account</p>
             <h1 className="mt-3 font-display text-display-xs font-semibold text-navy-900 sm:text-display-sm">
-              Hi, {currentCustomer.firstName}
+              Hi, {firstName}
             </h1>
-            <p className="mt-2 text-[0.9375rem] text-sand-700">
-              {membership.name} member since{" "}
-              {new Date(currentCustomer.memberSince).toLocaleDateString("en-US", {
-                month: "long",
-                year: "numeric",
-              })}
-            </p>
+            <p className="mt-2 text-[0.9375rem] text-sand-700">{email}</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <ButtonLink href="/book" size="md" withArrow>
               Book a visit
             </ButtonLink>
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-button px-3 py-2 text-[0.875rem] text-sand-700 transition-colors hover:bg-white hover:text-navy-900"
-            >
-              <LogOut className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
-              Sign out
-            </button>
+            <form action="/auth/signout" method="post">
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 rounded-button px-3 py-2 text-[0.875rem] text-sand-700 transition-colors hover:bg-white hover:text-navy-900"
+              >
+                <LogOut className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
+                Sign out
+              </button>
+            </form>
           </div>
         </div>
 
