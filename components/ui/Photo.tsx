@@ -1,19 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { getMedia, type MediaSlot, type MediaTone } from "@/data/media";
 import { cn } from "@/lib/utils";
 
 /**
- * Every photograph on the site renders through this component.
- *
- * When a slot in data/media.ts has a `src`, it renders an optimized next/image.
- * Until then it renders an on-brand placeholder built from the logo's own
- * language — a soft tonal wash plus the heart-line motif at low opacity. No
- * network request, no stock-photo cliché, and unmistakably a placeholder.
- *
- * Swapping in real photography is a data edit, never a component edit.
+ * Photographs are static files from /public. Native <img> only — next/image's
+ * optimizer hung the last deploy and rejected decode() as "[object Event]".
+ * A missing file falls back to the branded placeholder.
  */
 const toneClasses: Record<MediaTone, string> = {
   cream: "bg-gradient-to-br from-cream via-sand-100 to-navy-50",
@@ -61,13 +55,16 @@ export function Photo({
   return (
     <div className={cn("relative overflow-hidden", rounded, aspect, className)}>
       {media.src && !failed ? (
-        <Image
+        <img
           src={media.src}
           alt={media.alt}
-          fill
+          width={media.width}
+          height={media.height}
           sizes={sizes}
-          priority={priority}
-          className="object-cover"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
           onError={() => setFailed(true)}
         />
       ) : (
@@ -104,7 +101,7 @@ function PhotoPlaceholder({ media }: { media: MediaSlot }) {
       />
 
       {media.motif === "duo" ? (
-        <Image
+        <img
           src={onNavy ? "/brand/pawside-mark-on-dark.png" : "/brand/pawside-mark.png"}
           alt=""
           width={492}
@@ -171,11 +168,13 @@ export function PetAvatar({
 
   if (media?.src && !failed) {
     return (
-      <Image
+      <img
         src={media.src}
         alt={media.alt}
         width={size}
         height={size}
+        loading="lazy"
+        decoding="async"
         className={cn("shrink-0 rounded-full object-cover ring-1 ring-navy-900/8", className)}
         onError={() => setFailed(true)}
       />

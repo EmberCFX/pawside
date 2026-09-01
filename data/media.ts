@@ -29,7 +29,7 @@ export interface MediaSlot {
 
 export const media = {
   "hero-primary": {
-    src: null,
+    src: "/photos/hero-primary.jpg",
     alt: "A golden retriever resting on a sunlit living room rug, looking calmly toward the window",
     width: 1024,
     height: 1536,
@@ -39,7 +39,7 @@ export const media = {
       "Vertical. Real home interior, warm afternoon light, dog relaxed and unposed. No props, no studio backdrop.",
   },
   "hero-secondary": {
-    src: null,
+    src: "/photos/hero-secondary.jpg",
     alt: "A caregiver clipping a leash onto an excited terrier by a front door",
     width: 1024,
     height: 1024,
@@ -48,7 +48,7 @@ export const media = {
     brief: "Square. Hands-and-leash detail at the door. Candid, slight motion blur is welcome.",
   },
   "emotional-wide": {
-    src: null,
+    src: "/photos/emotional-wide.jpg",
     alt: "A dog curled up asleep on a couch beside a window in the late afternoon",
     width: 1536,
     height: 1024,
@@ -58,7 +58,7 @@ export const media = {
       "Wide, editorial. Quiet and warm — the feeling of a pet who is comfortable at home. Subject sits right of centre so the left third stays clear for the headline overlay.",
   },
   "how-it-works": {
-    src: null,
+    src: "/photos/how-it-works.jpg",
     alt: "A phone showing a Pawside visit summary held in one hand on a walk",
     width: 1024,
     height: 1536,
@@ -68,7 +68,7 @@ export const media = {
       "Vertical. Phone in hand outdoors, leash visible. Keep the screen soft and out of focus rather than legible — a real screenshot can be composited later if we want the UI to read.",
   },
   "service-dog-walking": {
-    src: null,
+    src: "/photos/service-dog-walking.jpg",
     alt: "A dog walking on a leash along a tree-lined neighborhood sidewalk",
     width: 1536,
     height: 1024,
@@ -77,7 +77,7 @@ export const media = {
     brief: "Low angle, moving dog, dappled light through street trees.",
   },
   "service-pet-sitting": {
-    src: null,
+    src: "/photos/service-pet-sitting.jpg",
     alt: "A cat and a dog relaxing together in a bright living room",
     width: 1536,
     height: 1024,
@@ -86,7 +86,7 @@ export const media = {
     brief: "Multi-pet household at ease. Lived-in home, not a set.",
   },
   "service-drop-in-visits": {
-    src: null,
+    src: "/photos/service-drop-in-visits.jpg",
     alt: "A bowl being refilled with fresh water in a kitchen while a dog waits nearby",
     width: 1536,
     height: 1024,
@@ -95,7 +95,7 @@ export const media = {
     brief: "Task-focused detail shot: hands, bowl, kitchen floor.",
   },
   "service-overnight-care": {
-    src: null,
+    src: "/photos/service-overnight-care.jpg",
     alt: "A dog asleep on a dog bed in a dimly lit bedroom at night",
     width: 1536,
     height: 1024,
@@ -104,7 +104,7 @@ export const media = {
     brief: "Evening interior, lamplight, calm. Should feel safe rather than dark.",
   },
   "service-puppy-care": {
-    src: null,
+    src: "/photos/service-puppy-care.jpg",
     alt: "A puppy chewing a toy on a kitchen floor beside a training pad",
     width: 1536,
     height: 1024,
@@ -113,7 +113,7 @@ export const media = {
     brief: "Playful energy, slightly messy realism. Avoid greeting-card cuteness.",
   },
   "service-cat-care": {
-    src: null,
+    src: "/photos/service-cat-care.jpg",
     alt: "A tabby cat stretching on a windowsill in morning light",
     width: 1536,
     height: 1024,
@@ -122,7 +122,7 @@ export const media = {
     brief: "Backlit window light, cat mid-stretch. Quiet and elegant.",
   },
   "report-photo-1": {
-    src: null,
+    src: "/photos/report-photo-1.jpg",
     alt: "A beagle mid-walk on a gravel path, tail up",
     width: 900,
     height: 900,
@@ -131,7 +131,7 @@ export const media = {
     brief: "Looks like a caregiver's phone photo — slightly imperfect framing is the point.",
   },
   "report-photo-2": {
-    src: null,
+    src: "/photos/report-photo-2.jpg",
     alt: "A dog lying in the grass in a fenced backyard",
     width: 900,
     height: 900,
@@ -140,7 +140,7 @@ export const media = {
     brief: "Backyard, grass, relaxed pose.",
   },
   "report-photo-3": {
-    src: null,
+    src: "/photos/report-photo-3.jpg",
     alt: "A freshly filled water bowl and a full food bowl on a kitchen mat",
     width: 900,
     height: 900,
@@ -149,7 +149,7 @@ export const media = {
     brief: "Simple proof-of-care detail.",
   },
   "about-portrait": {
-    src: null,
+    src: "/photos/about-portrait.jpg",
     alt: "Pawside's founder sitting on a porch step with two dogs",
     width: 1024,
     height: 1536,
@@ -159,7 +159,7 @@ export const media = {
       "Vertical portrait, natural light, genuine. This photo carries the whole About page — it must be the real founder before launch, not a stand-in.",
   },
   "about-detail": {
-    src: null,
+    src: "/photos/about-detail.jpg",
     alt: "A hand resting on a senior dog's shoulder",
     width: 1536,
     height: 1024,
@@ -168,7 +168,7 @@ export const media = {
     brief: "Close, tender, no faces required.",
   },
   "careers-team": {
-    src: null,
+    src: "/photos/careers-team.jpg",
     alt: "Two Pawside caregivers loading leashes into a car on a quiet residential street",
     width: 1536,
     height: 1024,
@@ -178,7 +178,7 @@ export const media = {
       "Candid, working, unposed. Must be real caregivers before launch rather than a stand-in team photo.",
   },
   "pet-luna": {
-    src: null,
+    src: "/photos/pet-luna.jpg",
     alt: "Luna, a black cat with green eyes",
     width: 600,
     height: 600,
@@ -187,7 +187,7 @@ export const media = {
     brief: "Pet avatar, tight crop on the face.",
   },
   "pet-bella": {
-    src: null,
+    src: "/photos/pet-bella.jpg",
     alt: "Bella, a golden retriever",
     width: 600,
     height: 600,
@@ -196,7 +196,7 @@ export const media = {
     brief: "Pet avatar, tight crop on the face.",
   },
   "pet-max": {
-    src: null,
+    src: "/photos/pet-max.jpg",
     alt: "Max, a terrier mix",
     width: 600,
     height: 600,
@@ -205,7 +205,7 @@ export const media = {
     brief: "Pet avatar, tight crop on the face.",
   },
   "pet-olive": {
-    src: null,
+    src: "/photos/pet-olive.jpg",
     alt: "Olive, a tuxedo cat",
     width: 600,
     height: 600,

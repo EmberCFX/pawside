@@ -7,9 +7,7 @@ const nextConfig: NextConfig = {
   // An unrelated lockfile above this directory makes Next guess the wrong root.
   outputFileTracingRoot: path.join(__dirname),
   images: {
-    // WebP only. AVIF from the optimizer can fail to decode in Chromium,
-    // and HTMLImageElement.decode() then rejects with the DOM Event —
-    // Next's overlay shows that as "[object Event]".
+    unoptimized: true,
     formats: ["image/webp"],
     // Photography slots live in data/media.ts. Real photos can be dropped in as
     // local files under /public/photos or as remote URLs from any host below.
