@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { customerEmailHtml, firstNameOf, fromAddress } from "@/lib/email-template";
 import { opsEmail, siteUrl } from "@/lib/env";
 import { createServiceSupabase } from "@/lib/supabase/server";
 
@@ -8,7 +9,7 @@ function resend() {
   return new Resend(key);
 }
 
-const from = process.env.RESEND_FROM ?? "Pawside <hello@pawside.co>";
+const from = fromAddress();
 
 export interface BookingEmailInput {
   bookingNumber: string;
@@ -25,6 +26,25 @@ export interface BookingEmailInput {
   careInstructions?: string;
 }
 
+function bookingLines(input: BookingEmailInput) {
+  return [
+    ["Booking", input.bookingNumber],
+    ["Service", input.serviceName],
+    ["When", [input.date ?? "TBD", input.time ?? ""].filter(Boolean).join(" ").trim()],
+    ["Pets", input.pets],
+    ["Address", input.address],
+    ["Total", input.totalLabel],
+    ["Payment", input.paymentStatus],
+    input.careInstructions ? ["Care notes", input.careInstructions] : null,
+  ].filter((row): row is [string, string] => Boolean(row));
+}
+
+function bookingText(input: BookingEmailInput) {
+  return bookingLines(input)
+    .map(([label, value]) => `${label}: ${value}`)
+    .join("\n");
+}
+
 export async function sendBookingEmails(input: BookingEmailInput) {
   const client = resend();
   if (!client) {
@@ -32,29 +52,16 @@ export async function sendBookingEmails(input: BookingEmailInput) {
     return { sent: false };
   }
 
-  const details = [
-    `Booking: ${input.bookingNumber}`,
-    `Name: ${input.contactName}`,
-    `Email: ${input.contactEmail}`,
-    `Phone: ${input.contactPhone}`,
-    `Service: ${input.serviceName}`,
-    `When: ${input.date ?? "TBD"} ${input.time ?? ""}`.trim(),
-    `Pets: ${input.pets}`,
-    `Address: ${input.address}`,
-    `Total: ${input.totalLabel}`,
-    `Payment: ${input.paymentStatus}`,
-    input.careInstructions ? `Care notes: ${input.careInstructions}` : "",
-    `Admin: ${siteUrl()}/admin/bookings/${input.bookingNumber}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+  const details = bookingText(input);
+  const firstName = firstNameOf(input.contactName);
+  const when = [input.date, input.time].filter(Boolean).join(" ");
 
   await client.emails.send({
     from,
     to: opsEmail(),
     replyTo: input.contactEmail,
     subject: `New Pawside booking ${input.bookingNumber} — ${input.serviceName}`,
-    text: `A new booking just came in.\n\n${details}`,
+    text: `A new booking just came in.\n\n${details}\n\nAdmin: ${siteUrl()}/admin/bookings/${input.bookingNumber}`,
   });
 
   await client.emails.send({
@@ -62,7 +69,16 @@ export async function sendBookingEmails(input: BookingEmailInput) {
     to: input.contactEmail,
     replyTo: opsEmail(),
     subject: `You're booked — ${input.bookingNumber}`,
-    text: `Hi ${input.contactName.split(" ")[0] || "there"},\n\nWe have your request.\n\n${details}\n\nWe'll confirm shortly. Reply to this email or call (413) 323-3953 if you need to change anything.\n\n— Pawside`,
+    text: `Hi ${firstName},\n\nWe have your ${input.serviceName} request${when ? ` for ${when}` : ""}. We'll confirm shortly — nothing is charged until then.\n\n${details}\n\nReply to this email or call (413) 323-3953 if you need to change anything.\n\n— Aliya, Pawside`,
+    html: customerEmailHtml({
+      preheader: `We have your ${input.serviceName} request. We'll confirm shortly.`,
+      eyebrow: input.bookingNumber,
+      title: `You're booked, ${firstName}.`,
+      intro: `Thanks for trusting us with ${input.pets === "—" ? "your pet" : input.pets}. We have the request and will confirm the time as soon as we check the calendar — usually within a few hours.`,
+      details: bookingLines(input).filter(([label]) => label !== "Booking"),
+      note: "Nothing is charged until we confirm we can cover the visit. Reply to this email or call (413) 323-3953 if the timing needs to move.",
+      cta: { href: `${siteUrl()}/account`, label: "View your account" },
+    }),
   });
 
   return { sent: true };
@@ -78,7 +94,7 @@ export async function sendSignupConfirmedEmail(input: {
     return { sent: false };
   }
 
-  const firstName = (input.name ?? "").trim().split(/\s+/)[0] || "there";
+  const firstName = firstNameOf(input.name);
   const accountUrl = `${siteUrl()}/account`;
   const bookUrl = `${siteUrl()}/book`;
 
@@ -88,6 +104,15 @@ export async function sendSignupConfirmedEmail(input: {
     replyTo: opsEmail(),
     subject: "Your Pawside account is ready",
     text: `Hi ${firstName},\n\nYour Pawside account is confirmed. You can sign in anytime to book visits, keep pet notes, and see upcoming care.\n\nAccount: ${accountUrl}\nBook a visit: ${bookUrl}\n\nQuestions? Reply to this email or call (413) 323-3953.\n\n— Aliya\nPawside Pet Services`,
+    html: customerEmailHtml({
+      preheader: "Your Pawside account is ready — book a visit whenever you need us.",
+      eyebrow: "Welcome",
+      title: `Nice to meet you, ${firstName}.`,
+      intro:
+        "Your account is confirmed. You can sign in anytime to book visits, save pet notes, and keep upcoming care in one place. When you're ready, we'll learn the routine and keep it going while you're out.",
+      cta: { href: bookUrl, label: "Book a visit" },
+      note: `You can also open your account anytime at ${accountUrl.replace("https://", "")}.`,
+    }),
   });
 
   return { sent: true };
@@ -153,6 +178,8 @@ export async function sendCancellationNotice(input: BookingEmailInput) {
   if (!client) return { sent: false };
 
   const when = [input.date, input.time].filter(Boolean).join(" ");
+  const firstName = firstNameOf(input.contactName);
+
   await client.emails.send({
     from,
     to: opsEmail(),
@@ -166,7 +193,19 @@ export async function sendCancellationNotice(input: BookingEmailInput) {
     to: input.contactEmail,
     replyTo: opsEmail(),
     subject: `Visit cancelled — ${input.bookingNumber}`,
-    text: `Hi ${input.contactName.split(" ")[0] || "there"},\n\nYour ${input.serviceName} visit${when ? ` on ${when}` : ""} is cancelled. Booking ${input.bookingNumber}.\n\nNeed to rebook? pawside.co/book or call (413) 323-3953.\n\n— Pawside`,
+    text: `Hi ${firstName},\n\nYour ${input.serviceName} visit${when ? ` on ${when}` : ""} is cancelled. Booking ${input.bookingNumber}.\n\nNeed to rebook? ${siteUrl()}/book or call (413) 323-3953.\n\n— Aliya, Pawside`,
+    html: customerEmailHtml({
+      preheader: `Your ${input.serviceName} visit is cancelled.`,
+      eyebrow: input.bookingNumber,
+      title: "Visit cancelled.",
+      intro: `Hi ${firstName} — your ${input.serviceName} visit${when ? ` on ${when}` : ""} is off the calendar. No hard feelings, and we’re here when you need us again.`,
+      details: [
+        ["Service", input.serviceName],
+        ["When", when || "—"],
+        ["Booking", input.bookingNumber],
+      ],
+      cta: { href: `${siteUrl()}/book`, label: "Book another visit" },
+    }),
   });
 
   return { sent: true };
@@ -175,6 +214,8 @@ export async function sendCancellationNotice(input: BookingEmailInput) {
 export async function sendPaymentNotice(input: BookingEmailInput) {
   const client = resend();
   if (!client) return { sent: false };
+
+  const firstName = firstNameOf(input.contactName);
 
   await client.emails.send({
     from,
@@ -188,7 +229,19 @@ export async function sendPaymentNotice(input: BookingEmailInput) {
     to: input.contactEmail,
     replyTo: opsEmail(),
     subject: `Payment received — ${input.bookingNumber}`,
-    text: `Hi ${input.contactName.split(" ")[0] || "there"},\n\nWe received your payment of ${input.totalLabel} for ${input.serviceName}. Booking ${input.bookingNumber}.\n\n— Pawside`,
+    text: `Hi ${firstName},\n\nWe received your payment of ${input.totalLabel} for ${input.serviceName}. Booking ${input.bookingNumber}.\n\n— Aliya, Pawside`,
+    html: customerEmailHtml({
+      preheader: `We received your payment of ${input.totalLabel}.`,
+      eyebrow: input.bookingNumber,
+      title: "Payment received.",
+      intro: `Hi ${firstName} — thank you. We received ${input.totalLabel} for ${input.serviceName}. You’re all set on our side.`,
+      details: [
+        ["Service", input.serviceName],
+        ["Amount", input.totalLabel],
+        ["Booking", input.bookingNumber],
+      ],
+      cta: { href: `${siteUrl()}/account`, label: "View your account" },
+    }),
   });
 
   return { sent: true };
