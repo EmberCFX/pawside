@@ -66,17 +66,15 @@ export function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-brand",
-          scrolled
-            ? "bg-transparent py-2.5"
-            : "border-b border-sand-800/6 bg-white/95 py-0 backdrop-blur-sm",
+          scrolled ? "py-2.5" : "py-0",
         )}
       >
         <div
           className={cn(
-            "mx-auto flex items-center justify-between gap-4 transition-all duration-500 ease-brand",
+            "mx-auto flex items-center justify-between gap-4 overflow-hidden transition-all duration-500 ease-brand",
             scrolled
-              ? "max-w-[1200px] overflow-hidden rounded-[18px] border border-sand-800/8 bg-white/85 px-4 py-2.5 shadow-soft backdrop-blur-xl supports-[backdrop-filter]:bg-white/70 sm:px-5"
-              : "w-full max-w-none px-6 py-4 sm:px-8 lg:px-12 xl:px-16",
+              ? "max-w-[1200px] rounded-[18px] border border-sand-800/8 bg-white/85 px-4 py-2.5 shadow-soft backdrop-blur-xl supports-[backdrop-filter]:bg-white/70 sm:px-5"
+              : "max-w-wide border-b border-sand-800/6 bg-white/95 px-6 py-4 backdrop-blur-sm sm:px-8 lg:px-12 xl:px-16",
           )}
         >
           <Link

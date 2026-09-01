@@ -23,6 +23,13 @@ export function buildMetadata({
 }): Metadata {
   const url = `${site.url}${path === "/" ? "" : path}`;
   const fullTitle = path === "/" ? title : `${title} | ${TITLE_SUFFIX}`;
+  const image = {
+    url: "/og.png",
+    width: 1200,
+    height: 630,
+    alt: `${site.name} — Care for them, even when you can't be there`,
+    type: "image/png",
+  };
 
   return {
     title: fullTitle,
@@ -35,11 +42,13 @@ export function buildMetadata({
       siteName: site.legalName,
       locale: "en_US",
       type: "website",
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [image],
     },
     ...(noIndex ? { robots: { index: false, follow: false } } : {}),
   };
