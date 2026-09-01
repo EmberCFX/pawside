@@ -89,19 +89,20 @@ const mint = ramp(mh, ms, {
   950: { l: 0.11, s: 0.92 },
 });
 
-// Warm-neutral grays: a whisper of the navy hue keeps them from feeling clinical.
-const sand = ramp(nh - 10, 0.14, {
+// Warm paper/graphite — taupe hue, not the navy/cyan hue. Cool sand rings
+// were reading as icy blue chrome on the cream canvas.
+const sand = ramp(34, 0.1, {
   50: { l: 0.985, s: 0.5 },
   100: { l: 0.965, s: 0.7 },
   200: { l: 0.93, s: 0.85 },
-  300: { l: 0.87, s: 1 },
-  400: { l: 0.72, s: 1 },
-  500: { l: 0.57, s: 1 },
-  600: { l: 0.45, s: 1.1 },
-  700: { l: 0.35, s: 1.2 },
-  800: { l: 0.25, s: 1.3 },
-  900: { l: 0.16, s: 1.4 },
-  950: { l: 0.09, s: 1.5 },
+  300: { l: 0.86, s: 1 },
+  400: { l: 0.7, s: 1 },
+  500: { l: 0.55, s: 1 },
+  600: { l: 0.43, s: 1.1 },
+  700: { l: 0.34, s: 1.15 },
+  800: { l: 0.24, s: 1.2 },
+  900: { l: 0.15, s: 1.25 },
+  950: { l: 0.09, s: 1.3 },
 });
 
 const show = (name, r) => {
