@@ -1,18 +1,16 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
-import { createServiceSupabase } from "@/lib/supabase/server";
-import { formatPrice } from "@/lib/utils";
+import { getAdminBookings } from "@/lib/admin";
+import { formatDate, formatPrice } from "@/lib/utils";
 
 export default async function AdminBookingsPage() {
-  const db = createServiceSupabase();
-  const bookings = db
-    ? ((await db.from("bookings").select("*").order("created_at", { ascending: false })).data ?? [])
-    : [];
+  const { rows: bookings, error } = await getAdminBookings();
 
   return (
     <Card className="overflow-hidden p-0">
       <div className="border-b border-sand-800/8 px-6 py-5">
         <h2 className="font-display text-lg font-semibold text-navy-900">Bookings</h2>
+        {error ? <p className="mt-2 text-[0.875rem] text-red-700">{error}</p> : null}
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px] text-left text-[0.875rem]">
@@ -35,12 +33,18 @@ export default async function AdminBookingsPage() {
                   </Link>
                 </td>
                 <td className="px-6 py-3 text-sand-700">
-                  {row.contact_name}
+                  {row.contact_name || "—"}
                   <div className="text-[0.75rem]">{row.contact_email}</div>
+                  {row.contact_phone ? (
+                    <div className="text-[0.75rem]">{row.contact_phone}</div>
+                  ) : null}
                 </td>
-                <td className="px-6 py-3 text-sand-700">{row.service_name}</td>
+                <td className="px-6 py-3 text-sand-700">{row.service_name || row.service_slug}</td>
                 <td className="px-6 py-3 text-sand-700">
-                  {row.visit_date ?? "—"} {row.visit_time ?? ""}
+                  {row.visit_date
+                    ? formatDate(row.visit_date, { weekday: "short", month: "short", day: "numeric" })
+                    : "—"}
+                  {row.visit_time ? ` · ${row.visit_time}` : ""}
                 </td>
                 <td className="px-6 py-3 text-sand-700">
                   {row.status} / {row.payment_status}
@@ -51,7 +55,7 @@ export default async function AdminBookingsPage() {
           </tbody>
         </table>
       </div>
-      {bookings.length === 0 ? (
+      {bookings.length === 0 && !error ? (
         <p className="px-6 py-10 text-[0.9375rem] text-sand-600">No bookings yet.</p>
       ) : null}
     </Card>

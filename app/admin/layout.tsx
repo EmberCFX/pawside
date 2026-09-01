@@ -3,6 +3,8 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = buildMetadata({
   title: "Admin",
   description: "Pawside operations",

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/Card";
-import { getBookingByNumber } from "@/lib/bookings";
-import { formatPrice } from "@/lib/utils";
+import { getAdminBooking } from "@/lib/admin";
+import { formatDate, formatPrice } from "@/lib/utils";
 import { BookingStatusForm } from "@/components/admin/BookingStatusForm";
 
 export default async function AdminBookingDetailPage({
@@ -10,7 +10,15 @@ export default async function AdminBookingDetailPage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  const booking = await getBookingByNumber(number);
+  const { row: booking, error } = await getAdminBooking(number);
+  if (error) {
+    return (
+      <Card className="p-6">
+        <p className="font-medium text-navy-900">Couldn’t load this booking.</p>
+        <p className="mt-2 text-[0.9375rem] text-sand-700">{error}</p>
+      </Card>
+    );
+  }
   if (!booking) notFound();
 
   const pets = Array.isArray(booking.pets_json)
@@ -29,7 +37,21 @@ export default async function AdminBookingDetailPage({
             ["Customer", booking.contact_name],
             ["Email", booking.contact_email],
             ["Phone", booking.contact_phone],
-            ["When", `${booking.visit_date ?? "TBD"} ${booking.visit_time ?? ""}`.trim()],
+            [
+              "When",
+              [
+                booking.visit_date
+                  ? formatDate(booking.visit_date, {
+                      weekday: "long",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : "TBD",
+                booking.visit_time,
+              ]
+                .filter(Boolean)
+                .join(" · "),
+            ],
             ["Frequency", booking.frequency],
             ["Pets", pets.map((pet) => pet.name).join(", ") || String(booking.pet_count)],
             [

@@ -19,6 +19,18 @@ export function isAdminEmail(email: string | null | undefined) {
   return adminEmails().includes(email.trim().toLowerCase());
 }
 
+export function safeNextPath(next?: string | null) {
+  if (next && next.startsWith("/") && !next.startsWith("//")) return next;
+  return "/account";
+}
+
+/** After login, send the ops inbox to /admin unless they asked for another in-app page. */
+export function postAuthPath(email: string | null | undefined, next?: string | null) {
+  const dest = safeNextPath(next);
+  if (dest === "/account" && isAdminEmail(email)) return "/admin";
+  return dest;
+}
+
 export function hasSupabase() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
 }

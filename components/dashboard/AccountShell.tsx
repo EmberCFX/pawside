@@ -13,10 +13,12 @@ export function AccountShell({
   children,
   firstName,
   email,
+  isAdmin = false,
 }: {
   children: React.ReactNode;
   firstName: string;
   email: string;
+  isAdmin?: boolean;
 }) {
   const pathname = usePathname();
 
@@ -33,6 +35,11 @@ export function AccountShell({
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
+            {isAdmin ? (
+              <ButtonLink href="/admin" variant="secondary" size="md">
+                Operations
+              </ButtonLink>
+            ) : null}
             <ButtonLink href="/book" size="md" withArrow>
               Book a visit
             </ButtonLink>

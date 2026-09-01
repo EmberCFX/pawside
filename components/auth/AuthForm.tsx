@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/Field";
+import { postAuthPath } from "@/lib/env";
 import { createBrowserSupabase } from "@/lib/supabase/client";
 
 export function AuthForm({
@@ -45,14 +46,14 @@ export function AuthForm({
         });
         if (signError) throw signError;
         if (data.session) {
-          window.location.assign(next);
+          window.location.assign(postAuthPath(email, next));
           return;
         }
         setInfo("Check your email to confirm your account, then come back and sign in.");
       } else {
         const { error: signError } = await supabase.auth.signInWithPassword({ email, password });
         if (signError) throw signError;
-        window.location.assign(next);
+        window.location.assign(postAuthPath(email, next));
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "That didn’t work. Try again.");

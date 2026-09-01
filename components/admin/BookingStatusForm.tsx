@@ -31,9 +31,10 @@ export function BookingStatusForm({
         payment_status: nextPayment,
       }),
     });
+    const payload = (await response.json().catch(() => null)) as { message?: string } | null;
     setBusy(false);
     if (!response.ok) {
-      setMessage("Couldn’t save. Try again.");
+      setMessage(payload?.message || "Couldn’t save. Try again.");
       return;
     }
     setMessage("Saved.");

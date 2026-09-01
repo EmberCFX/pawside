@@ -16,7 +16,11 @@ export default async function AccountLayout({ children }: { children: React.Reac
   const firstName = profile?.full_name?.split(" ")[0] || "there";
 
   return (
-    <AccountShell firstName={firstName} email={profile?.email ?? ""}>
+    <AccountShell
+      firstName={firstName}
+      email={profile?.email ?? ""}
+      isAdmin={profile?.role === "admin"}
+    >
       {children}
     </AccountShell>
   );

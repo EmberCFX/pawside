@@ -8,7 +8,7 @@ import type { TeamMember } from "@/types";
  */
 export const team: TeamMember[] = [
   {
-    name: "Case",
+    name: "Aliya",
     role: "Founder & Lead Caregiver",
     bio: "I started Pawside after years of watching friends and neighbors scramble for someone reliable. I'd rather know twenty families and their animals well than take every booking that comes in — that's the whole business model.",
     credentials: [

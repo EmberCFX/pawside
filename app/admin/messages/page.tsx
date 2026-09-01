@@ -1,17 +1,18 @@
 import { Card } from "@/components/ui/Card";
-import { createServiceSupabase } from "@/lib/supabase/server";
+import { getAdminMessages } from "@/lib/admin";
 
 export default async function AdminMessagesPage() {
-  const db = createServiceSupabase();
-  const messages = db
-    ? ((
-        await db.from("contact_messages").select("*").order("created_at", { ascending: false })
-      ).data ?? [])
-    : [];
+  const { rows: messages, error } = await getAdminMessages();
 
   return (
     <div className="flex flex-col gap-4">
-      {messages.length === 0 ? (
+      {error ? (
+        <Card className="p-6">
+          <p className="font-medium text-navy-900">Couldn’t load messages.</p>
+          <p className="mt-2 text-[0.9375rem] text-sand-700">{error}</p>
+        </Card>
+      ) : null}
+      {messages.length === 0 && !error ? (
         <Card className="p-8 text-[0.9375rem] text-sand-600">No messages yet.</Card>
       ) : null}
       {messages.map((row) => (

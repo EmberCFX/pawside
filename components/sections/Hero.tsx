@@ -207,9 +207,9 @@ export function Hero() {
               </p>
               <div className="mt-4 flex items-center gap-2.5 border-t border-sand-800/8 pt-3.5 sm:mt-3 sm:pt-3">
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-navy-900 text-[0.625rem] font-semibold text-white">
-                  C
+                  A
                 </span>
-                <p className="text-xs text-sand-600">Case · your caregiver</p>
+                <p className="text-xs text-sand-600">Aliya · your caregiver</p>
               </div>
             </motion.div>
 

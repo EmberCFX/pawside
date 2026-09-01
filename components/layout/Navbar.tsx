@@ -9,6 +9,7 @@ import { Logo } from "@/components/brand/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { primaryNav } from "@/data/navigation";
 import { site } from "@/data/site";
+import { isAdminEmail } from "@/lib/env";
 import { createBrowserSupabase } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +53,10 @@ export function Navbar({
         )
           .trim()
           .split(/\s+/)[0] || "Account";
-      setSession({ firstName, href: "/account" });
+      setSession({
+        firstName: signedIn?.firstName || firstName,
+        href: signedIn?.href ?? (isAdminEmail(user.email) ? "/admin" : "/account"),
+      });
     };
 
     void applyUser();
@@ -60,7 +64,7 @@ export function Navbar({
       void applyUser();
     });
     return () => data.subscription.unsubscribe();
-  }, []);
+  }, [signedIn]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);

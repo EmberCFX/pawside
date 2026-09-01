@@ -22,6 +22,9 @@ export async function createUserSupabase() {
         }
       },
     },
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
   });
 }
 
@@ -31,5 +34,8 @@ export function createServiceSupabase(): SupabaseClient | null {
   if (!url || !key) return null;
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
   });
 }
