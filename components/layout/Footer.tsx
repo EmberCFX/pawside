@@ -64,7 +64,7 @@ export function Footer() {
           <div className="grid gap-10 sm:grid-cols-3">
             {footerNav.map((group) => (
               <nav key={group.heading} aria-label={group.heading}>
-                <h2 className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-400">
+                <h2 className="text-[0.6875rem] font-semibold uppercase text-mint-400">
                   {group.heading}
                 </h2>
                 <ul className="mt-5 flex flex-col gap-3">
@@ -85,7 +85,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-white/10 pt-8">
-          <h2 className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-400">
+          <h2 className="text-[0.6875rem] font-semibold uppercase text-mint-400">
             Service Area
           </h2>
           <ul className="mt-4 flex flex-wrap gap-x-2 gap-y-2">
@@ -122,7 +122,7 @@ export function Footer() {
                 </Link>
               </li>
             ))}
-            <li>Insured &amp; bonded</li>
+            <li>Same familiar caregiver</li>
           </ul>
         </div>
       </Container>

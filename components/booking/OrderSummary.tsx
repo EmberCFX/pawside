@@ -55,7 +55,7 @@ export function OrderSummary({
   return (
     <aside
       className={cn(
-        "rounded-panel border border-navy-900/10 bg-white p-6 shadow-soft",
+        "rounded-panel border border-sand-800/10 bg-white p-6 shadow-soft",
         className,
       )}
       aria-label="Booking summary"
@@ -102,7 +102,7 @@ export function OrderSummary({
       </dl>
 
       {/* Line items ----------------------------------------------------- */}
-      <div className="mt-5 border-t border-navy-900/8 pt-5">
+      <div className="mt-5 border-t border-sand-800/8 pt-5">
         {collapsibleOnMobile ? (
           <button
             type="button"
@@ -145,7 +145,7 @@ export function OrderSummary({
 
       {/* Promo code ----------------------------------------------------- */}
       {onPromoChange ? (
-        <div className="mt-5 border-t border-navy-900/8 pt-5">
+        <div className="mt-5 border-t border-sand-800/8 pt-5">
           <label
             htmlFor="promo-code"
             className="flex items-center gap-1.5 text-[0.8125rem] font-medium text-navy-800"
@@ -162,7 +162,7 @@ export function OrderSummary({
                 setPromoStatus("idle");
               }}
               placeholder="WELCOME10"
-              className="min-w-0 flex-1 rounded-button bg-white px-3 py-2 text-[0.875rem] uppercase tracking-wide ring-1 ring-inset ring-navy-900/12 placeholder:normal-case placeholder:tracking-normal placeholder:text-sand-400 focus:outline-none focus:ring-2 focus:ring-mint-600"
+              className="min-w-0 flex-1 rounded-button bg-white px-3 py-2 text-[0.875rem] uppercase tracking-wide ring-1 ring-inset ring-sand-800/12 placeholder:normal-case placeholder:tracking-normal placeholder:text-sand-400 focus:outline-none focus:ring-2 focus:ring-mint-600"
             />
             <button
               type="button"
@@ -186,7 +186,7 @@ export function OrderSummary({
       ) : null}
 
       {/* Total ---------------------------------------------------------- */}
-      <div className="mt-5 border-t border-navy-900/8 pt-5">
+      <div className="mt-5 border-t border-sand-800/8 pt-5">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-[0.8125rem] text-sand-600">

@@ -215,7 +215,7 @@ export function ServiceAreaMap({ className }: { className?: string }) {
                 y={y + offset.y}
                 textAnchor={area.labelAnchor ?? "start"}
                 className="font-display"
-                fill={isHome ? "#FFFFFF" : "#E4ECF4"}
+                fill={isHome ? "#FFFFFF" : "#E9EAEB"}
                 fillOpacity={isWaitlist ? 0.55 : isHome ? 1 : 0.82}
                 fontSize={isHome ? 30 : 25}
                 fontWeight={isHome ? 600 : 500}

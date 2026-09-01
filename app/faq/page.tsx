@@ -32,7 +32,7 @@ export default function FaqPage() {
             <a
               key={category.id}
               href={`#${category.id}`}
-              className="inline-flex rounded-full border border-navy-900/10 bg-white px-4 py-2 text-[0.875rem] text-navy-800 transition-colors hover:border-mint-500/50 hover:bg-mint-50"
+              className="inline-flex rounded-full border border-sand-800/10 bg-white px-4 py-2 text-[0.875rem] text-navy-800 transition-colors hover:border-mint-500/50 hover:bg-mint-50"
             >
               {category.label}
             </a>
@@ -64,7 +64,7 @@ export default function FaqPage() {
       })}
 
       <Section tone="default">
-        <div className="rounded-panel border border-navy-900/8 bg-canvas p-8 text-center sm:p-12">
+        <div className="rounded-panel border border-sand-800/8 bg-canvas p-8 text-center sm:p-12">
           <h2 className="font-display text-2xl font-semibold text-navy-900">
             Didn&apos;t find your answer?
           </h2>

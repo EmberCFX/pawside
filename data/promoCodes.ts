@@ -19,17 +19,17 @@ export const promoCodes: PromoCode[] = [
   },
   {
     code: "REFERAFRIEND",
-    label: "$20 off, referred by a friend",
+    label: "$25 off, referred by a friend",
     type: "fixed",
-    value: 2000,
-    minSubtotal: 4000,
+    value: 2500,
+    minSubtotal: 5000,
     active: true,
   },
   {
     code: "MEETGREET",
-    label: "$5 off after a meet & greet",
+    label: "$10 off after a meet & greet",
     type: "fixed",
-    value: 500,
+    value: 1000,
     active: true,
   },
 ];

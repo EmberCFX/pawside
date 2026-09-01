@@ -120,7 +120,7 @@ function PhotoPlaceholder({ media }: { media: MediaSlot }) {
       <div
         className={cn(
           "absolute inset-0 ring-1 ring-inset",
-          onNavy ? "ring-white/10" : "ring-navy-900/8",
+          onNavy ? "ring-white/10" : "ring-sand-800/8",
         )}
         aria-hidden="true"
       />
@@ -175,7 +175,7 @@ export function PetAvatar({
         height={size}
         loading="lazy"
         decoding="async"
-        className={cn("shrink-0 rounded-full object-cover ring-1 ring-navy-900/8", className)}
+        className={cn("shrink-0 rounded-full object-cover ring-1 ring-sand-800/8", className)}
         onError={() => setFailed(true)}
       />
     );
@@ -184,7 +184,7 @@ export function PetAvatar({
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-full bg-navy-50 font-display font-semibold text-navy-800 ring-1 ring-navy-900/8",
+        "inline-flex shrink-0 items-center justify-center rounded-full bg-navy-50 font-display font-semibold text-navy-800 ring-1 ring-sand-800/8",
         className,
       )}
       style={{ width: size, height: size, fontSize: size * 0.42 }}

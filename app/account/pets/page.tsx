@@ -50,16 +50,16 @@ export default function AccountPetsPage() {
             </div>
             <button
               type="button"
-              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
             >
               Edit profile
             </button>
           </div>
 
-          <dl className="mt-6 grid gap-x-8 gap-y-5 border-t border-navy-900/8 pt-6 sm:grid-cols-2">
+          <dl className="mt-6 grid gap-x-8 gap-y-5 border-t border-sand-800/8 pt-6 sm:grid-cols-2">
             {fields.map((field) => (
               <div key={field.key}>
-                <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                   {field.label}
                 </dt>
                 <dd className="mt-1.5 text-[0.875rem] leading-relaxed text-navy-800">

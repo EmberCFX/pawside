@@ -13,8 +13,8 @@ import { cn } from "@/lib/utils";
  */
 const controlClasses =
   "w-full rounded-button border-0 bg-white px-3.5 py-2.5 text-[0.9375rem] text-navy-900 " +
-  "ring-1 ring-inset ring-navy-900/12 transition-shadow duration-200 " +
-  "placeholder:text-sand-400 hover:ring-navy-900/20 " +
+  "ring-1 ring-inset ring-sand-800/12 transition-shadow duration-200 " +
+  "placeholder:text-sand-400 hover:ring-sand-800/20 " +
   "focus:outline-none focus:ring-2 focus:ring-mint-600 disabled:bg-sand-100 disabled:text-sand-500";
 
 interface FieldShellProps {
@@ -255,7 +255,7 @@ export function OptionChips<T extends string | number>({
                 "group relative flex cursor-pointer flex-col justify-center rounded-button px-4 py-3 text-left transition-all duration-200 ease-brand ring-1 ring-inset",
                 selected
                   ? "bg-navy-900 text-white ring-navy-900 shadow-soft"
-                  : "bg-white text-navy-800 ring-navy-900/12 hover:ring-navy-900/28 hover:bg-sand-50",
+                  : "bg-white text-navy-800 ring-sand-800/12 hover:ring-sand-800/28 hover:bg-sand-50",
               )}
             >
               <input
@@ -280,7 +280,7 @@ export function OptionChips<T extends string | number>({
               {option.note ? (
                 <span
                   className={cn(
-                    "mt-1.5 inline-flex w-fit rounded-full px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em]",
+                    "mt-1.5 inline-flex w-fit rounded-full px-2 py-0.5 text-[0.625rem] font-semibold uppercase",
                     selected ? "bg-white/15 text-mint-300" : "bg-mint-50 text-mint-700",
                   )}
                 >
@@ -322,7 +322,7 @@ export function ToggleChip({
         "group relative flex cursor-pointer items-start gap-3 rounded-card p-4 text-left transition-all duration-200 ease-brand ring-1 ring-inset",
         checked
           ? "bg-mint-50 ring-mint-500/60"
-          : "bg-white ring-navy-900/10 hover:ring-navy-900/22",
+          : "bg-white ring-sand-800/10 hover:ring-sand-800/22",
         disabled && "cursor-not-allowed opacity-55",
         className,
       )}
@@ -337,7 +337,7 @@ export function ToggleChip({
       <span
         className={cn(
           "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] ring-1 ring-inset transition-all duration-200",
-          checked ? "bg-mint-600 text-white ring-mint-600" : "bg-white ring-navy-900/18",
+          checked ? "bg-mint-600 text-white ring-mint-600" : "bg-white ring-sand-800/18",
         )}
         aria-hidden="true"
       >

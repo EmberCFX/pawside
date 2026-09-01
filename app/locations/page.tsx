@@ -67,7 +67,7 @@ export default function LocationsPage() {
                   {area.blurb}
                 </p>
 
-                <p className="mt-5 border-t border-navy-900/8 pt-4 text-[0.8125rem] leading-relaxed text-sand-600">
+                <p className="mt-5 border-t border-sand-800/8 pt-4 text-[0.8125rem] leading-relaxed text-sand-600">
                   {area.neighborhoods.slice(0, 4).join(" · ")}
                 </p>
 

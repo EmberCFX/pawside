@@ -41,7 +41,7 @@ export default function NotFound() {
             </ButtonLink>
           </div>
 
-          <nav aria-label="Popular pages" className="mt-12 border-t border-navy-900/8 pt-8">
+          <nav aria-label="Popular pages" className="mt-12 border-t border-sand-800/8 pt-8">
             <p className="text-[0.8125rem] text-sand-600">Or try one of these:</p>
             <ul className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2.5">
               {primaryNav.map((link) => (

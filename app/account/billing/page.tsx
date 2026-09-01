@@ -27,7 +27,7 @@ export default function AccountBillingPage() {
           </div>
           <button
             type="button"
-            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
           >
             Update card
           </button>
@@ -47,7 +47,7 @@ export default function AccountBillingPage() {
           <table className="w-full text-left text-[0.875rem]">
             <caption className="sr-only">Your Pawside invoices</caption>
             <thead>
-              <tr className="border-b border-navy-900/8 bg-sand-50/70">
+              <tr className="border-b border-sand-800/8 bg-sand-50/70">
                 <th scope="col" className="px-5 py-3 font-medium text-sand-600">
                   Date
                 </th>
@@ -62,7 +62,7 @@ export default function AccountBillingPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-navy-900/8">
+            <tbody className="divide-y divide-sand-800/8">
               {invoices.map((invoice) => (
                 <tr key={invoice.id}>
                   <td className="px-5 py-4 align-top">

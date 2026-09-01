@@ -21,9 +21,9 @@ export function ReportCard({
 }) {
   return (
     <Card className={cn("overflow-hidden", className)}>
-      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-navy-900/8 p-6 sm:p-7">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-sand-800/8 p-6 sm:p-7">
         <div>
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+          <p className="text-[0.6875rem] font-semibold uppercase text-mint-700">
             Pawside Report
           </p>
           <h3 className="mt-2.5 font-display text-2xl font-semibold text-navy-900">
@@ -56,7 +56,7 @@ export function ReportCard({
           const done = task.status === "done";
           return (
             <div key={task.label} className="min-w-0">
-              <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+              <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                 {task.label}
               </dt>
               <dd className="mt-1.5 flex items-start gap-2">
@@ -99,7 +99,7 @@ export function ReportCard({
 
       {showPhotos && report.mediaKeys.length ? (
         <div className="px-6 pb-6 sm:px-7 sm:pb-7">
-          <p className="mb-3 inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+          <p className="mb-3 inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-sand-500">
             <Camera className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
             {report.photoCount} photos from this visit
           </p>

@@ -51,7 +51,7 @@ export function Testimonials({
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
 
-                <div className="mt-6 flex items-center gap-3 border-t border-navy-900/8 pt-5">
+                <div className="mt-6 flex items-center gap-3 border-t border-sand-800/8 pt-5">
                   <PetAvatar slot={testimonial.mediaKey} name={testimonial.petName} size={40} />
                   <div className="min-w-0">
                     <p className="text-[0.875rem] font-semibold text-navy-900">

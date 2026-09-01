@@ -102,7 +102,7 @@ export function ReviewStep({
 
   return (
     <div>
-      <dl className="divide-y divide-navy-900/8 border-y border-navy-900/8">
+      <dl className="divide-y divide-sand-800/8 border-y border-sand-800/8">
         {rows.map((row) => (
           <div key={row.label} className="flex items-start gap-4 py-4">
             <dt className="w-28 shrink-0 text-[0.8125rem] font-medium text-sand-600 sm:w-36">
@@ -127,7 +127,7 @@ export function ReviewStep({
       {/* Membership upsell — honest math, and easy to decline. */}
       {draft.membership === "none" && quote.potentialMembershipSavings > 0 ? (
         <div className="mt-8 rounded-panel border border-mint-500/30 bg-mint-50/60 p-6">
-          <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+          <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-mint-700">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
             One thing worth checking
           </p>
@@ -150,7 +150,7 @@ export function ReviewStep({
             <button
               type="button"
               onClick={() => onMembershipChange("none")}
-              className="rounded-button bg-white px-4 py-2.5 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+              className="rounded-button bg-white px-4 py-2.5 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
             >
               No thanks
             </button>
@@ -159,7 +159,7 @@ export function ReviewStep({
       ) : null}
 
       {draft.membership !== "none" ? (
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-panel border border-navy-900/8 bg-canvas p-5">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 rounded-panel border border-sand-800/8 bg-canvas p-5">
           <p className="text-[0.9375rem] text-navy-900">
             <span className="font-semibold">{currentMembership.name}</span> included ·{" "}
             {formatPrice(currentMembership.monthlyPrice ?? 0)}/month

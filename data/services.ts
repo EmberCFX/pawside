@@ -366,22 +366,169 @@ export const services: Service[] = [
       h1: "Cat care that respects the cat",
     },
   },
+  {
+    slug: "grooming",
+    name: "Grooming",
+    longName: "In-Home Grooming",
+    tagline: "A tidy-up without the salon stress.",
+    summary: "Baths, brush-outs, nail trims, and paw cleaning — in the home they already know.",
+    description:
+      "No crate in a waiting room, no strange dryer. We bring the bath, brush, and nail care to your kitchen or tub and work at your pet's pace. You get them back clean, with a photo of the before-and-after.",
+    icon: Scissors,
+    durations: [30, 45, 60, 90],
+    defaultDuration: 60,
+    pricingUnit: "visit",
+    included: [
+      "Nail trim and paw wipe",
+      "Brush-out to cut mats and shedding",
+      "Bath and towel dry when booked at 45 minutes or longer",
+      "Ear wipe and sanitary tidy on request",
+      "Your products used if you prefer them",
+      "Photo update when we're done",
+    ],
+    idealFor: [
+      "Pets who hate the salon",
+      "Seniors who do better at home",
+      "Muddy weeks and seasonal blowouts",
+      "Between-groomer maintenance",
+    ],
+    addOnSlugs: ["bath-paw-cleaning", "brushing", "photo-package", "medication"],
+    faqs: [
+      {
+        question: "Do you do haircuts and breed clips?",
+        answer:
+          "We handle baths, brush-outs, nails, and tidy-ups. Full breed clips and scissor cuts still belong with a salon groomer — we'll tell you honestly if that's what they need.",
+      },
+      {
+        question: "What if my dog is nervous about water?",
+        answer:
+          "We go slower, use a handheld sprayer or a wipe-down instead of a full bath, and stop if they're overwhelmed. A half-done calm visit beats a finished one that wrecks their week.",
+      },
+      {
+        question: "Do I need to provide shampoo?",
+        answer:
+          "We bring a gentle unscented wash. If they have a prescription or favorite bottle, leave it out and we'll use that.",
+      },
+    ],
+    mediaKey: "service-grooming",
+    featured: true,
+    seo: {
+      title: "In-Home Pet Grooming",
+      description:
+        "In-home grooming for Pioneer Valley pets — baths, brush-outs, and nail trims without the salon trip.",
+      h1: "Grooming at home, on their terms",
+    },
+  },
+  {
+    slug: "pet-transportation",
+    name: "Pet Transportation",
+    longName: "Pet Transportation",
+    tagline: "A ride to the vet, groomer, or daycare.",
+    summary: "Door-to-door trips with updates when we pick up and when we arrive.",
+    description:
+      "We'll collect your pet, get them settled in the car, and take them where they need to go — vet, groomer, daycare, or home again — with a text when we leave and when we hand them off.",
+    icon: Truck,
+    durations: [30, 45, 60],
+    defaultDuration: 30,
+    pricingUnit: "visit",
+    included: [
+      "Pickup at your door",
+      "Secure, leashed transfer into the car",
+      "Direct trip to the appointment or facility",
+      "Handoff to staff or you, as planned",
+      "Text at pickup and on arrival",
+      "Return trip can be booked as a second ride",
+    ],
+    idealFor: [
+      "Vet visits during the workday",
+      "Groomer drop-off and pickup",
+      "Daycare commutes",
+      "Pets who travel better with someone they know",
+    ],
+    addOnSlugs: ["photo-package", "medication", "special-occasion"],
+    faqs: [
+      {
+        question: "Do you wait at the appointment?",
+        answer:
+          "The booked window covers the drive and handoff. If you want us to wait through the appointment and bring them home, book a longer trip or a second ride home.",
+      },
+      {
+        question: "How far will you go?",
+        answer:
+          "Anywhere in our regular service area is the 30-minute rate. Longer trips toward Springfield, Worcester, or Hartford use the 45- or 60-minute rate — we'll confirm before we leave.",
+      },
+      {
+        question: "Can two pets ride together?",
+        answer:
+          "Yes, if they're from the same household and ride well together. The additional-pet fee covers the second seat.",
+      },
+    ],
+    mediaKey: "service-pet-transportation",
+    featured: true,
+    seo: {
+      title: "Pet Transportation",
+      description:
+        "Pet transportation in the Pioneer Valley — rides to the vet, groomer, or daycare with updates at pickup and arrival.",
+      h1: "A ride there, and a text when you arrive",
+    },
+  },
+  {
+    slug: "adventure-outings",
+    name: "Adventure Outings",
+    longName: "Adventure Outings",
+    tagline: "Trail time for dogs who need real mileage.",
+    summary: "Longer off-neighborhood walks and hikes for high-energy dogs.",
+    description:
+      "A neighborhood loop isn't enough for every dog. Adventure outings are 60 to 120 minutes on trails and quiet roads — sniffing, hills, and a tired ride home — with water, a paw check, and photos from the path.",
+    icon: Bike,
+    durations: [60, 90, 120],
+    defaultDuration: 60,
+    pricingUnit: "visit",
+    included: [
+      "Trail or quiet-road outing at your dog's pace",
+      "Water and a mid-outing break",
+      "Paw check before we load back up",
+      "Towel-off if the trail is wet or muddy",
+      "Photo update from the outing",
+      "Same familiar caregiver whenever we can",
+    ],
+    idealFor: [
+      "High-energy and working breeds",
+      "Dogs who are restless after a regular walk",
+      "Weekdays when you can't get to the trail",
+      "Adventurous seniors who still want the woods, slower",
+    ],
+    addOnSlugs: ["extended-playtime", "bath-paw-cleaning", "brushing", "photo-package"],
+    faqs: [
+      {
+        question: "Where do you go?",
+        answer:
+          "Nearby conservation land, rail trails, and quiet roads in the Pioneer Valley. Tell us if they have a favorite loop or anywhere to avoid, and we'll stick to it.",
+      },
+      {
+        question: "Is this off-leash?",
+        answer:
+          "Only if you've said they have reliable recall and the land allows it. Default is a long line or regular leash — we don't take chances with traffic or wildlife.",
+      },
+      {
+        question: "What about ticks and weather?",
+        answer:
+          "We do a quick coat and paw check after wooded outings. In heat, ice, or storms we shorten the route or switch to a shaded neighborhood loop and tell you why.",
+      },
+    ],
+    mediaKey: "service-adventure-outings",
+    featured: true,
+    seo: {
+      title: "Adventure Outings & Trail Walks",
+      description:
+        "60- to 120-minute trail outings for Pioneer Valley dogs who need more than a neighborhood walk.",
+      h1: "Outings with real mileage",
+    },
+  },
 ];
 
 /** Services on the roadmap. Shown honestly as not-yet-available. */
 export const upcomingServices: UpcomingService[] = [
-  {
-    name: "Grooming",
-    description: "Baths, brush-outs, nail trims, and tidy-ups at home.",
-    icon: Scissors,
-    status: "waitlist",
-  },
-  {
-    name: "Pet Transportation",
-    description: "Rides to the vet, the groomer, or daycare — with updates on arrival.",
-    icon: Truck,
-    status: "waitlist",
-  },
   {
     name: "Doggy Daycare",
     description: "Supervised daytime play in small, matched groups.",
@@ -398,12 +545,6 @@ export const upcomingServices: UpcomingService[] = [
     name: "Training Support",
     description: "Reinforcement between sessions with your trainer.",
     icon: GraduationCap,
-    status: "planned",
-  },
-  {
-    name: "Adventure Outings",
-    description: "Longer trail walks and hikes for dogs who need real mileage.",
-    icon: Bike,
     status: "planned",
   },
 ];

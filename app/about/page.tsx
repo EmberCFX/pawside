@@ -104,7 +104,7 @@ export default function AboutPage() {
       {/* Mission ------------------------------------------------------- */}
       <Section tone="inverse">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow eyebrow-rule eyebrow-on-dark justify-center">Our mission</p>
+          <p className="eyebrow eyebrow-on-dark justify-center">Our mission</p>
           <h2 className="mt-6 text-display-sm font-semibold text-white sm:text-display-md">
             Make it easy to be a good pet owner on a busy week.
           </h2>
@@ -224,7 +224,7 @@ export default function AboutPage() {
               />
               <div>
                 <h3 className="font-display text-xl font-semibold text-navy-900">{member.name}</h3>
-                <p className="mt-0.5 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-mint-700">
+                <p className="mt-0.5 text-[0.8125rem] font-semibold uppercase text-mint-700">
                   {member.role}
                 </p>
                 <p className="mt-4 text-[0.9375rem] leading-relaxed text-sand-700">{member.bio}</p>
@@ -233,14 +233,14 @@ export default function AboutPage() {
                   {member.credentials.map((credential) => (
                     <li
                       key={credential}
-                      className="rounded-full bg-navy-50 px-2.5 py-1 text-[0.75rem] text-navy-800 ring-1 ring-inset ring-navy-900/8"
+                      className="rounded-full bg-navy-50 px-2.5 py-1 text-[0.75rem] text-navy-800 ring-1 ring-inset ring-sand-800/8"
                     >
                       {credential}
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-5 border-t border-navy-900/8 pt-4 text-[0.875rem] italic leading-relaxed text-sand-700">
+                <p className="mt-5 border-t border-sand-800/8 pt-4 text-[0.875rem] italic leading-relaxed text-sand-700">
                   &ldquo;{member.favoritePart}&rdquo;
                 </p>
               </div>

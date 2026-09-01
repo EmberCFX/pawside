@@ -41,7 +41,7 @@ export default async function AdminBookingDetailPage({
             ["Total", formatPrice(booking.total)],
           ].map(([label, value]) => (
             <div key={label}>
-              <dt className="text-[0.75rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+              <dt className="text-[0.75rem] font-semibold uppercase text-sand-500">
                 {label}
               </dt>
               <dd className="mt-1 text-[0.9375rem] text-navy-900">{value || "—"}</dd>
@@ -50,7 +50,7 @@ export default async function AdminBookingDetailPage({
         </dl>
         {booking.care_instructions ? (
           <div className="mt-6">
-            <p className="text-[0.75rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <p className="text-[0.75rem] font-semibold uppercase text-sand-500">
               Care notes
             </p>
             <p className="mt-1 text-[0.9375rem] leading-relaxed text-navy-800">
@@ -60,7 +60,7 @@ export default async function AdminBookingDetailPage({
         ) : null}
         {booking.entry_instructions ? (
           <div className="mt-4">
-            <p className="text-[0.75rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <p className="text-[0.75rem] font-semibold uppercase text-sand-500">
               Entry
             </p>
             <p className="mt-1 text-[0.9375rem] leading-relaxed text-navy-800">

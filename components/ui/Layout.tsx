@@ -69,29 +69,23 @@ export function Section({
   );
 }
 
-/** Mint eyebrow label mirroring the logo's "— PET SERVICES —" tagline. */
+/** Small mint label above a headline. */
 export function Eyebrow({
   children,
   className,
-  withRules,
+  withRules: _withRules,
   onDark,
   as: Tag = "p",
 }: {
   children: React.ReactNode;
   className?: string;
+  /** Kept for callers; flanking dashes were removed. */
   withRules?: boolean;
   onDark?: boolean;
   as?: "p" | "span" | "div";
 }) {
   return (
-    <Tag
-      className={cn(
-        "eyebrow",
-        withRules && "eyebrow-rule",
-        onDark && "eyebrow-on-dark",
-        className,
-      )}
-    >
+    <Tag className={cn("eyebrow", onDark && "eyebrow-on-dark", className)}>
       {children}
     </Tag>
   );

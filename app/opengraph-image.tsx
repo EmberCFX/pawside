@@ -44,7 +44,7 @@ export default async function Image() {
               style={{
                 fontSize: 46,
                 fontWeight: 600,
-                color: "#F4F7FA",
+                color: "#F5F5F6",
                 letterSpacing: "-1.4px",
                 lineHeight: 1,
               }}
@@ -93,7 +93,7 @@ export default async function Image() {
           }}
         >
           <div style={{ width: 40, height: 2, background: "#36CEC1" }} />
-          Insured &amp; bonded · Photo updates every visit
+          Same familiar caregiver · Photo updates every visit
         </div>
       </div>
     ),

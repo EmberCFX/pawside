@@ -95,7 +95,7 @@ export function ContactSection({
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-panel border border-navy-900/8 bg-white p-6 shadow-soft sm:p-8"
+      className="rounded-panel border border-sand-800/8 bg-white p-6 shadow-soft sm:p-8"
     >
       <h2 className="font-display text-xl font-semibold text-navy-900">{heading}</h2>
       <p className="mt-1.5 text-[0.9375rem] text-sand-700">{description}</p>

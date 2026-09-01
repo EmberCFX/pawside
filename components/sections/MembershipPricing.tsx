@@ -103,7 +103,7 @@ export function MembershipPricing({ compact }: { compact?: boolean }) {
               <ul
                 className={cn(
                   "mt-7 flex flex-1 flex-col gap-3 border-t pt-6",
-                  isFeatured ? "border-white/12" : "border-navy-900/8",
+                  isFeatured ? "border-white/12" : "border-sand-800/8",
                 )}
               >
                 {tier.benefits.map((benefit) => (
@@ -148,7 +148,7 @@ export function MembershipPricing({ compact }: { compact?: boolean }) {
         <Card className="p-7 sm:p-9">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12">
             <div>
-              <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+              <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-mint-700">
                 <TrendingUp className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
                 Does it pay for itself?
               </p>
@@ -195,7 +195,7 @@ export function MembershipPricing({ compact }: { compact?: boolean }) {
                     "rounded-card p-5 ring-1 ring-inset transition-colors",
                     tier.worthIt
                       ? "bg-mint-50 ring-mint-500/40"
-                      : "bg-canvas ring-navy-900/8",
+                      : "bg-canvas ring-sand-800/8",
                   )}
                 >
                   <div className="flex items-baseline justify-between gap-4">

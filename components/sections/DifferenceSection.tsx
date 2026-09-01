@@ -41,7 +41,7 @@ const points = [
   {
     title: "Prepared for the unexpected",
     description:
-      "Pet first aid certified, insured and bonded, with your vet and emergency contacts on file before the first visit.",
+      "Pet first aid certified, with your vet and emergency contacts on file before the first visit.",
     icon: ShieldCheck,
   },
 ];
@@ -65,10 +65,10 @@ export function DifferenceSection() {
       <RevealGroup className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {points.map((point) => (
           <RevealItem key={point.title}>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
               <IconTile icon={point.icon} tone="inverse" />
               <h3 className="mt-5 font-display text-lg font-semibold text-white">{point.title}</h3>
-              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-navy-100/70">
+              <p className="mt-2.5 max-w-sm text-[0.9375rem] leading-relaxed text-navy-100/70 sm:max-w-none">
                 {point.description}
               </p>
             </div>

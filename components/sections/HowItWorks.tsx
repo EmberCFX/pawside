@@ -80,7 +80,7 @@ export function HowItWorks({ compact }: { compact?: boolean }) {
                     className="transition-colors duration-300 group-hover:bg-mint-50 group-hover:text-mint-700 group-hover:ring-mint-500/25"
                   />
                   <span
-                    className="mt-3 font-display text-[0.6875rem] font-semibold tracking-[0.14em] text-sand-400"
+                    className="mt-3 font-display text-[0.6875rem] font-semibold text-sand-400"
                     aria-hidden="true"
                   >
                     {step.number}

@@ -10,7 +10,10 @@ export type ServiceSlug =
   | "drop-in-visits"
   | "overnight-care"
   | "puppy-care"
-  | "cat-care";
+  | "cat-care"
+  | "grooming"
+  | "pet-transportation"
+  | "adventure-outings";
 
 /** Durations are minutes. `null` means the service is priced per night/day. */
 export type DurationMinutes = 20 | 30 | 45 | 60 | 90 | 120;

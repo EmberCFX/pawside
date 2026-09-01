@@ -43,11 +43,11 @@ export default function ContactPage() {
                     href={site.contact.phoneHref}
                     className="group flex items-start gap-3.5"
                   >
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-navy-900/8 transition-colors group-hover:bg-mint-50 group-hover:text-mint-700">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-sand-800/8 transition-colors group-hover:bg-mint-50 group-hover:text-mint-700">
                       <Phone className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
                     </span>
                     <span>
-                      <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                      <span className="block text-[0.6875rem] font-semibold uppercase text-sand-500">
                         Phone
                       </span>
                       <span className="mt-0.5 block font-medium text-navy-900">
@@ -58,11 +58,11 @@ export default function ContactPage() {
                   </a>
 
                   <a href={`mailto:${site.contact.email}`} className="group flex items-start gap-3.5">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-navy-900/8 transition-colors group-hover:bg-mint-50 group-hover:text-mint-700">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-sand-800/8 transition-colors group-hover:bg-mint-50 group-hover:text-mint-700">
                       <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
                     </span>
                     <span>
-                      <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                      <span className="block text-[0.6875rem] font-semibold uppercase text-sand-500">
                         Email
                       </span>
                       <span className="mt-0.5 block font-medium text-navy-900">
@@ -75,11 +75,11 @@ export default function ContactPage() {
                   </a>
 
                   <div className="flex items-start gap-3.5">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-navy-900/8">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-sand-800/8">
                       <MapPin className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
                     </span>
                     <span>
-                      <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                      <span className="block text-[0.6875rem] font-semibold uppercase text-sand-500">
                         Service area
                       </span>
                       <span className="mt-0.5 block font-medium text-navy-900">
@@ -109,7 +109,7 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </dl>
-                <p className="mt-4 border-t border-navy-900/8 pt-4 text-xs leading-relaxed text-sand-600">
+                <p className="mt-4 border-t border-sand-800/8 pt-4 text-xs leading-relaxed text-sand-600">
                   Visits happen inside these windows. Messages sent after hours get answered the next
                   morning unless it&apos;s about a visit in progress.
                 </p>
@@ -124,7 +124,7 @@ export default function ContactPage() {
                     <li key={area.slug}>
                       <Link
                         href={`/locations/${area.slug}`}
-                        className="inline-flex rounded-full bg-white px-3 py-1.5 text-[0.8125rem] text-navy-800 ring-1 ring-inset ring-navy-900/8 transition-colors hover:ring-mint-500/50"
+                        className="inline-flex rounded-full bg-white px-3 py-1.5 text-[0.8125rem] text-navy-800 ring-1 ring-inset ring-sand-800/8 transition-colors hover:ring-mint-500/50"
                       >
                         {area.name}
                       </Link>

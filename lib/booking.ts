@@ -138,7 +138,7 @@ export const MONTH_NAMES = [
  * ------------------------------------------------------------------ */
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-/** Accepts (413) 213-3973, 413-213-3973, +1 413 213 3973, etc. */
+/** Accepts (413) 323-3953, 413-323-3953, +1 413 323 3953, etc. */
 const PHONE_PATTERN = /^\+?1?[\s.-]?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 
 export function isValidEmail(value: string): boolean {

@@ -1,87 +1,125 @@
 import type { PricingConfig, ServiceSlug } from "@/types";
 
 /**
- * PLACEHOLDER PRICING — set real numbers before launch.
+ * Live rates. All amounts are integer cents. The quote engine in
+ * lib/pricing.ts reads only from this object.
  *
- * Single source of truth for every price on the site. All amounts are integer
- * cents. The quote engine in lib/pricing.ts reads only from this object, so
- * changing a price never requires touching a component. When a backend arrives,
- * replace this export with a fetch that returns the same shape.
+ * Benchmarked August 2026 against Pioneer Valley and MA professional shops
+ * (not Care.com / Rover gig rates): Sarah’s Pet Services in Northampton
+ * ($29 / 30-min walk, $44+ hour hikes, $30 cat visits, $100 / 12-hr overnight),
+ * Paw Maw & Claw ($25 drop-ins, $80–$125 in-home overnight), Pioneer Valley
+ * Dogs ($45 / 40 min, $70 / 60 min enrichment), and the 2026 MA walk average
+ * of $29 / 30 min (typical range $20–$46). Pawside sits just above the local
+ * professional floor and below specialty hike pricing.
  */
 export const pricing: PricingConfig = {
   currency: "USD",
   services: [
     {
       slug: "dog-walking",
-      startingAt: 2000,
+      startingAt: 2500,
       durations: [
-        { minutes: 20, price: 2000, label: "20 min", note: "Quick potty break" },
-        { minutes: 30, price: 2600, label: "30 min", note: "Most popular" },
-        { minutes: 45, price: 3400, label: "45 min" },
-        { minutes: 60, price: 4200, label: "60 min", note: "Best for high energy" },
+        { minutes: 20, price: 2500, label: "20 min", note: "Quick potty break" },
+        { minutes: 30, price: 3200, label: "30 min", note: "Most popular" },
+        { minutes: 45, price: 4200, label: "45 min" },
+        { minutes: 60, price: 5200, label: "60 min", note: "Best for high energy" },
       ],
-      additionalPetFee: 500,
+      additionalPetFee: 800,
       petsIncluded: 1,
     },
     {
       slug: "pet-sitting",
-      startingAt: 2800,
+      startingAt: 3400,
       durations: [
-        { minutes: 30, price: 2800, label: "30 min" },
-        { minutes: 45, price: 3600, label: "45 min" },
-        { minutes: 60, price: 4400, label: "60 min", note: "Most popular" },
-        { minutes: 90, price: 6200, label: "90 min", note: "Great for multi-pet homes" },
+        { minutes: 30, price: 3400, label: "30 min" },
+        { minutes: 45, price: 4400, label: "45 min" },
+        { minutes: 60, price: 5400, label: "60 min", note: "Most popular" },
+        { minutes: 90, price: 7400, label: "90 min", note: "Great for multi-pet homes" },
       ],
-      additionalPetFee: 600,
+      additionalPetFee: 1000,
       petsIncluded: 1,
     },
     {
       slug: "drop-in-visits",
-      startingAt: 1900,
+      startingAt: 2500,
       durations: [
-        { minutes: 20, price: 1900, label: "20 min", note: "Essentials only" },
-        { minutes: 30, price: 2400, label: "30 min", note: "Most popular" },
-        { minutes: 45, price: 3200, label: "45 min" },
+        { minutes: 20, price: 2500, label: "20 min", note: "Essentials only" },
+        { minutes: 30, price: 3000, label: "30 min", note: "Most popular" },
+        { minutes: 45, price: 4000, label: "45 min" },
       ],
-      additionalPetFee: 500,
+      additionalPetFee: 800,
       petsIncluded: 1,
     },
     {
       slug: "overnight-care",
-      startingAt: 11500,
+      startingAt: 14500,
       durations: [],
-      additionalPetFee: 1500,
+      additionalPetFee: 2000,
       petsIncluded: 1,
     },
     {
       slug: "puppy-care",
-      startingAt: 2200,
+      startingAt: 2800,
       durations: [
-        { minutes: 20, price: 2200, label: "20 min", note: "Potty trip" },
-        { minutes: 30, price: 2800, label: "30 min", note: "Most popular" },
-        { minutes: 45, price: 3600, label: "45 min" },
+        { minutes: 20, price: 2800, label: "20 min", note: "Potty trip" },
+        { minutes: 30, price: 3600, label: "30 min", note: "Most popular" },
+        { minutes: 45, price: 4600, label: "45 min" },
       ],
-      additionalPetFee: 600,
+      additionalPetFee: 1000,
       petsIncluded: 1,
     },
     {
       slug: "cat-care",
-      startingAt: 1900,
+      startingAt: 2500,
       durations: [
-        { minutes: 20, price: 1900, label: "20 min" },
-        { minutes: 30, price: 2400, label: "30 min", note: "Most popular" },
-        { minutes: 45, price: 3100, label: "45 min" },
-        { minutes: 60, price: 3800, label: "60 min" },
+        { minutes: 20, price: 2500, label: "20 min" },
+        { minutes: 30, price: 3000, label: "30 min", note: "Most popular" },
+        { minutes: 45, price: 3800, label: "45 min" },
+        { minutes: 60, price: 4600, label: "60 min" },
       ],
-      additionalPetFee: 400,
+      additionalPetFee: 700,
+      petsIncluded: 1,
+    },
+    {
+      slug: "grooming",
+      startingAt: 4500,
+      durations: [
+        { minutes: 30, price: 4500, label: "30 min", note: "Nails and tidy" },
+        { minutes: 45, price: 6500, label: "45 min", note: "Bath" },
+        { minutes: 60, price: 8000, label: "60 min", note: "Most popular" },
+        { minutes: 90, price: 10500, label: "90 min", note: "Full tidy-up" },
+      ],
+      additionalPetFee: 2500,
+      petsIncluded: 1,
+    },
+    {
+      slug: "pet-transportation",
+      startingAt: 3500,
+      durations: [
+        { minutes: 30, price: 3500, label: "30 min", note: "Local trip" },
+        { minutes: 45, price: 4800, label: "45 min" },
+        { minutes: 60, price: 6200, label: "60 min", note: "Longer haul" },
+      ],
+      additionalPetFee: 1000,
+      petsIncluded: 1,
+    },
+    {
+      slug: "adventure-outings",
+      startingAt: 5800,
+      durations: [
+        { minutes: 60, price: 5800, label: "60 min", note: "Most popular" },
+        { minutes: 90, price: 7800, label: "90 min" },
+        { minutes: 120, price: 9800, label: "120 min", note: "Big mileage day" },
+      ],
+      additionalPetFee: 1500,
       petsIncluded: 1,
     },
   ],
   fees: {
-    holidaySurcharge: 1200,
-    bookingFee: 300,
+    holidaySurcharge: 1800,
+    bookingFee: 500,
     lastMinuteRate: 0.1,
-    /** Pet care is untaxed in many states — confirm locally before launch. */
+    /** Pet care is untaxed in many states — confirm locally if that changes. */
     taxRate: 0,
   },
   recurringDiscounts: {
@@ -93,7 +131,7 @@ export const pricing: PricingConfig = {
 };
 
 /** Overnight rate lives outside the duration table since it's priced per night. */
-export const overnightNightlyRate = 11500;
+export const overnightNightlyRate = 14500;
 
 export function getServicePricing(slug: ServiceSlug) {
   const entry = pricing.services.find((service) => service.slug === slug);
@@ -108,8 +146,8 @@ export function startingPrice(slug: ServiceSlug): number {
 }
 
 /**
- * Dates that carry the holiday surcharge. PLACEHOLDER LIST — extend yearly, or
- * replace with a holiday calendar service.
+ * Dates that carry the holiday surcharge. Extend yearly, or replace with a
+ * holiday calendar service.
  */
 export const holidayDates = [
   "2026-01-01",

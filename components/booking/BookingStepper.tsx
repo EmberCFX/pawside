@@ -73,7 +73,7 @@ export function BookingStepper({
                     "inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[0.6875rem] font-semibold ring-1 ring-inset transition-colors",
                     isCurrent && "bg-white text-navy-900 ring-white",
                     isComplete && "bg-mint-500 text-white ring-mint-500",
-                    !isCurrent && !isComplete && "ring-navy-900/15 text-sand-500",
+                    !isCurrent && !isComplete && "ring-sand-800/15 text-sand-500",
                   )}
                   aria-hidden="true"
                 >

@@ -79,7 +79,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       >
         <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
           <div>
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
               Starting at
             </dt>
             <dd className="mt-1.5 font-display text-2xl font-semibold text-navy-900 tabular">
@@ -88,7 +88,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </dd>
           </div>
           <div>
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
               Visit length
             </dt>
             <dd className="mt-1.5 font-display text-2xl font-semibold text-navy-900">
@@ -98,7 +98,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </dd>
           </div>
           <div>
-            <dt className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
               Additional pet
             </dt>
             <dd className="mt-1.5 font-display text-2xl font-semibold text-navy-900 tabular">
@@ -132,7 +132,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               ))}
             </ul>
 
-            <div className="mt-10 rounded-panel border border-navy-900/8 bg-canvas p-6">
+            <div className="mt-10 rounded-panel border border-sand-800/8 bg-canvas p-6">
               <p className="flex items-center gap-2 font-display text-[1.0625rem] font-semibold text-navy-900">
                 <Users className="h-4 w-4 text-mint-600" strokeWidth={1.75} aria-hidden="true" />
                 Ideal for
@@ -168,14 +168,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </h3>
 
               {service.pricingUnit === "night" ? (
-                <div className="mt-4 flex items-baseline justify-between border-t border-navy-900/8 pt-4">
+                <div className="mt-4 flex items-baseline justify-between border-t border-sand-800/8 pt-4">
                   <p className="text-[0.9375rem] text-sand-700">Per night · 12 hours</p>
                   <p className="font-display text-lg font-semibold text-navy-900 tabular">
                     {formatPrice(servicePricing.startingAt)}
                   </p>
                 </div>
               ) : (
-                <ul className="mt-4 divide-y divide-navy-900/8 border-t border-navy-900/8">
+                <ul className="mt-4 divide-y divide-sand-800/8 border-t border-sand-800/8">
                   {servicePricing.durations.map((entry) => (
                     <li key={entry.minutes} className="flex items-center justify-between gap-4 py-3">
                       <span className="flex items-center gap-2.5 text-[0.9375rem] text-navy-800">
@@ -297,7 +297,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <li key={area.slug}>
                   <Link
                     href={`/locations/${area.slug}`}
-                    className="inline-flex rounded-full border border-navy-900/10 bg-white px-3.5 py-2 text-[0.875rem] text-navy-800 transition-colors hover:border-mint-500/50 hover:bg-mint-50"
+                    className="inline-flex rounded-full border border-sand-800/10 bg-white px-3.5 py-2 text-[0.875rem] text-navy-800 transition-colors hover:border-mint-500/50 hover:bg-mint-50"
                   >
                     {service.name} in {area.name}
                   </Link>
@@ -310,7 +310,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <h2 className="font-display text-2xl font-semibold text-navy-900">
               Other services
             </h2>
-            <ul className="mt-6 flex flex-col divide-y divide-navy-900/8 border-y border-navy-900/8">
+            <ul className="mt-6 flex flex-col divide-y divide-sand-800/8 border-y border-sand-800/8">
               {related.map((entry) => (
                 <li key={entry.slug}>
                   <Link

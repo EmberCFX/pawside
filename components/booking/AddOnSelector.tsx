@@ -135,7 +135,7 @@ export function AddOnSelector({
     <div>
       {suggestions.length ? (
         <div className="mb-8">
-          <p className="mb-3 inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+          <p className="mb-3 inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-mint-700">
             <Sparkles className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
             Suggested for {subject}
           </p>
@@ -156,7 +156,7 @@ export function AddOnSelector({
                 <button
                   type="button"
                   onClick={suggestion.action.run}
-                  className="mt-3.5 inline-flex w-fit items-center gap-1.5 rounded-button bg-white px-3 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+                  className="mt-3.5 inline-flex w-fit items-center gap-1.5 rounded-button bg-white px-3 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
                 >
                   {suggestion.action.label}
                   <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
@@ -171,7 +171,7 @@ export function AddOnSelector({
       ) : null}
 
       {recommended.length ? (
-        <div className={cn(suggestions.length && "border-t border-navy-900/8 pt-8")}>
+        <div className={cn(suggestions.length && "border-t border-sand-800/8 pt-8")}>
           <p className="text-[0.9375rem] font-medium text-navy-900">
             Most common with {service?.name.toLowerCase()}
           </p>
@@ -192,7 +192,7 @@ export function AddOnSelector({
       ) : null}
 
       {rest.length ? (
-        <div className="mt-8 border-t border-navy-900/8 pt-8">
+        <div className="mt-8 border-t border-sand-800/8 pt-8">
           <p className="text-[0.9375rem] font-medium text-navy-900">Everything else</p>
           <div className="mt-3.5 grid gap-2.5 sm:grid-cols-2">
             {rest.map((addOn) => (

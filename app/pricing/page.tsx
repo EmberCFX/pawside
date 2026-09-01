@@ -35,7 +35,7 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title="Clear rates. No surprise line items."
-        description="Every price on this page is placeholder pricing while we finalize rates — but the structure is real: you pay per visit, the first pet is included, and add-ons are always optional."
+        description="You pay per visit, the first pet is included, and add-ons are always optional. Rates sit with other professional Pioneer Valley sitters — not the gig-app floor."
         crumbs={[
           { name: "Home", path: "/" },
           { name: "Pricing", path: "/pricing" },
@@ -71,7 +71,7 @@ export default function PricingPage() {
                 </div>
 
                 {servicePricing.durations.length ? (
-                  <ul className="mt-5 flex flex-1 flex-col divide-y divide-navy-900/8 border-t border-navy-900/8">
+                  <ul className="mt-5 flex flex-1 flex-col divide-y divide-sand-800/8 border-t border-sand-800/8">
                     {servicePricing.durations.map((entry) => (
                       <li
                         key={entry.minutes}
@@ -85,7 +85,7 @@ export default function PricingPage() {
                     ))}
                   </ul>
                 ) : (
-                  <div className="mt-5 flex flex-1 items-baseline justify-between border-t border-navy-900/8 pt-4 text-[0.9375rem]">
+                  <div className="mt-5 flex flex-1 items-baseline justify-between border-t border-sand-800/8 pt-4 text-[0.9375rem]">
                     <span className="text-sand-700">Per night · 12 hours</span>
                     <span className="font-semibold text-navy-900 tabular">
                       {formatPrice(servicePricing.startingAt)}
@@ -93,7 +93,7 @@ export default function PricingPage() {
                   </div>
                 )}
 
-                <p className="mt-4 border-t border-navy-900/8 pt-3 text-xs text-sand-600">
+                <p className="mt-4 border-t border-sand-800/8 pt-3 text-xs text-sand-600">
                   Additional pet +{formatPrice(servicePricing.additionalPetFee)} per{" "}
                   {service.pricingUnit}
                 </p>
@@ -103,7 +103,7 @@ export default function PricingPage() {
         </div>
 
         {/* Fees */}
-        <div className="mt-10 rounded-panel border border-navy-900/8 bg-canvas p-7 sm:p-8">
+        <div className="mt-10 rounded-panel border border-sand-800/8 bg-canvas p-7 sm:p-8">
           <h3 className="font-display text-xl font-semibold text-navy-900">
             The only other charges
           </h3>
@@ -131,7 +131,7 @@ export default function PricingPage() {
               },
             ].map((fee) => (
               <div key={fee.label}>
-                <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                   {fee.label}
                 </dt>
                 <dd className="mt-1.5 font-display text-xl font-semibold text-navy-900 tabular">
@@ -165,7 +165,7 @@ export default function PricingPage() {
             <p className="mt-2 text-[0.9375rem] leading-relaxed text-sand-700">
               Buy visits up front at a lower rate and use them whenever you need.
             </p>
-            <ul className="mt-5 flex flex-1 flex-col gap-3 border-t border-navy-900/8 pt-5">
+            <ul className="mt-5 flex flex-1 flex-col gap-3 border-t border-sand-800/8 pt-5">
               {visitBundles.map((bundle) => (
                 <li key={bundle.slug}>
                   <div className="flex items-baseline justify-between gap-3">
@@ -192,11 +192,11 @@ export default function PricingPage() {
               A genuinely useful gift for a new puppy owner, a new parent, or anyone with a full
               calendar.
             </p>
-            <ul className="mt-5 flex flex-1 flex-wrap gap-2 border-t border-navy-900/8 pt-5">
+            <ul className="mt-5 flex flex-1 flex-wrap gap-2 border-t border-sand-800/8 pt-5">
               {giftCardAmounts.map((amount) => (
                 <li
                   key={amount}
-                  className="rounded-full bg-navy-50 px-3 py-1.5 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/8 tabular"
+                  className="rounded-full bg-navy-50 px-3 py-1.5 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/8 tabular"
                 >
                   {formatPrice(amount)}
                 </li>
@@ -213,7 +213,7 @@ export default function PricingPage() {
             <p className="mt-2 text-[0.9375rem] leading-relaxed text-sand-700">
               Most of our clients come from a neighbor mentioning us. That deserves something back.
             </p>
-            <div className="mt-5 flex flex-1 flex-col gap-3 border-t border-navy-900/8 pt-5 text-[0.9375rem]">
+            <div className="mt-5 flex flex-1 flex-col gap-3 border-t border-sand-800/8 pt-5 text-[0.9375rem]">
               <p className="text-sand-700">
                 You get{" "}
                 <span className="font-semibold text-navy-900">

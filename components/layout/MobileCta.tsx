@@ -34,7 +34,7 @@ export function MobileCta() {
       {visible ? (
         <motion.div
           className={cn(
-            "fixed inset-x-0 bottom-0 z-40 border-t border-navy-900/8 bg-white/92 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:hidden",
+            "fixed inset-x-0 bottom-0 z-40 border-t border-sand-800/8 bg-white/92 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl sm:hidden",
           )}
           initial={reduceMotion ? undefined : { y: 80 }}
           animate={reduceMotion ? undefined : { y: 0 }}

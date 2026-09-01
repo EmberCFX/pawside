@@ -21,7 +21,7 @@ export default async function SignupPage({
   return (
     <div className="bg-canvas py-16 sm:py-24">
       <Container>
-        <div className="mx-auto max-w-md rounded-panel border border-navy-900/8 bg-white p-8 shadow-soft">
+        <div className="mx-auto max-w-md rounded-panel border border-sand-800/8 bg-white p-8 shadow-soft">
           <p className="eyebrow">Account</p>
           <h1 className="mt-3 font-display text-display-xs font-semibold text-navy-900">
             Create your account

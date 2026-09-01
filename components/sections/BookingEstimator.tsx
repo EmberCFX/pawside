@@ -96,7 +96,7 @@ export function BookingEstimator() {
 
           <div className="mt-8">
             {isOvernight ? (
-              <div className="rounded-card border border-navy-900/8 bg-canvas p-4">
+              <div className="rounded-card border border-sand-800/8 bg-canvas p-4">
                 <p className="flex items-center gap-2 text-[0.8125rem] font-medium text-navy-900">
                   <Info className="h-4 w-4 text-mint-600" strokeWidth={1.75} aria-hidden="true" />
                   Overnight care is priced per night
@@ -179,7 +179,7 @@ export function BookingEstimator() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Card tone="inverse" className="overflow-hidden p-6 sm:p-7">
             <div className="flex items-center justify-between">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-400">
+              <p className="text-[0.6875rem] font-semibold uppercase text-mint-400">
                 Estimated total
               </p>
               <Badge tone="inverse">Sample pricing</Badge>

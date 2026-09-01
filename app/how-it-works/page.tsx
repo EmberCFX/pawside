@@ -78,13 +78,13 @@ export default function HowItWorksPage() {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {timeline.map((phase, index) => (
             <Card key={phase.when} className="p-7">
-              <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+              <p className="font-display text-[0.6875rem] font-semibold uppercase text-mint-700">
                 Step {index + 1}
               </p>
               <h3 className="mt-3 font-display text-xl font-semibold text-navy-900">
                 {phase.when}
               </h3>
-              <ul className="mt-5 flex flex-col gap-3 border-t border-navy-900/8 pt-5">
+              <ul className="mt-5 flex flex-col gap-3 border-t border-sand-800/8 pt-5">
                 {phase.items.map((item) => (
                   <li
                     key={item}

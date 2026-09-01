@@ -37,7 +37,7 @@ export function ServiceSelector({
                   "group relative flex cursor-pointer gap-4 rounded-card p-5 text-left transition-all duration-200 ease-brand ring-1 ring-inset",
                   isSelected
                     ? "bg-navy-900 ring-navy-900 shadow-soft"
-                    : "bg-white ring-navy-900/10 hover:ring-navy-900/25 hover:shadow-soft",
+                    : "bg-white ring-sand-800/10 hover:ring-sand-800/25 hover:shadow-soft",
                 )}
               >
                 <input
@@ -57,7 +57,7 @@ export function ServiceSelector({
                     "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] ring-1 ring-inset transition-colors",
                     isSelected
                       ? "bg-white/10 text-mint-300 ring-white/15"
-                      : "bg-navy-50 text-navy-900 ring-navy-900/8",
+                      : "bg-navy-50 text-navy-900 ring-sand-800/8",
                   )}
                   aria-hidden="true"
                 >
@@ -110,7 +110,7 @@ export function ServiceSelector({
       </fieldset>
 
       {selected ? (
-        <div className="mt-8 border-t border-navy-900/8 pt-8">
+        <div className="mt-8 border-t border-sand-800/8 pt-8">
           {selected.pricingUnit === "night" ? (
             <div className="flex items-start gap-3 rounded-card bg-canvas p-5">
               <Info className="mt-0.5 h-4 w-4 shrink-0 text-mint-600" strokeWidth={1.75} aria-hidden="true" />
@@ -145,7 +145,7 @@ export function ServiceSelector({
                         "group relative flex cursor-pointer flex-col rounded-button px-4 py-3.5 transition-all duration-200 ring-1 ring-inset",
                         isSelected
                           ? "bg-navy-900 text-white ring-navy-900"
-                          : "bg-white ring-navy-900/12 hover:ring-navy-900/28",
+                          : "bg-white ring-sand-800/12 hover:ring-sand-800/28",
                       )}
                     >
                       <input
@@ -170,7 +170,7 @@ export function ServiceSelector({
                       {entry.note ? (
                         <span
                           className={cn(
-                            "mt-2 text-[0.625rem] font-semibold uppercase tracking-[0.08em]",
+                            "mt-2 text-[0.625rem] font-semibold uppercase",
                             isSelected ? "text-mint-300" : "text-mint-700",
                           )}
                         >

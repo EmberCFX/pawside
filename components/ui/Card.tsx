@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 type CardTone = "default" | "muted" | "cream" | "mint" | "inverse" | "outline";
 
 const toneClasses: Record<CardTone, string> = {
-  default: "bg-white ring-1 ring-navy-900/8 shadow-soft",
-  muted: "bg-canvas ring-1 ring-navy-900/6",
-  cream: "bg-cream ring-1 ring-navy-900/6",
+  default: "bg-white ring-1 ring-sand-800/8 shadow-soft",
+  muted: "bg-canvas ring-1 ring-sand-800/6",
+  cream: "bg-cream ring-1 ring-sand-800/6",
   mint: "bg-mint-50 ring-1 ring-mint-500/20",
   inverse: "bg-navy-900 text-navy-50 ring-1 ring-white/10",
-  outline: "bg-transparent ring-1 ring-navy-900/12",
+  outline: "bg-transparent ring-1 ring-sand-800/12",
 };
 
 export function Card({
@@ -52,7 +52,7 @@ export function Badge({
 }) {
   const tones = {
     mint: "bg-mint-50 text-mint-800 ring-mint-500/25",
-    navy: "bg-navy-50 text-navy-800 ring-navy-900/10",
+    navy: "bg-navy-50 text-navy-800 ring-sand-800/10",
     neutral: "bg-sand-100 text-sand-700 ring-sand-900/8",
     inverse: "bg-white/10 text-white ring-white/20",
     warn: "bg-amber-50 text-amber-800 ring-amber-500/25",
@@ -61,7 +61,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] ring-1 ring-inset",
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.6875rem] font-semibold uppercase ring-1 ring-inset",
         tones[tone],
         className,
       )}
@@ -84,7 +84,7 @@ export function IconTile({
   size?: "sm" | "md";
 }) {
   const tones = {
-    navy: "bg-navy-50 text-navy-900 ring-navy-900/8",
+    navy: "bg-navy-50 text-navy-900 ring-sand-800/8",
     mint: "bg-mint-50 text-mint-700 ring-mint-500/20",
     inverse: "bg-white/10 text-mint-300 ring-white/15",
   } as const;

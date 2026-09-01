@@ -34,7 +34,7 @@ export default function AccountMembershipPage() {
 
         <dl className="mt-7 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3">
           <div>
-            <dt className="text-[0.75rem] uppercase tracking-[0.1em] text-navy-100/50">
+            <dt className="text-[0.75rem] uppercase text-navy-100/50">
               Saved so far
             </dt>
             <dd className="mt-1.5 font-display text-xl font-semibold text-mint-300 tabular">
@@ -42,13 +42,13 @@ export default function AccountMembershipPage() {
             </dd>
           </div>
           <div>
-            <dt className="text-[0.75rem] uppercase tracking-[0.1em] text-navy-100/50">
+            <dt className="text-[0.75rem] uppercase text-navy-100/50">
               Next renewal
             </dt>
             <dd className="mt-1.5 font-display text-xl font-semibold text-white">Sep 1, 2026</dd>
           </div>
           <div>
-            <dt className="text-[0.75rem] uppercase tracking-[0.1em] text-navy-100/50">
+            <dt className="text-[0.75rem] uppercase text-navy-100/50">
               Care credit
             </dt>
             <dd className="mt-1.5 font-display text-xl font-semibold text-white tabular">

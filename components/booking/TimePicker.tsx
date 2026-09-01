@@ -39,7 +39,7 @@ export function TimePicker({
                 "group relative flex cursor-pointer items-center justify-between gap-3 rounded-button px-4 py-3 transition-all duration-200 ring-1 ring-inset",
                 isSelected
                   ? "bg-navy-900 text-white ring-navy-900"
-                  : "bg-white text-navy-800 ring-navy-900/12 hover:ring-navy-900/28",
+                  : "bg-white text-navy-800 ring-sand-800/12 hover:ring-sand-800/28",
               )}
             >
               <input

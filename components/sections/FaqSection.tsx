@@ -31,7 +31,7 @@ export function FaqSection({
           <SectionHeading align="left" eyebrow={eyebrow} title={heading} description={description} />
 
           {showContact ? (
-            <div className="mt-8 rounded-panel border border-navy-900/8 bg-canvas p-6">
+            <div className="mt-8 rounded-panel border border-sand-800/8 bg-canvas p-6">
               <p className="font-display text-[1.0625rem] font-semibold text-navy-900">
                 Still deciding?
               </p>

@@ -45,7 +45,7 @@ export function BookingStatusForm({
       <label className="text-[0.8125rem] font-medium text-navy-800">
         Visit status
         <select
-          className="mt-1.5 w-full rounded-button bg-white px-3 py-2.5 ring-1 ring-inset ring-navy-900/12"
+          className="mt-1.5 w-full rounded-button bg-white px-3 py-2.5 ring-1 ring-inset ring-sand-800/12"
           value={nextStatus}
           onChange={(event) => setNextStatus(event.target.value)}
         >
@@ -58,7 +58,7 @@ export function BookingStatusForm({
       <label className="text-[0.8125rem] font-medium text-navy-800">
         Payment
         <select
-          className="mt-1.5 w-full rounded-button bg-white px-3 py-2.5 ring-1 ring-inset ring-navy-900/12"
+          className="mt-1.5 w-full rounded-button bg-white px-3 py-2.5 ring-1 ring-inset ring-sand-800/12"
           value={nextPayment}
           onChange={(event) => setNextPayment(event.target.value)}
         >

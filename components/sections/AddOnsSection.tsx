@@ -36,7 +36,7 @@ export function AddOnsSection() {
                   {category.description}
                 </p>
 
-                <ul className="mt-5 flex flex-1 flex-col gap-3.5 border-t border-navy-900/8 pt-5">
+                <ul className="mt-5 flex flex-1 flex-col gap-3.5 border-t border-sand-800/8 pt-5">
                   {items.map((addOn) => (
                     <li key={addOn.slug} className="flex items-start gap-3">
                       <addOn.icon
@@ -64,7 +64,7 @@ export function AddOnsSection() {
         })}
       </RevealGroup>
 
-      <div className="mt-10 flex flex-col items-start gap-6 rounded-panel border border-navy-900/8 bg-canvas p-7 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <div className="mt-10 flex flex-col items-start gap-6 rounded-panel border border-sand-800/8 bg-canvas p-7 sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div className="flex items-start gap-4">
           <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-mint-50 text-mint-700 ring-1 ring-inset ring-mint-500/20">
             <Lightbulb className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />

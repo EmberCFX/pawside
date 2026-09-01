@@ -28,7 +28,7 @@ export function CheckoutForm({
               "group relative flex cursor-pointer items-start gap-3.5 rounded-card p-5 transition-all duration-200 ring-1 ring-inset",
               choice === "hold"
                 ? "bg-mint-50 ring-mint-500/60"
-                : "bg-white ring-navy-900/10 hover:ring-navy-900/25",
+                : "bg-white ring-sand-800/10 hover:ring-sand-800/25",
             )}
           >
             <input
@@ -41,7 +41,7 @@ export function CheckoutForm({
             <span
               className={cn(
                 "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1 ring-inset",
-                choice === "hold" ? "bg-mint-600 ring-mint-600" : "bg-white ring-navy-900/20",
+                choice === "hold" ? "bg-mint-600 ring-mint-600" : "bg-white ring-sand-800/20",
               )}
               aria-hidden="true"
             >
@@ -64,8 +64,8 @@ export function CheckoutForm({
             className={cn(
               "group relative flex cursor-pointer items-start gap-3.5 rounded-card p-5 transition-all duration-200 ring-1 ring-inset",
               choice === "card"
-                ? "bg-white ring-navy-900/30"
-                : "bg-white ring-navy-900/10 hover:ring-navy-900/25",
+                ? "bg-white ring-sand-800/30"
+                : "bg-white ring-sand-800/10 hover:ring-sand-800/25",
             )}
           >
             <input
@@ -78,7 +78,7 @@ export function CheckoutForm({
             <span
               className={cn(
                 "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ring-1 ring-inset",
-                choice === "card" ? "bg-navy-900 ring-navy-900" : "bg-white ring-navy-900/20",
+                choice === "card" ? "bg-navy-900 ring-navy-900" : "bg-white ring-sand-800/20",
               )}
               aria-hidden="true"
             >

@@ -61,7 +61,7 @@ export function ContactForm({
           type="tel"
           required
           autoComplete="tel"
-          placeholder="(413) 213-3973"
+          placeholder="(413) 323-3953"
           value={draft.contact.phone}
           error={phoneError}
           hint="Used for arrival texts and anything urgent during a visit."

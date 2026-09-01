@@ -47,7 +47,7 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
         </p>
       </div>
 
-      <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2.5 border-t border-navy-900/8 pt-4 text-[0.875rem]">
+      <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-2.5 border-t border-sand-800/8 pt-4 text-[0.875rem]">
         <div className="flex items-center gap-2">
           <dt className="sr-only">Date</dt>
           <CalendarDays className="h-4 w-4 text-sand-500" strokeWidth={1.75} aria-hidden="true" />
@@ -68,7 +68,7 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
         </div>
       </dl>
 
-      <div className="mt-5 flex flex-wrap gap-2.5 border-t border-navy-900/8 pt-4">
+      <div className="mt-5 flex flex-wrap gap-2.5 border-t border-sand-800/8 pt-4">
         {visit.status === "completed" && visit.reportId ? (
           <Link
             href={`/account/visits#${visit.reportId}`}
@@ -80,7 +80,7 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
           <>
             <button
               type="button"
-              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+              className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
             >
               Reschedule
             </button>

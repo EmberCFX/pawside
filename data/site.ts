@@ -13,8 +13,8 @@ export const site = {
   /** Set NEXT_PUBLIC_SITE_URL in production; used for canonical URLs and schema. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://pawside.co",
   contact: {
-    phone: "(413) 213-3973",
-    phoneHref: "tel:+14132133973",
+    phone: "(413) 323-3953",
+    phoneHref: "tel:+14133233953",
     email: "hello@pawside.co",
     responseTime: "Most messages answered within a few hours",
   },
@@ -49,7 +49,7 @@ export const site = {
   social: [{ name: "TikTok", href: "https://www.tiktok.com/@pawside", handle: "@pawside" }],
   /** Trust markers shown near primary CTAs. */
   trustPoints: [
-    "Insured & bonded",
+    "Same familiar caregiver",
     "Personalized care plans",
     "Photo updates every visit",
     "Flexible scheduling",

@@ -38,7 +38,7 @@ export default async function AdminHomePage() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.label} className="p-5">
-            <p className="text-[0.75rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+            <p className="text-[0.75rem] font-semibold uppercase text-sand-500">
               {stat.label}
             </p>
             <p className="mt-2 font-display text-2xl font-semibold text-navy-900">{stat.value}</p>
@@ -53,7 +53,7 @@ export default async function AdminHomePage() {
             View all
           </Link>
         </div>
-        <ul className="mt-4 divide-y divide-navy-900/8">
+        <ul className="mt-4 divide-y divide-sand-800/8">
           {bookings.slice(0, 8).map((row) => (
             <li key={row.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
               <div>

@@ -81,7 +81,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
       >
         <div className="mt-9 flex flex-wrap items-center gap-4">
           {area.travelTime ? (
-            <span className="inline-flex items-center gap-2 rounded-full border border-navy-900/10 bg-white px-3.5 py-2 text-[0.875rem] text-navy-800">
+            <span className="inline-flex items-center gap-2 rounded-full border border-sand-800/10 bg-white px-3.5 py-2 text-[0.875rem] text-navy-800">
               <Clock className="h-3.5 w-3.5 text-mint-600" strokeWidth={2} aria-hidden="true" />
               About {area.travelTime} from {site.homeBase.city}
             </span>
@@ -108,7 +108,7 @@ export default async function LocationPage({ params }: { params: Promise<{ slug:
             {area.neighborhoods.map((neighborhood) => (
               <li
                 key={neighborhood}
-                className="flex items-center gap-2.5 rounded-card border border-navy-900/8 bg-white px-4 py-3.5 text-[0.9375rem] text-navy-800"
+                className="flex items-center gap-2.5 rounded-card border border-sand-800/8 bg-white px-4 py-3.5 text-[0.9375rem] text-navy-800"
               >
                 <MapPin className="h-4 w-4 shrink-0 text-mint-600" strokeWidth={1.75} aria-hidden="true" />
                 {neighborhood}

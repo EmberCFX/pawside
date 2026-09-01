@@ -77,14 +77,14 @@ export function PetProfilePreview() {
 
         <Reveal delay={0.08}>
           {/* Mock dashboard chrome. */}
-          <div className="rounded-feature border border-navy-900/10 bg-white p-3 shadow-lift sm:p-4">
+          <div className="rounded-feature border border-sand-800/10 bg-white p-3 shadow-lift sm:p-4">
             <div className="flex items-center justify-between px-2 pb-3">
               <div className="flex items-center gap-2" aria-hidden="true">
                 <span className="h-2 w-2 rounded-full bg-sand-300" />
                 <span className="h-2 w-2 rounded-full bg-sand-300" />
                 <span className="h-2 w-2 rounded-full bg-sand-300" />
               </div>
-              <p className="text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-sand-500">
+              <p className="text-[0.6875rem] font-medium uppercase text-sand-500">
                 Pawside · Pet Profile
               </p>
               <Badge tone="mint">Preview</Badge>
@@ -102,22 +102,22 @@ export function PetProfilePreview() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.6875rem] font-medium text-navy-700 ring-1 ring-inset ring-navy-900/8">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.6875rem] font-medium text-navy-700 ring-1 ring-inset ring-sand-800/8">
                     <CalendarDays className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
                     Birthday Apr 2
                   </span>
                   {secondPet ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.6875rem] font-medium text-navy-700 ring-1 ring-inset ring-navy-900/8">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[0.6875rem] font-medium text-navy-700 ring-1 ring-inset ring-sand-800/8">
                       <Cat className="h-3 w-3" strokeWidth={2} aria-hidden="true" />+1 more pet
                     </span>
                   ) : null}
                 </div>
               </div>
 
-              <dl className="mt-6 grid gap-x-6 gap-y-5 border-t border-navy-900/8 pt-6 sm:grid-cols-2">
+              <dl className="mt-6 grid gap-x-6 gap-y-5 border-t border-sand-800/8 pt-6 sm:grid-cols-2">
                 {profileFields.map((field) => (
                   <div key={field.key}>
-                    <dt className="flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                    <dt className="flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-sand-500">
                       <field.icon className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
                       {field.label}
                     </dt>
@@ -128,8 +128,8 @@ export function PetProfilePreview() {
                 ))}
               </dl>
 
-              <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-navy-900/8 pt-5">
-                <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+              <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-sand-800/8 pt-5">
+                <span className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                   Favorites
                 </span>
                 {[pet.favoriteToys, pet.favoriteTreats].map((favorite) => (

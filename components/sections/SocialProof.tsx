@@ -19,7 +19,7 @@ export function SocialProof() {
   const marqueeItems = [...testimonials, ...testimonials];
 
   return (
-    <section className="border-b border-navy-900/8 bg-canvas py-16 lg:py-20" aria-labelledby="social-proof-heading">
+    <section className="border-b border-sand-800/8 bg-canvas py-16 lg:py-20" aria-labelledby="social-proof-heading">
       <Container>
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow withRules>Why owners stay</Eyebrow>
@@ -62,7 +62,7 @@ export function SocialProof() {
           {marqueeItems.map((testimonial, index) => (
             <li
               key={`${testimonial.id}-${index}`}
-              className="flex w-[320px] shrink-0 flex-col justify-between rounded-card border border-navy-900/8 bg-white p-5 sm:w-[368px]"
+              className="flex w-[320px] shrink-0 flex-col justify-between rounded-card border border-sand-800/8 bg-white p-5 sm:w-[368px]"
               aria-hidden={index >= testimonials.length}
             >
               <div>
@@ -74,7 +74,7 @@ export function SocialProof() {
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
               </div>
-              <div className="mt-5 flex items-center gap-3 border-t border-navy-900/8 pt-4">
+              <div className="mt-5 flex items-center gap-3 border-t border-sand-800/8 pt-4">
                 <PetAvatar slot={testimonial.mediaKey} name={testimonial.petName} size={36} />
                 <p className="text-[0.8125rem] text-sand-600">
                   <span className="font-semibold text-navy-900">{testimonial.ownerName}</span>

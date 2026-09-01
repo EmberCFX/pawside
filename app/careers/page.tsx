@@ -20,7 +20,7 @@ const openRoles = [
     title: "Pet Caregiver — Part Time",
     type: "Part time",
     location: `${site.homeBase.city} & nearby towns`,
-    pay: "$22–$28 / visit hour",
+    pay: "$18–$24 / visit",
     summary:
       "Midday walks and drop-in visits, Monday through Friday. Build a steady route of the same households week over week.",
     requirements: [
@@ -34,7 +34,7 @@ const openRoles = [
     title: "Overnight & Weekend Sitter",
     type: "Flexible",
     location: `Within ${site.homeBase.serviceRadiusMiles} miles of ${site.homeBase.city}`,
-    pay: "$95–$135 / night",
+    pay: "$100–$125 / night",
     summary:
       "Stay with pets in their own homes over weekends and holiday stretches. Best for someone who likes quiet nights and other people's dogs.",
     requirements: [
@@ -120,15 +120,15 @@ export default function CareersPage() {
                   {role.summary}
                 </p>
 
-                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-navy-900/8 py-4 text-[0.875rem]">
+                <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 border-y border-sand-800/8 py-4 text-[0.875rem]">
                   <div>
-                    <dt className="text-[0.6875rem] uppercase tracking-[0.1em] text-sand-500">
+                    <dt className="text-[0.6875rem] uppercase text-sand-500">
                       Pay
                     </dt>
                     <dd className="mt-1 font-medium text-navy-900">{role.pay}</dd>
                   </div>
                   <div>
-                    <dt className="text-[0.6875rem] uppercase tracking-[0.1em] text-sand-500">
+                    <dt className="text-[0.6875rem] uppercase text-sand-500">
                       Area
                     </dt>
                     <dd className="mt-1 font-medium text-navy-900">{role.location}</dd>

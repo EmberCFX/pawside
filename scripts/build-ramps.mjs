@@ -50,8 +50,8 @@ console.log(`navy ${NAVY} -> hsl(${nh.toFixed(1)}, ${(ns * 100).toFixed(1)}%, ${
 console.log(`mint ${MINT} -> hsl(${mh.toFixed(1)}, ${(ms * 100).toFixed(1)}%, ${(ml * 100).toFixed(1)}%)\n`);
 
 /**
- * Light steps pull saturation down so tints read as calm, premium surfaces rather
- * than candy colors; dark steps hold near the anchor's saturation.
+ * Light steps crush saturation so tints read as paper and ink, not sky-blue
+ * SaaS chrome. Dark steps hold the logo hue. Mid steps stay slate.
  */
 function ramp(hue, anchorSat, steps) {
   const out = {};
@@ -62,15 +62,15 @@ function ramp(hue, anchorSat, steps) {
 }
 
 const navy = ramp(nh, ns, {
-  50: { l: 0.968, s: 0.38 },
-  100: { l: 0.925, s: 0.42 },
-  200: { l: 0.85, s: 0.45 },
-  300: { l: 0.74, s: 0.46 },
-  400: { l: 0.6, s: 0.5 },
-  500: { l: 0.46, s: 0.58 },
-  600: { l: 0.35, s: 0.68 },
-  700: { l: 0.25, s: 0.8 },
-  800: { l: 0.17, s: 0.9 },
+  50: { l: 0.962, s: 0.05 },
+  100: { l: 0.918, s: 0.07 },
+  200: { l: 0.84, s: 0.09 },
+  300: { l: 0.72, s: 0.11 },
+  400: { l: 0.54, s: 0.16 },
+  500: { l: 0.4, s: 0.28 },
+  600: { l: 0.3, s: 0.48 },
+  700: { l: 0.22, s: 0.72 },
+  800: { l: 0.155, s: 0.9 },
   900: { l: nl, s: 1 },
   950: { l: 0.06, s: 1 },
 });

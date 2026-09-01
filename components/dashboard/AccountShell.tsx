@@ -82,7 +82,7 @@ export function AccountShell({
               })}
             </ul>
 
-            <p className="mt-6 hidden rounded-card border border-navy-900/8 bg-white p-4 text-xs leading-relaxed text-sand-600 lg:block">
+            <p className="mt-6 hidden rounded-card border border-sand-800/8 bg-white p-4 text-xs leading-relaxed text-sand-600 lg:block">
               This dashboard renders mock data. Wiring it to a real backend is documented in{" "}
               <span className="font-medium text-navy-800">lib/api.ts</span>.
             </p>

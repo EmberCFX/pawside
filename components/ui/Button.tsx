@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
  * Buttons.
  *
  * primary   navy fill, white text — the booking CTA everywhere
- * secondary white with a dark hairline border
+ * secondary sand wash — quiet next to the navy fill, no icy outline
  * accent    mint, used sparingly for a single emphasis moment per screen
  * inverse   white fill for navy sections
  * ghost     text only, for tertiary actions
@@ -25,7 +25,7 @@ const variants: Record<ButtonVariant, string> = {
   primary:
     "bg-navy-900 text-white shadow-soft hover:bg-navy-800 hover:shadow-lift focus-visible:outline-navy-700",
   secondary:
-    "bg-white text-navy-900 ring-1 ring-inset ring-navy-900/14 hover:ring-navy-900/28 hover:bg-sand-50 hover:shadow-soft",
+    "bg-sand-100 text-navy-900 hover:bg-sand-200 hover:shadow-soft",
   accent:
     "bg-mint-500 text-navy-950 shadow-mint hover:bg-mint-400 hover:shadow-lift",
   inverse:
@@ -59,7 +59,7 @@ type LinkProps = CommonProps & { href: string } & Omit<
 function content(children: React.ReactNode, withArrow?: boolean) {
   return (
     <>
-      <span className="relative">{children}</span>
+      <span className="relative inline-flex items-center gap-2">{children}</span>
       {withArrow ? (
         <ArrowRight
           className="relative h-4 w-4 shrink-0 transition-transform duration-300 ease-brand group-hover:translate-x-1"

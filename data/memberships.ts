@@ -1,8 +1,6 @@
 import type { Membership, MembershipSlug } from "@/types";
 
 /**
- * PLACEHOLDER PRICING — confirm before launch.
- *
  * Membership tiers drive both the pricing page and the live savings math in the
  * quote engine. `visitDiscount`, `monthlyCredit`, `waivesBookingFee`, and
  * `holidaySurchargeDiscount` are read directly by lib/pricing.ts, so a plan
@@ -29,7 +27,7 @@ export const memberships: Membership[] = [
     slug: "pawside-plus",
     name: "Pawside+",
     tagline: "For pets who need us regularly.",
-    monthlyPrice: 1900,
+    monthlyPrice: 2900,
     visitDiscount: 0.05,
     monthlyCredit: 0,
     waivesBookingFee: true,
@@ -49,9 +47,9 @@ export const memberships: Membership[] = [
     slug: "pawside-plus-premium",
     name: "Pawside+ Premium",
     tagline: "For households booking us most weeks.",
-    monthlyPrice: 4900,
+    monthlyPrice: 5900,
     visitDiscount: 0.1,
-    monthlyCredit: 2600,
+    monthlyCredit: 3200,
     waivesBookingFee: true,
     holidaySurchargeDiscount: 1,
     benefits: [
@@ -77,7 +75,7 @@ export function getMembership(slug: MembershipSlug): Membership {
 
 export const paidMemberships = memberships.filter((tier) => tier.slug !== "none");
 
-/** Prepaid visit bundles — an alternative to subscribing. PLACEHOLDER PRICING. */
+/** Prepaid visit bundles — an alternative to subscribing. */
 export const visitBundles = [
   {
     slug: "walk-10",
@@ -85,8 +83,8 @@ export const visitBundles = [
     description: "Ten 30-minute walks to use whenever you need them.",
     visits: 10,
     /** Cents. */
-    price: 24700,
-    regularPrice: 26000,
+    price: 28800,
+    regularPrice: 32000,
     expiresInMonths: 6,
   },
   {
@@ -94,8 +92,8 @@ export const visitBundles = [
     name: "20-Visit Bundle",
     description: "Twenty 30-minute drop-ins for regular weekly coverage.",
     visits: 20,
-    price: 45600,
-    regularPrice: 48000,
+    price: 54000,
+    regularPrice: 60000,
     expiresInMonths: 9,
   },
 ];
@@ -103,11 +101,11 @@ export const visitBundles = [
 /** Gift cards. Amounts in cents. */
 export const giftCardAmounts = [5000, 10000, 15000, 25000];
 
-/** Referral program. PLACEHOLDER VALUES. */
+/** Referral program. */
 export const referralProgram = {
   /** Cents credited to the referrer once the friend completes a first visit. */
-  referrerCredit: 2000,
+  referrerCredit: 2500,
   /** Cents off the friend's first booking. */
-  friendCredit: 2000,
+  friendCredit: 2500,
   code: "REFERAFRIEND",
 };

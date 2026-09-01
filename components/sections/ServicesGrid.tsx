@@ -19,7 +19,7 @@ export function ServicesGrid({
       <SectionHeading
         eyebrow="Services"
         title="Everything they need while you're away."
-        description="Six ways to cover the gaps in a busy week — each one built around your pet's normal routine, not a rigid package."
+        description="Walks, sits, drop-ins, overnights, grooming, rides, and trail days — each one built around your pet's normal routine, not a rigid package."
       />
 
       <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -40,10 +40,10 @@ export function ServicesGrid({
       </div>
 
       {showUpcoming ? (
-        <div className="mt-16 rounded-panel border border-navy-900/8 bg-canvas p-7 sm:p-9">
+        <div className="mt-16 rounded-panel border border-sand-800/8 bg-canvas p-7 sm:p-9">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-mint-700">
+              <p className="inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase text-mint-700">
                 <Clock3 className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
                 On the way
               </p>
@@ -69,7 +69,7 @@ export function ServicesGrid({
                   <p className="text-[0.9375rem] font-medium text-navy-900">
                     {service.name}
                     {service.status === "waitlist" ? (
-                      <span className="ml-2 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-mint-700">
+                      <span className="ml-2 text-[0.6875rem] font-semibold uppercase text-mint-700">
                         Waitlist open
                       </span>
                     ) : null}

@@ -13,7 +13,7 @@ export default function AccountMessagesPage() {
         </p>
       </div>
 
-      <Card className="divide-y divide-navy-900/8 p-0">
+      <Card className="divide-y divide-sand-800/8 p-0">
         {messages.map((message) => (
           <article key={message.id} className="flex gap-4 p-5 sm:p-6">
             <span
@@ -56,7 +56,7 @@ export default function AccountMessagesPage() {
             id="message-reply"
             rows={3}
             placeholder="Quick question about Thursday's walk…"
-            className="min-w-0 flex-1 rounded-button bg-white px-3.5 py-2.5 text-[0.9375rem] ring-1 ring-inset ring-navy-900/12 placeholder:text-sand-400 focus:outline-none focus:ring-2 focus:ring-mint-600"
+            className="min-w-0 flex-1 rounded-button bg-white px-3.5 py-2.5 text-[0.9375rem] ring-1 ring-inset ring-sand-800/12 placeholder:text-sand-400 focus:outline-none focus:ring-2 focus:ring-mint-600"
           />
           <button
             type="button"

@@ -11,12 +11,12 @@ export default async function AdminBookingsPage() {
 
   return (
     <Card className="overflow-hidden p-0">
-      <div className="border-b border-navy-900/8 px-6 py-5">
+      <div className="border-b border-sand-800/8 px-6 py-5">
         <h2 className="font-display text-lg font-semibold text-navy-900">Bookings</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[720px] text-left text-[0.875rem]">
-          <thead className="bg-sand-50 text-[0.75rem] uppercase tracking-eyebrow text-sand-500">
+          <thead className="bg-sand-50 text-[0.75rem] uppercase text-sand-500">
             <tr>
               <th className="px-6 py-3 font-semibold">Ref</th>
               <th className="px-6 py-3 font-semibold">Customer</th>
@@ -28,7 +28,7 @@ export default async function AdminBookingsPage() {
           </thead>
           <tbody>
             {bookings.map((row) => (
-              <tr key={row.id} className="border-t border-navy-900/8">
+              <tr key={row.id} className="border-t border-sand-800/8">
                 <td className="px-6 py-3">
                   <Link href={`/admin/bookings/${row.booking_number}`} className="font-medium text-navy-900">
                     {row.booking_number}

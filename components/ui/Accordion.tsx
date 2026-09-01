@@ -37,7 +37,7 @@ export function Accordion({
     );
 
   return (
-    <div className={cn("divide-y divide-navy-900/8 border-y border-navy-900/8", className)}>
+    <div className={cn("divide-y divide-sand-800/8 border-y border-sand-800/8", className)}>
       {items.map((item) => {
         const isOpen = openIds.includes(item.id);
         const panelId = `${baseId}-${item.id}-panel`;
@@ -62,7 +62,7 @@ export function Accordion({
                     "mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full ring-1 ring-inset transition-all duration-300 ease-brand",
                     isOpen
                       ? "bg-navy-900 text-white ring-navy-900"
-                      : "bg-white text-navy-700 ring-navy-900/12 group-hover:ring-mint-500/60",
+                      : "bg-white text-navy-700 ring-sand-800/12 group-hover:ring-mint-500/60",
                   )}
                   aria-hidden="true"
                 >

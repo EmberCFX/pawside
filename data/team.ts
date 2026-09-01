@@ -13,7 +13,7 @@ export const team: TeamMember[] = [
     bio: "I started Pawside after years of watching friends and neighbors scramble for someone reliable. I'd rather know twenty families and their animals well than take every booking that comes in — that's the whole business model.",
     credentials: [
       "Pet First Aid & CPR certified",
-      "Insured & bonded",
+      "Same familiar caregiver",
       "8 years caring for dogs and cats",
       "Comfortable with senior and medicated pets",
     ],
@@ -54,8 +54,8 @@ export const safetyCommitments = [
     description: "Recertified regularly, with a stocked kit in the car.",
   },
   {
-    title: "Insured and bonded",
-    description: "Coverage for the pets in our care and your home while we're in it.",
+    title: "Same familiar caregiver",
+    description: "Whenever we can, the person your pet already knows is the person who shows up.",
   },
   {
     title: "Vet and emergency contacts on file",

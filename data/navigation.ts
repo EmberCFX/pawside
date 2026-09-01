@@ -24,6 +24,9 @@ export const footerNav: { heading: string; links: NavLink[] }[] = [
       { label: "Overnight Care", href: "/services/overnight-care" },
       { label: "Puppy Care", href: "/services/puppy-care" },
       { label: "Cat Care", href: "/services/cat-care" },
+      { label: "Grooming", href: "/services/grooming" },
+      { label: "Pet Transportation", href: "/services/pet-transportation" },
+      { label: "Adventure Outings", href: "/services/adventure-outings" },
     ],
   },
   {

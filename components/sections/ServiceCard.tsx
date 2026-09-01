@@ -28,7 +28,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
           className="transition-colors duration-300 group-hover:bg-mint-50 group-hover:text-mint-700 group-hover:ring-mint-500/25"
         />
         <div className="text-right">
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+          <p className="text-[0.6875rem] font-semibold uppercase text-sand-500">
             From
           </p>
           <p className="font-display text-xl font-semibold leading-tight text-navy-900 tabular">
@@ -50,7 +50,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
         {service.summary}
       </p>
 
-      <div className="mt-6 flex items-center justify-between gap-3 border-t border-navy-900/8 pt-5">
+      <div className="mt-6 flex items-center justify-between gap-3 border-t border-sand-800/8 pt-5">
         <span className="inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-navy-900">
           Learn more
           <ArrowRight

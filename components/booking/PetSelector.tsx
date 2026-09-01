@@ -32,7 +32,7 @@ export function PetSelector({
       {pets.map((pet, index) => (
         <fieldset
           key={pet.id}
-          className="rounded-card border border-navy-900/10 bg-white p-5 sm:p-6"
+          className="rounded-card border border-sand-800/10 bg-white p-5 sm:p-6"
         >
           <div className="flex items-center justify-between gap-4">
             <legend className="font-display text-[1.0625rem] font-semibold text-navy-900">
@@ -75,7 +75,7 @@ export function PetSelector({
                         "group relative inline-flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-button px-3 py-2.5 text-[0.875rem] font-medium transition-all duration-200 ring-1 ring-inset",
                         isSelected
                           ? "bg-navy-900 text-white ring-navy-900"
-                          : "bg-white text-navy-800 ring-navy-900/12 hover:ring-navy-900/28",
+                          : "bg-white text-navy-800 ring-sand-800/12 hover:ring-sand-800/28",
                       )}
                     >
                       <input
@@ -122,7 +122,7 @@ export function PetSelector({
       <button
         type="button"
         onClick={addPet}
-        className="inline-flex items-center justify-center gap-2 rounded-card border border-dashed border-navy-900/20 bg-canvas px-5 py-4 text-[0.9375rem] font-medium text-navy-900 transition-colors hover:border-mint-500/60 hover:bg-mint-50"
+        className="inline-flex items-center justify-center gap-2 rounded-card border border-dashed border-sand-800/20 bg-canvas px-5 py-4 text-[0.9375rem] font-medium text-navy-900 transition-colors hover:border-mint-500/60 hover:bg-mint-50"
       >
         <Plus className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
         Add another pet

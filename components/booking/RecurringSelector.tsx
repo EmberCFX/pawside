@@ -51,7 +51,7 @@ export function RecurringSelector({
                 "group relative flex cursor-pointer flex-col rounded-card p-4 transition-all duration-200 ring-1 ring-inset",
                 isSelected
                   ? "bg-navy-900 ring-navy-900"
-                  : "bg-white ring-navy-900/12 hover:ring-navy-900/28",
+                  : "bg-white ring-sand-800/12 hover:ring-sand-800/28",
               )}
             >
               <input
@@ -74,7 +74,7 @@ export function RecurringSelector({
                 {discount > 0 ? (
                   <span
                     className={cn(
-                      "shrink-0 rounded-full px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-[0.08em]",
+                      "shrink-0 rounded-full px-2 py-0.5 text-[0.625rem] font-semibold uppercase",
                       isSelected ? "bg-white/15 text-mint-300" : "bg-mint-50 text-mint-700",
                     )}
                   >
@@ -115,7 +115,7 @@ export function RecurringSelector({
                     "h-10 w-12 rounded-button text-[0.8125rem] font-medium transition-all duration-200 ring-1 ring-inset",
                     isSelected
                       ? "bg-navy-900 text-white ring-navy-900"
-                      : "bg-white text-navy-800 ring-navy-900/12 hover:ring-navy-900/28",
+                      : "bg-white text-navy-800 ring-sand-800/12 hover:ring-sand-800/28",
                   )}
                 >
                   {day.short}

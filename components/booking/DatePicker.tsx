@@ -42,7 +42,7 @@ export function DatePicker({
     viewMonth.year === today.getFullYear() && viewMonth.month === today.getMonth();
 
   return (
-    <div className="rounded-card border border-navy-900/10 bg-white p-5">
+    <div className="rounded-card border border-sand-800/10 bg-white p-5">
       <div className="flex items-center justify-between">
         <p className="font-display text-[1.0625rem] font-semibold text-navy-900" aria-live="polite">
           {MONTH_NAMES[viewMonth.month]} {viewMonth.year}
@@ -72,7 +72,7 @@ export function DatePicker({
         {["S", "M", "T", "W", "T", "F", "S"].map((label, index) => (
           <div
             key={`${label}-${index}`}
-            className="pb-1 text-center text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-sand-500"
+            className="pb-1 text-center text-[0.6875rem] font-semibold uppercase text-sand-500"
           >
             {label}
           </div>
@@ -119,7 +119,7 @@ export function DatePicker({
         })}
       </div>
 
-      <p className="mt-4 flex items-center gap-2 border-t border-navy-900/8 pt-4 text-xs text-sand-600">
+      <p className="mt-4 flex items-center gap-2 border-t border-sand-800/8 pt-4 text-xs text-sand-600">
         <span className="h-1.5 w-1.5 rounded-full bg-mint-500" aria-hidden="true" />
         Holiday — a surcharge applies, reduced or waived for members
       </p>

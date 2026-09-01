@@ -40,7 +40,7 @@ export function PageHero({
     <section
       className={cn(
         "relative overflow-hidden border-b",
-        onDark ? "surface-inverse border-white/10" : "border-navy-900/8",
+        onDark ? "surface-inverse border-white/10" : "border-sand-800/8",
         tone === "cream" && "bg-cream",
         tone === "white" && "bg-white",
       )}

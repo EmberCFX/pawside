@@ -61,7 +61,7 @@ export async function sendBookingEmails(input: BookingEmailInput) {
     to: input.contactEmail,
     replyTo: opsEmail(),
     subject: `You're booked — ${input.bookingNumber}`,
-    text: `Hi ${input.contactName.split(" ")[0] || "there"},\n\nWe have your request.\n\n${details}\n\nWe'll confirm shortly. Reply to this email or call (413) 213-3973 if you need to change anything.\n\n— Pawside`,
+    text: `Hi ${input.contactName.split(" ")[0] || "there"},\n\nWe have your request.\n\n${details}\n\nWe'll confirm shortly. Reply to this email or call (413) 323-3953 if you need to change anything.\n\n— Pawside`,
   });
 
   return { sent: true };

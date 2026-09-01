@@ -75,8 +75,8 @@ export default async function ConfirmationPage({
               : "Your request is in. We'll confirm the details shortly, and you'll get a summary with photos after every visit from then on."}
           </p>
 
-          <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-navy-900/10 bg-white px-4 py-2.5">
-            <span className="text-[0.6875rem] font-semibold uppercase tracking-eyebrow text-sand-500">
+          <div className="mt-7 inline-flex items-center gap-3 rounded-full border border-sand-800/10 bg-white px-4 py-2.5">
+            <span className="text-[0.6875rem] font-semibold uppercase text-sand-500">
               Booking number
             </span>
             <span className="font-display text-[0.9375rem] font-semibold text-navy-900 tabular">
@@ -98,7 +98,7 @@ export default async function ConfirmationPage({
               {nextSteps.map((step, index) => (
                 <li key={step.title} className="flex gap-4">
                   <span
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-navy-900/8"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-navy-50 text-navy-900 ring-1 ring-inset ring-sand-800/8"
                     aria-hidden="true"
                   >
                     <step.icon className="h-5 w-5" strokeWidth={1.75} />
@@ -116,7 +116,7 @@ export default async function ConfirmationPage({
               ))}
             </ol>
 
-            <div className="mt-9 flex flex-col gap-3 border-t border-navy-900/8 pt-7 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 border-t border-sand-800/8 pt-7 sm:flex-row">
               <ButtonLink href="/account/visits" size="lg" withArrow>
                 View Booking
               </ButtonLink>

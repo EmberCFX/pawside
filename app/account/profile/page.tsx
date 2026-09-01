@@ -38,7 +38,7 @@ export default function AccountProfilePage() {
           </h2>
           <button
             type="button"
-            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
           >
             Edit details
           </button>
@@ -48,7 +48,7 @@ export default function AccountProfilePage() {
           <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
             {details.map((detail) => (
               <div key={detail.label}>
-                <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-sand-500">
+                <dt className="text-[0.6875rem] font-semibold uppercase text-sand-500">
                   {detail.label}
                 </dt>
                 <dd className="mt-1.5 text-[0.9375rem] leading-relaxed text-navy-800">
@@ -67,7 +67,7 @@ export default function AccountProfilePage() {
         >
           Notifications
         </h2>
-        <Card className="mt-4 divide-y divide-navy-900/8 p-0">
+        <Card className="mt-4 divide-y divide-sand-800/8 p-0">
           {preferences.map((preference) => (
             <div
               key={preference.label}
@@ -108,7 +108,7 @@ export default function AccountProfilePage() {
           </div>
           <button
             type="button"
-            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 transition-all hover:ring-navy-900/25"
+            className="rounded-button bg-white px-3.5 py-2 text-[0.8125rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 transition-all hover:ring-sand-800/25"
           >
             Change password
           </button>

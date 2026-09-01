@@ -95,7 +95,7 @@ export default async function PolicyPage({ params }: { params: Promise<{ slug: s
             ))}
           </div>
 
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-navy-900/8 pt-6">
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-sand-800/8 pt-6">
             <Link
               href="/policies"
               className="inline-flex items-center gap-2 text-[0.9375rem] font-medium text-navy-900"

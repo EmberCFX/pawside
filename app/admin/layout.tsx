@@ -45,7 +45,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-button bg-white px-3.5 py-2 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-navy-900/10 hover:bg-navy-50"
+              className="rounded-button bg-white px-3.5 py-2 text-[0.875rem] font-medium text-navy-900 ring-1 ring-inset ring-sand-800/10 hover:bg-navy-50"
             >
               {item.label}
             </Link>

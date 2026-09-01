@@ -111,7 +111,7 @@ export function Hero() {
             </motion.ul>
 
             <motion.div
-              className="mt-8 flex items-center gap-3 border-t border-navy-900/8 pt-6"
+              className="mt-8 flex items-center gap-3 border-t border-sand-800/8 pt-6"
               {...(reduceMotion
                 ? {}
                 : {
@@ -152,7 +152,7 @@ export function Hero() {
 
             {/* Walk completed */}
             <motion.div
-              className="absolute -left-3 top-8 w-[230px] rounded-card border border-navy-900/8 bg-white/95 p-4 shadow-float backdrop-blur-md sm:-left-8 sm:w-[250px]"
+              className="absolute left-3 top-4 w-[min(18.75rem,calc(100%-1.5rem))] rounded-card border border-sand-800/8 bg-white/95 p-5 shadow-float backdrop-blur-md sm:-left-8 sm:top-8 sm:w-[250px] sm:p-4"
               {...float(0.5)}
             >
               <div className="flex items-center gap-2">
@@ -160,11 +160,11 @@ export function Hero() {
                   <span className="absolute inset-0 rounded-full bg-mint-500" />
                   <span className="absolute inset-0 animate-pulse-ring rounded-full bg-mint-500" />
                 </span>
-                <p className="text-[0.8125rem] font-semibold text-navy-900">Walk completed</p>
+                <p className="text-[0.875rem] font-semibold text-navy-900 sm:text-[0.8125rem]">Walk completed</p>
               </div>
-              <div className="mt-3 flex items-end gap-5">
+              <div className="mt-4 flex items-end justify-between gap-6 sm:mt-3 sm:justify-start sm:gap-5">
                 <div>
-                  <p className="flex items-center gap-1.5 text-[0.6875rem] uppercase tracking-[0.1em] text-sand-500">
+                  <p className="flex items-center gap-1.5 text-[0.6875rem] uppercase text-sand-500">
                     <Timer className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
                     Time
                   </p>
@@ -173,7 +173,7 @@ export function Hero() {
                   </p>
                 </div>
                 <div>
-                  <p className="flex items-center gap-1.5 text-[0.6875rem] uppercase tracking-[0.1em] text-sand-500">
+                  <p className="flex items-center gap-1.5 text-[0.6875rem] uppercase text-sand-500">
                     <MapPin className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
                     Distance
                   </p>
@@ -195,17 +195,17 @@ export function Hero() {
 
             {/* Visit update */}
             <motion.div
-              className="absolute -right-2 top-1/2 w-[250px] -translate-y-8 rounded-card border border-navy-900/8 bg-white/95 p-4 shadow-float backdrop-blur-md sm:-right-6 sm:w-[268px]"
+              className="absolute left-3 right-3 top-[48%] -translate-y-1/2 rounded-card border border-sand-800/8 bg-white/95 p-5 shadow-float backdrop-blur-md sm:left-auto sm:-right-6 sm:top-1/2 sm:w-[268px] sm:-translate-y-8 sm:p-4"
               {...float(0.68)}
             >
-              <div className="flex items-center justify-between">
-                <p className="text-[0.8125rem] font-semibold text-navy-900">Visit Update</p>
-                <span className="text-[0.6875rem] font-medium text-sand-500">5:42 PM</span>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-[0.875rem] font-semibold text-navy-900 sm:text-[0.8125rem]">Visit Update</p>
+                <span className="shrink-0 text-[0.6875rem] font-medium text-sand-500">5:42 PM</span>
               </div>
-              <p className="mt-2 text-[0.8125rem] leading-relaxed text-sand-700">
+              <p className="mt-2.5 text-[0.875rem] leading-relaxed text-sand-700 sm:mt-2 sm:text-[0.8125rem]">
                 Luna ate dinner and had some playtime. Fresh water, litter scooped, blinds closed.
               </p>
-              <div className="mt-3 flex items-center gap-2 border-t border-navy-900/8 pt-3">
+              <div className="mt-4 flex items-center gap-2.5 border-t border-sand-800/8 pt-3.5 sm:mt-3 sm:pt-3">
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-navy-900 text-[0.625rem] font-semibold text-white">
                   C
                 </span>
@@ -215,17 +215,17 @@ export function Hero() {
 
             {/* Photo update */}
             <motion.div
-              className="absolute bottom-6 left-4 flex items-center gap-3 rounded-card border border-navy-900/8 bg-white/95 py-3 pl-3 pr-4 shadow-float backdrop-blur-md sm:left-2"
+              className="absolute bottom-4 left-3 flex items-center gap-3.5 rounded-card border border-sand-800/8 bg-white/95 px-4 py-3.5 shadow-float backdrop-blur-md sm:bottom-6 sm:left-2 sm:gap-3 sm:py-3 sm:pl-3 sm:pr-4"
               {...float(0.86)}
             >
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-mint-50 text-mint-700 ring-1 ring-inset ring-mint-500/20">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-mint-50 text-mint-700 ring-1 ring-inset ring-mint-500/20 sm:h-9 sm:w-9">
                 <Camera className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
               </span>
               <div>
-                <p className="text-[0.8125rem] font-semibold leading-tight text-navy-900">
+                <p className="text-[0.875rem] font-semibold leading-tight text-navy-900 sm:text-[0.8125rem]">
                   Photo Update
                 </p>
-                <p className="text-xs leading-tight text-mint-700">Delivered · 3 photos</p>
+                <p className="mt-0.5 text-xs leading-tight text-mint-700">Delivered · 3 photos</p>
               </div>
             </motion.div>
           </div>
