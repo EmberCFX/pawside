@@ -11,10 +11,12 @@ export function TimePicker({
   value,
   onChange,
   overnight,
+  name = "time-slot",
 }: {
   value: string | null;
   onChange: (label: string) => void;
   overnight?: boolean;
+  name?: string;
 }) {
   const slots = overnight ? overnightSlots : timeSlots;
 
@@ -44,7 +46,7 @@ export function TimePicker({
             >
               <input
                 type="radio"
-                name="time-slot"
+                name={name}
                 value={slot.label}
                 checked={isSelected}
                 onChange={() => onChange(slot.label)}

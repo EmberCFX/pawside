@@ -79,7 +79,13 @@ export function VisitCard({ visit, className }: { visit: Visit; className?: stri
           </Link>
         ) : null}
         {visit.status === "scheduled" || visit.status === "confirmed" || visit.status === "in-progress" ? (
-          <VisitActions bookingId={visit.id} bookingNumber={visit.bookingNumber} />
+          <VisitActions
+            bookingId={visit.id}
+            bookingNumber={visit.bookingNumber}
+            date={visit.date}
+            time={visit.time}
+            overnight={visit.serviceSlug === "overnight-care"}
+          />
         ) : null}
         <Link
           href="/account/messages"

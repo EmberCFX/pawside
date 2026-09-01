@@ -211,6 +211,49 @@ export async function sendCancellationNotice(input: BookingEmailInput) {
   return { sent: true };
 }
 
+export async function sendRescheduleNotice(
+  input: BookingEmailInput,
+  previous: { previousDate: string | null; previousTime: string | null },
+) {
+  const client = resend();
+  if (!client) return { sent: false };
+
+  const when = [input.date, input.time].filter(Boolean).join(" ");
+  const previousWhen = [previous.previousDate, previous.previousTime].filter(Boolean).join(" ");
+  const firstName = firstNameOf(input.contactName);
+
+  await client.emails.send({
+    from,
+    to: opsEmail(),
+    replyTo: input.contactEmail,
+    subject: `Visit rescheduled — ${input.bookingNumber}`,
+    text: `${input.contactName} moved ${input.serviceName} (${input.bookingNumber})${previousWhen ? ` from ${previousWhen}` : ""}${when ? ` to ${when}` : ""}.\n\nEmail: ${input.contactEmail}\nPhone: ${input.contactPhone}\nAdmin: ${siteUrl()}/admin/bookings/${input.bookingNumber}`,
+  });
+
+  await client.emails.send({
+    from,
+    to: input.contactEmail,
+    replyTo: opsEmail(),
+    subject: `Visit moved — ${input.bookingNumber}`,
+    text: `Hi ${firstName},\n\nYour ${input.serviceName} visit is now ${when || "pending confirmation"}${previousWhen ? ` (was ${previousWhen})` : ""}. Booking ${input.bookingNumber}. We'll confirm the new time shortly.\n\n— Aliya, Pawside`,
+    html: customerEmailHtml({
+      preheader: `Your ${input.serviceName} visit is now ${when || "on a new time"}.`,
+      eyebrow: input.bookingNumber,
+      title: "Visit moved.",
+      intro: `Hi ${firstName} — we moved your ${input.serviceName} visit to the new time below. We’ll confirm as soon as we check the calendar.`,
+      details: [
+        ["Service", input.serviceName],
+        ["New time", when || "—"],
+        ...(previousWhen ? ([["Was", previousWhen]] as Array<[string, string]>) : []),
+        ["Booking", input.bookingNumber],
+      ],
+      cta: { href: `${siteUrl()}/account`, label: "View your account" },
+    }),
+  });
+
+  return { sent: true };
+}
+
 export async function sendPaymentNotice(input: BookingEmailInput) {
   const client = resend();
   if (!client) return { sent: false };
